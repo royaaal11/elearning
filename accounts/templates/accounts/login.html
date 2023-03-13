@@ -1,0 +1,65 @@
+{% extends 'emodule/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<!-- Page Banner Section Start -->
+<div class="page-banner bg-color-05">
+    <div class="page-banner__wrapper">
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+
+            </div>
+            <!-- Page Breadcrumb End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Login Form Section Start -->
+<div class="contact-section">
+    <div class="container custom-container">
+
+        <!-- Login Form Start -->
+        <div class="contact-form section-padding-01">
+
+            <!-- Section Title Start -->
+            <div class="section-title text-left" data-aos="fade-up" data-aos-duration="1000">
+                <h2 class="section-title__title">LogIn</h2>
+            </div>
+            <!-- Section Title End -->
+
+            <!-- Login Form Wrapper Start -->
+            <div class="contact-form__wrapper" data-aos="fade-up" data-aos-duration="1000">
+                {% include 'emodule/messages.html' %}
+                {{ form.non_field_errors }}
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row gy-5">
+                        {{ form|crispy }}
+                        <div class="col-md-12">
+                            <div class="contact-form__input w-100">
+                                <p class="modal-description">Don't have an account yet? <a href="{% url 'accounts:signup' %}">Sign Up</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="contact-form__input">
+                                <button class="btn btn-primary btn-hover-secondary  w-100">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Login Form Wrapper End -->
+
+        </div>
+        <!-- Login Form End -->
+
+    </div>
+</div>
+<!-- Login Form Section End -->
+{% endblock content %}

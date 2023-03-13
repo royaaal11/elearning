@@ -1,0 +1,82 @@
+{% extends 'emodule/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Page Banner Section Start -->
+<div class="page-banner bg-color-04">
+    <div class="page-banner__wrapper">
+
+        <div class="page-banner__shape-01"></div>
+        <div class="page-banner__shape-02"></div>
+        <div class="page-banner__shape-03"></div>
+
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'emodule:home' %}">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="{% url 'emodule:subject-detail' subject.id %}">Quarters</a></li>
+                </ul>
+            </div>
+            <!-- Page Breadcrumb End -->
+
+            <!-- Page Banner Caption Start -->
+            <div class="page-banner__caption-02">
+                <h2 class="page-banner__main-title-02">Courseware in Basket Weaving Level II</h2>
+            </div>
+            <!-- Page Banner Caption End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Categories Section Start -->
+<div class="categories-section section-padding-02">
+    <div class="container">
+
+        <!-- Section Title Start -->
+        <div class="section-title" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="section-title__title"><mark>Quarters</mark> </h2>
+        </div>
+
+        <div class="container">
+            <div class="row gy-8">
+                {% for quarter in quarter_list %}
+                <div class="col-lg-6">
+
+                    <!-- Banner Box Start -->
+                    <div class="banner-box banner-bg-3" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="row gy-4 gy-sm-0 align-items-end">
+                            <div class="col-md-6">
+                                <div class="banner-caption-02">
+                                    <h5 class="banner-caption-02__sub-title">Assessment Score: {{quarter.quarter.assessment_total_score}}/{{quarter.quarter.assessment_count}}</h5>
+                                    <h3 class="banner-caption-02__title">{{quarter.quarter.title}}</h3>
+                                    <a href="{% url 'emodule:quarter-detail' subject.id quarter.quarter.id %}"
+                                        class="banner-caption-02__btn btn btn-secondary btn-hover-primary">Go to lesson</a>
+                                    <a href="{% url 'emodule:assessment-detail' subject.id quarter.quarter.id 'assessments' %}"
+                                        class="banner-caption-02__btn btn btn-primary btn-hover-secondary {% if quarter.prerequisite and quarter.prerequisite.status != 'Complete' %}disabled{% endif %}"
+                                        >Take the Assessment ({{quarter.quarter.status}})</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="banner-image banner-position">
+                                    <img src="{% static 'emodule/images/category/quarter-bg-nobg.png' %}" alt="Banner"
+                                        width="330" height="175">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Banner Box End -->
+
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Categories Section End -->
+{% endblock content %}

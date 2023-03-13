@@ -1,0 +1,215 @@
+{% extends 'emodule/base.html' %}
+{% load static %}
+{% load emodule_extras %}
+
+{% block content %}
+<!-- Page Banner Section Start -->
+<div class="page-banner bg-color-12">
+    <div class="page-banner__wrapper">
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+                <ul class="breadcrumb breadcrumb-white">
+                    <li class="breadcrumb-item"><a href="{% url 'emodule:home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'emodule:subject-detail' quarter.subject.id %}">Quarters</a></li>
+                    <li class="breadcrumb-item active"><a href="{% url 'emodule:quarter-detail' quarter.subject.id quarter.id %}">{{quarter.title}}</a></li>
+                </ul>
+            </div>
+            <!-- Page Breadcrumb End -->
+
+            <!-- Page Banner Caption Start -->
+            <div class="page-banner__caption text-center">
+                <h2 class="page-banner__main-title text-white">{{quarter.title}}</h2>
+            </div>
+            <!-- Page Banner Caption End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Tutor Course tabs Menu Start -->
+<div class="tutor-course-tabs bg-color-13">
+    <div class="container custom-container">
+
+        <ul class="nav justify-content-center">
+            <li><button class="active" data-bs-toggle="tab" data-bs-target="#tab1">Assessment</button></li>
+        </ul>
+
+    </div>
+</div>
+<!-- Tutor Course tabs Menu End -->
+
+<!-- Tutor Course Main content Start -->
+<div class="tutor-course-main-content bg-color-05 section-padding-01 sticky-parent">
+    <div class="container custom-container">
+
+        <div class="row gy-10">
+            <div class="col-lg-8">
+
+                <div class="course-main-sticky">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="tab1">
+
+                            {% if quarter.assessment_list %}
+                            {% for assessment in quarter.assessment_list %}
+                            <form id="id_activity_form" method="post">
+                                {% csrf_token %}
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        {% for assessment in quarter.assessment_list %}
+                                        <button class="nav-link active" id="assessment-{{assessment.id}}-tab" data-bs-toggle="tab" data-bs-target="#assessment-{{assessment.id}}"
+                                            type="button" role="tab" aria-controls="assessment-{{assessment.id}}" aria-selected="true">
+                                            {% if assessment.title %}{{assessment.title}}{% else %}Assessment-{{forloop.counter}}{% endif %}
+                                        </button>
+                                        {% endfor %}
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    {% for assessment in quarter.assessment_list %}
+                                    <div class="tab-pane fade show active" id="assessment-{{assessment.id}}" role="tabpanel" aria-labelledby="assessment-{{assessment.id}}-tab">
+                                        <!-- Tutor Course Main Segment Start -->
+                                        <div class="tutor-course-main-segment">
+
+                                            <!-- Tutor Course Segment Start -->
+                                            <div class="tutor-course-segment tutor-course-wrap">
+
+                                                <div class="tutor-course-segment__header">
+                                                    <h4 class="tutor-course-segment__title">{{assessment.direction}}</h4>
+                                                </div>
+
+                                                {% include 'emodule/messages.html' %}
+
+                                                <div class="course-curriculum accordion">
+                                                    {% for assessment_question in assessment.assessmentquestion_set.all %}
+                                                    <div class="accordion-item {% if assessment_question.student_correct %}border-correct-answer{% elif assessment_question.student_correct is False %}border-wrong-answer{% endif %}">
+                                                        <a class="accordion-button">{{forloop.counter}}. {{assessment_question.text}}</a>
+                                                        <div id="collapse-{{assessment_question.id}}" class="accordion-collapse collapse show"
+                                                            data-bs-parent="#accordionCourse">
+
+                                                            <div class="course-curriculum__lessons">
+
+                                                                {% for assessment_choice in assessment_question.assessmentchoice_set.all %}
+                                                                <div class="course-curriculum__lesson {% if assessment_question.student_correct and assessment_choice.text == assessment_question.student_answer %}correct-answer{% elif assessment_question.student_correct is False and assessment_choice.text == assessment_question.student_answer %}wrong-answer{% endif %}">
+                                                                    <span class="course-curriculum__title">
+                                                                        <div class="form-check">
+                                                                            <input name="assessment_choice_{{assessment_question.id}}"
+                                                                                id="id_assessment_choice_{{assessment_question.id}}_{{assessment_choice.id}}"
+                                                                                class="form-check-input" type="radio" value="{{assessment_choice.text}}"
+                                                                                {% if assessment_question.student_correct and assessment_choice.text == assessment_question.student_answer %}checked{% elif assessment_question.student_correct is False and assessment_choice.text == assessment_question.student_answer %}checked{% endif %}
+                                                                                {% if quarter.date_assessment_taken %}disabled{% endif %}>
+                                                                            <label class="form-check-label"
+                                                                                for="id_assessment_choice_{{assessment_question.id}}_{{assessment_choice.id}}">
+                                                                                {{assessment_choice.text}}
+                                                                            </label>
+                                                                        </div>
+                                                                    </span>
+                                                                </div>
+                                                                {% endfor %}
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+
+                                                </div>
+
+                                            </div>
+                                            <!-- Tutor Course Segment End -->
+
+                                        </div>
+                                        <!-- Tutor Course Main Segment End -->
+                                    </div>
+                                    {% endfor %}
+                                </div>
+
+                            </form>
+                            {% endfor %}
+                            {% else %}
+                            <!-- Tutor Course Main Segment Start -->
+                            <div class="tutor-course-segment tutor-course-wrap">
+                                <h4 class="tutor-course-segment__title">Assessment</h4>
+
+                                <!-- Tutor Course Segment Prerequisites Start -->
+                                <div class="tutor-course-segment__prerequisites">
+                                    <div class="tutor-course-segment__prerequisites-warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        None
+                                    </div>
+                                </div>
+                                <!-- Tutor Course Segment Prerequisites End -->
+
+                            </div>
+                            <!-- Tutor Course Main Segment End -->
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+
+                <!-- Tutor Course Sidebar Start -->
+                <div class="tutor-course-sidebar sidebar-label">
+
+                    <!-- Tutor Course Price Preview Start -->
+                    <div class="tutor-course-price-preview">
+                        <div class="col-md-12">
+                            <div class="contact-form__input">
+                                <button 
+                                id="id_activity_form_submit" 
+                                class="btn btn-primary btn-hover-secondary w-100" 
+                                {% if quarter.status == 'Complete' or quarter.assessment_list.count < 1 %}disabled{% endif %}
+                                >Submit Assessment</button>
+                            </div>
+                        </div><br>
+                        <span class="course-info-02__badge-text {% if quarter.status == 'Complete' %}badge-all{% else %}badge-beginner{% endif %}">{% if quarter.assessment_list %}{{quarter.status}}{% else %}No activity{% endif %}</span>
+                        <div class="tutor-course-price-preview__meta">
+                            <ul class="tutor-course-meta-list">
+                                <li>
+                                    <div class="label"><i class="fas fa-play-circle"></i> Assessment Score </div>
+                                    <div class="value"><span>{{quarter.assessment_total_score}}</span></div>
+                                </li>
+                                <li>
+                                    <div class="label"><i class="fas fa-sliders-h"></i> Number of Questions </div>
+                                    <div class="value">{{quarter.assessment_count}}</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Tutor Course Price Preview End -->
+
+                    <!-- Sidebar Widget Start -->
+                    <div class="sidebar-widget border-0">
+                        <h3 class="sidebar-widget__title">Next Assessment</h3>
+
+                        <div class="sidebar-widget__course">
+
+                            <div class="col-md-12">
+                                <div class="contact-form__input">
+                                    <a 
+                                        id="id_activity_form_submit" 
+                                        href="{% url 'emodule:assessment-detail' next_quarter_assessment.subject.id next_quarter_assessment.id 'assessment' %}"
+                                        class="btn btn-secondary btn-hover-primary w-100 {% if quarter.status != 'Complete' %}disabled{% endif %}"
+                                        >Proceed to next assessment</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Sidebar Widget End -->
+
+                </div>
+                <!-- Tutor Course Sidebar End -->
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- Tutor Course Main content End -->
+{% endblock content %}

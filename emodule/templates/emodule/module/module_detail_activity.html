@@ -1,0 +1,94 @@
+{% load static %}
+
+{% if module.quiz_list %}
+{% for quiz in module.quiz_list %}
+<form id="id_activity_form" method="post">
+    {% csrf_token %}
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            {% for quiz in module.quiz_list %}
+            <button class="nav-link active" id="quiz-{{quiz.id}}-tab" data-bs-toggle="tab" data-bs-target="#quiz-{{quiz.id}}"
+                type="button" role="tab" aria-controls="quiz-{{quiz.id}}" aria-selected="true">
+                {% if quiz.title %}{{quiz.title}}{% else %}Quiz-{{forloop.counter}}{% endif %}
+            </button>
+            {% endfor %}
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        {% for quiz in module.quiz_list %}
+        <div class="tab-pane fade show active" id="quiz-{{quiz.id}}" role="tabpanel" aria-labelledby="quiz-{{quiz.id}}-tab">
+            <!-- Tutor Course Main Segment Start -->
+            <div class="tutor-course-main-segment">
+
+                <!-- Tutor Course Segment Start -->
+                <div class="tutor-course-segment tutor-course-wrap">
+
+                    <div class="tutor-course-segment__header">
+                        <h4 class="tutor-course-segment__title">{{quiz.direction}}</h4>
+                    </div>
+
+                    {% include 'emodule/messages.html' %}
+
+                    <div class="course-curriculum accordion">
+                        {% for quiz_question in quiz.quizquestion_set.all %}
+                        <div class="accordion-item {% if quiz_question.student_correct %}border-correct-answer{% elif quiz_question.student_correct is False %}border-wrong-answer{% endif %}">
+                            <a class="accordion-button">{{forloop.counter}}. {{quiz_question.text}}</a>
+                            <div id="collapse-{{quiz_question.id}}" class="accordion-collapse collapse show"
+                                data-bs-parent="#accordionCourse">
+
+                                <div class="course-curriculum__lessons">
+
+                                    {% for quiz_choice in quiz_question.quizchoice_set.all %}
+                                    <div class="course-curriculum__lesson {% if quiz_question.student_correct and quiz_choice.text == quiz_question.student_answer %}correct-answer{% elif quiz_question.student_correct is False and quiz_choice.text == quiz_question.student_answer %}wrong-answer{% endif %}">
+                                        <span class="course-curriculum__title">
+                                            <div class="form-check">
+                                                <input name="quiz_choice_{{quiz_question.id}}"
+                                                    id="id_quiz_choice_{{quiz_question.id}}_{{quiz_choice.id}}"
+                                                    class="form-check-input" type="radio" value="{{quiz_choice.text}}"
+                                                    {% if quiz_question.student_correct and quiz_choice.text == quiz_question.student_answer %}checked{% elif quiz_question.student_correct is False and quiz_choice.text == quiz_question.student_answer %}checked{% endif %}
+                                                    {% if module.date_quiz_taken %}disabled{% endif %}>
+                                                <label class="form-check-label"
+                                                    for="id_quiz_choice_{{quiz_question.id}}_{{quiz_choice.id}}">
+                                                    {{quiz_choice.text}}
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+                <!-- Tutor Course Segment End -->
+
+            </div>
+            <!-- Tutor Course Main Segment End -->
+        </div>
+        {% endfor %}
+    </div>
+
+</form>
+{% endfor %}
+{% else %}
+<!-- Tutor Course Main Segment Start -->
+<div class="tutor-course-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Activity</h4>
+
+    <!-- Tutor Course Segment Prerequisites Start -->
+    <div class="tutor-course-segment__prerequisites">
+        <div class="tutor-course-segment__prerequisites-warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            None
+        </div>
+    </div>
+    <!-- Tutor Course Segment Prerequisites End -->
+
+</div>
+<!-- Tutor Course Main Segment End -->
+{% endif %}

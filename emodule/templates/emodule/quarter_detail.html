@@ -1,0 +1,133 @@
+{% extends 'emodule/base.html' %}
+{% load static %}
+{% load emodule_extras %}
+
+{% block content %}
+<!-- Page Banner Section Start -->
+<div class="page-banner bg-color-12">
+    <div class="page-banner__wrapper">
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+                <ul class="breadcrumb breadcrumb-white">
+                    <li class="breadcrumb-item"><a href="{% url 'emodule:home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'emodule:subject-detail' quarter.subject.id %}">Quarters</a></li>
+                    <li class="breadcrumb-item active"><a href="{% url 'emodule:quarter-detail' quarter.subject.id quarter.id %}">{{quarter.title}}</a></li>
+                </ul>
+            </div>
+            <!-- Page Breadcrumb End -->
+
+            <!-- Page Banner Caption Start -->
+            <div class="page-banner__caption text-center">
+                <h2 class="page-banner__main-title text-white">{{quarter.title}}</h2>
+            </div>
+            <!-- Page Banner Caption End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Courses Start -->
+<div class="courses-section section-padding-01">
+    <div class="container">
+
+        <!-- Archive Filter Bars Start -->
+        <div class="archive-filter-bars">
+            <div class="archive-filter-bar">
+                <p><span>{{module_list.count}}</span> modules available for you</p>
+            </div>
+
+            <div class="archive-filter-bar">
+
+                <div class="filter-bar-wrapper">
+                    <span>See</span>
+                    <ul class="nav">
+                        <li><button class="active" data-bs-toggle="tab" data-bs-target="#grid"><i
+                                    class="fas fa-th"></i></button></li>
+                        <li><button data-bs-toggle="tab" data-bs-target="#list"><i class="fas fa-bars"></i></button>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Archive Filter Bars End -->
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="grid">
+
+                <div class="row gy-6">
+                    {% for module in module_list %}
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+
+                        <!-- Course Start -->
+                        <div class="course-item-02" data-aos="fade-up" data-aos-duration="1000">
+                            <div class="course-header">
+                                <div class="course-header__thumbnail rounded-0">
+                                    <a href="{% url 'emodule:module-detail' module.quarter.subject.id module.quarter.id module.id %}"><img
+                                            src="{% static 'emodule/images/courses/module-cover-sm.png' %}" alt="courses" width="330"
+                                            height="221"></a>
+                                </div>
+                            </div>
+                            <div class="course-info-02">
+                                <span class="course-info-02__badge-text {% if module.status == 'Complete' %}badge-all{% else %}badge-beginner{% endif %}">{% if module.quiz_list %}{{module.status}}{% else %}No activity{% endif %}</span>
+                                <div class="course-info-02__category">
+                                    <a href="#">{{module.quarter.title}}</a>
+                                </div>
+                                <h3 class="course-info-02__title"><a href="{% url 'emodule:module-detail' module.quarter.subject.id module.quarter.id module.id %}">{{module.title}}</a></h3>
+                                <div class="course-info-02__description">
+                                    <p>{{module.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Course End -->
+
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            <div class="tab-pane fade" id="list">
+
+                {% for module in module_list %}
+                <!-- Course List Start -->
+                <div class="course-list-item">
+                    <div class="course-list-header">
+                        <div class="course-list-header__thumbnail ">
+                            <a href="{% url 'emodule:module-detail' module.quarter.subject.id module.quarter.id module.id %}"><img src="{% static 'emodule/images/courses/module-cover.png' %}"
+                                    alt="courses" width="270" height="181"></a>
+                        </div>
+                    </div>
+                    <div class="course-list-info">
+                        <h3 class="course-list-info__title"><a href="{% url 'emodule:module-detail' module.quarter.subject.id module.quarter.id module.id %}">{{module.title}}</a></h3>
+                        <span class="course-info-02__badge-text {% if module.status == 'Complete' %}badge-all{% else %}badge-beginner{% endif %}">{% if module.quiz_list %}{{module.status}}{% else %}No activity{% endif %}</span>
+                        <div class="course-list-info__meta">
+                            <span><i class="fas fa-play-circle"></i>{{module.quiz_count}} Activit{{module.quiz_count|emodule_pluralize:"y,ies"}}</span>
+                            <span><i class="fas fa-clock"></i>{{module.duration}}</span>
+                        </div>
+                        <div class="course-list-info__description">
+                            <p>{{module.description}}</p>
+                        </div>
+                        <div class="course-list-info__action">
+                            <button class="btn btn-primary btn-hover-secondary">Enter this Module</button>
+                        </div>
+                        <div class="course-list-info__footer">
+                            <div class="course-list-info__price">
+                                <span class="sale-price">Score: {{module.quiz_total_score}}/<small class="separator">{{module.quiz_count}}</small></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Course List End -->
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Courses End -->
+{% endblock content %}

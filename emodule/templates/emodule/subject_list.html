@@ -1,0 +1,74 @@
+{% extends 'emodule/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Page Banner Section Start -->
+<div class="page-banner bg-color-04">
+    <div class="page-banner__wrapper">
+
+        <div class="page-banner__shape-01"></div>
+        <div class="page-banner__shape-02"></div>
+        <div class="page-banner__shape-03"></div>
+
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item active">Lessons</li>
+                </ul>
+            </div>
+            <!-- Page Breadcrumb End -->
+
+            <!-- Page Banner Caption Start -->
+            <div class="page-banner__caption-02">
+                <h2 class="page-banner__main-title-02">Lessons</h2>
+            </div>
+            <!-- Page Banner Caption End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Courses Category Featured Start -->
+<div class="courses-category-section section-padding-02">
+    <div class="container">
+
+        <!-- Section Title Start -->
+        <div class="section-title">
+            <h2 class="section-title__title"><mark>Your</mark> Subjects</h2>
+        </div>
+        <!-- Section Title End -->
+
+        <div class="row gy-6">
+            <div class="col-xl-3 col-md-6">
+
+                <!-- Course Start -->
+                <div class="course-item-03">
+                    <div class="course-header-03">
+                        <div class="course-header-03__thumbnail ">
+                            <a href="{% url 'emodule:subject-detail' 1 %}"><img
+                                    src="{% static 'emodule/images/courses/tle-subject-bg.jpg' %}" alt="courses"
+                                    width="330" height="221"></a>
+                        </div>
+                    </div>
+                    <div class="course-info-03">
+                        <h3 class="course-info-03__title"><a href="course-single-layout-01.html">Technology and
+                                Livelihood Education</a></h3>
+                        <div class="course-info-03__meta">
+                            <span>7 Modules</span>
+                            <span>4 Quarters</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Course End -->
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Courses Category Featured End -->
+{% endblock content %}
