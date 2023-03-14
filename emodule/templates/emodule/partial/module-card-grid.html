@@ -1,0 +1,28 @@
+{% load static %}
+{% load emodule_extras %}
+
+<div class="col-xl-3 col-lg-4 col-sm-6">
+
+    <!-- Course Start -->
+    <div class="course-item-02" data-aos="fade-up" data-aos-duration="1000">
+        <div class="course-header">
+            <div class="course-header__thumbnail rounded-0">
+                <a href="{% url 'emodule:module-detail' module.quarter.subject.id module.quarter.id module.id %}"><img
+                        src="{% static 'emodule/images/courses/module-cover-sm.png' %}" alt="courses" width="330"
+                        height="221"></a>
+            </div>
+        </div>
+        <div class="course-info-02">
+            {% show_emodule_badge module.quiz_set.all quiz_status %}
+            <div class="course-info-02__category">
+                <a href="{% url 'emodule:subject-detail' module.quarter.id %}">{{module.quarter.title}}</a>
+            </div>
+            <h3 class="course-info-02__title"><a href="{% url 'emodule:module-detail' module.quarter.subject.id module.quarter.id module.id %}">{{module.title}}</a></h3>
+            <div class="course-info-02__description">
+                <p>{{module.description}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Course End -->
+
+</div>

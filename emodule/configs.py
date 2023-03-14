@@ -19,3 +19,9 @@ MENU_CONFIG = [
 ]
 
 BREAD_CRUMB_BASE_CONFIG = ["Home"]
+
+
+ACTIVITY_STATUS = (
+    ("Passed", "Passed"),
+    ("Failed", "Failed"),
+)

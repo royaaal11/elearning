@@ -1,0 +1,14 @@
+{% load static %}
+{% load emodule_extras %}
+
+{% for module in module_list %}
+
+    {% emodule_status module.result.latest.status as current_quiz_status %}
+    {% emodule_score module.result.latest.score as current_score %}
+
+    {% if layout == 'grid' %}
+        {% include 'emodule/partial/module-card-grid.html' with module=module.obj quiz_status=current_quiz_status quiz_score=current_score %}
+    {% else %}
+        {% include 'emodule/partial/module-card-list.html' with module=module.obj quiz_status=current_quiz_status quiz_score=current_score %}
+    {% endif %}
+{% endfor %}

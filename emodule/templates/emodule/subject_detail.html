@@ -1,5 +1,6 @@
 {% extends 'emodule/base.html' %}
 {% load static %}
+{% load emodule_extras %}
 
 {% block content %}
 <!-- Page Banner Section Start -->
@@ -43,7 +44,13 @@
 
         <div class="container">
             <div class="row gy-8">
-                {% for quarter in quarter_list %}
+
+                {% for current_quarter in quarter_list %}
+
+                {% emodule_score current_quarter.assessment_result.latest.score as current_assessment_score %}
+                {% emodule_status current_quarter.assessment_result.latest.status as current_assessment_status %}
+                {% emodule_status current_quarter.prerequisite_result.latest.status as prereq_assessment_status %}
+                
                 <div class="col-lg-6">
 
                     <!-- Banner Box Start -->
@@ -51,13 +58,22 @@
                         <div class="row gy-4 gy-sm-0 align-items-end">
                             <div class="col-md-6">
                                 <div class="banner-caption-02">
-                                    <h5 class="banner-caption-02__sub-title">Assessment Score: {{quarter.quarter.assessment_total_score}}/{{quarter.quarter.assessment_count}}</h5>
-                                    <h3 class="banner-caption-02__title">{{quarter.quarter.title}}</h3>
-                                    <a href="{% url 'emodule:quarter-detail' subject.id quarter.quarter.id %}"
+                                    <h3 class="banner-caption-02__title">{{current_quarter.quarter.title}}</h3>
+                                    
+                                    <a href="{% url 'emodule:quarter-detail' subject.id current_quarter.quarter.id %}"
                                         class="banner-caption-02__btn btn btn-secondary btn-hover-primary">Go to lesson</a>
-                                    <a href="{% url 'emodule:assessment-detail' subject.id quarter.quarter.id 'assessments' %}"
-                                        class="banner-caption-02__btn btn btn-primary btn-hover-secondary {% if quarter.prerequisite and quarter.prerequisite.status != 'Complete' %}disabled{% endif %}"
-                                        >Take the Assessment ({{quarter.quarter.status}})</a>
+                                    <!-- Student cannot proceed if:
+                                        1. Current Quarter has no assessment or
+                                        2. Current Quarter is not the first quarter or
+                                        3. Curret Quarter assessment status != Passed
+                                    -->
+                                    <a href="{% url 'emodule:assessment-detail' subject.id current_quarter.quarter.id 'assessments' %}"
+                                        class="banner-caption-02__btn btn btn-primary btn-hover-secondary {% if current_quarter.assessment_set.all or current_quarter.prerequisite and prereq_assessment_status != 'Passed' %}disabled{% endif %}"
+                                        >Take the Assessment</a>
+                                        <h5 class="banner-caption-02__sub-title">
+                                            Assessment Score: {{current_assessment_score}}/{{current_quarter.quarter.assessment_count}}
+                                        </h5>
+                                        {% show_emodule_badge current_quarter.quarter.assessment_set.all current_assessment_status %}
                                 </div>
                             </div>
                             <div class="col-md-6">

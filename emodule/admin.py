@@ -42,7 +42,7 @@ class PerformanceTaskInline(nested_admin.NestedTabularInline):
 class ModuleAdmin(nested_admin.NestedModelAdmin):
     inlines = [LearningOutcomeInline, VideoLessonInline, PerformanceTaskInline]
     # readonly_fields = ["status", "date_quiz_taken"]
-    list_display = ("id", "name", "title", "description", "status", "duration", "quarter", "date_quiz_taken", "quiz_total")
+    list_display = ("id", "name", "title", "description", "duration", "quarter", "quiz_total")
 
     @admin.display(description="Quiz Items Total")
     def quiz_total(self, module):
@@ -82,7 +82,6 @@ class AssessmentQuestionInline(nested_admin.NestedTabularInline):
     model = AssessmentQuestion
     extra = 2
     inlines = [AssessmentChoiceInline]
-    readonly_fields = ["student_answer", "student_correct"]
 
 
 @admin.register(Assessment)

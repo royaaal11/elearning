@@ -1,0 +1,86 @@
+{% load static %}
+
+{% if activity_list %}
+<form id="id_activity_form" method="post">
+    {% csrf_token %}
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            {% for key, activity in activity_list.items %}
+            <button class="nav-link active" id="activity-{{activity.activity_obj.id}}-tab" data-bs-toggle="tab" data-bs-target="#activity-{{activity.activity_obj.id}}"
+                type="button" role="tab" aria-controls="activity-{{activity.activity_obj.id}}" aria-selected="true">
+                {% if activity.activity_obj.title %}{{activity.activity_obj.title}}{% else %}Quiz-{{forloop.counter}}{% endif %}
+            </button>
+            {% endfor %}
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        {% for key, activity in activity_list.items %}
+        <div class="tab-pane fade show active" id="activity-{{activity.activity_obj.id}}" role="tabpanel" aria-labelledby="activity-{{activity.activity_obj.id}}-tab">
+            <!-- Tutor Course Main Segment Start -->
+            <div class="tutor-course-main-segment">
+
+                <!-- Tutor Course Segment Start -->
+                <div class="tutor-course-segment tutor-course-wrap">
+
+                    <div class="tutor-course-segment__header">
+                        <h4 class="tutor-course-segment__title">{{activity.activity_obj.direction}}</h4>
+                    </div>
+
+                    {% include 'emodule/partial/messages.html' %}
+
+                    <div class="course-curriculum accordion">
+                        {% for activity_question_key, activity_question in activity.question_list.items %}
+                        <div class="accordion-item {% if activity_question.student_answer.is_correct %}border-correct-answer{% elif activity_question.student_answer.is_correct is False %}border-wrong-answer{% endif %}">
+                            <a class="accordion-button">{{forloop.counter}}. {{activity_question.question_obj.text}}</a>
+                            <div id="collapse-{{activity_question.question_obj.id}}" class="accordion-collapse collapse show"
+                                data-bs-parent="#accordionCourse">
+
+                                <div class="course-curriculum__lessons">
+
+                                    {% for activity_choice in activity_question.question_obj.activitychoice_set.all %}
+                                    <div class="course-curriculum__lesson {% if activity_question.student_answer.is_correct and activity_choice.id == activity_question.student_answer.answer_id %}correct-answer{% elif activity_question.student_answer.is_correct is False and activity_choice.id == activity_question.student_answer.answer_id %}wrong-answer{% endif %}">
+                                        <span class="course-curriculum__title">
+                                            <div class="form-check">
+                                                <input name="activity_choice_{{activity_question.question_obj.id}}"
+                                                    id="id_activity_choice_{{activity_question.question_obj.id}}_{{activity_choice.id}}"
+                                                    class="form-check-input" type="radio" value="{{activity_choice.id}}"
+                                                    {% if activity_question.student_answer.is_correct and activity_choice.id == activity_question.student_answer.answer_id %}checked{% elif activity_question.student_answer.is_correct is False and activity_choice.text == activity_question.student_answer.answer_id %}checked{% endif %}
+                                                    {% if activity_question.student_answer.answer_id %}disabled{% endif %}
+                                                    required="required">
+                                                <label class="form-check-label"
+                                                    for="id_activity_choice_{{activity_question.question_obj.id}}_{{activity_choice.id}}">
+                                                    {{activity_choice.text}}
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+                <!-- Tutor Course Segment End -->
+
+            </div>
+            <!-- Tutor Course Main Segment End -->
+        </div>
+        {% endfor %}
+    </div>
+
+</form>
+{% else %}
+<!-- Tutor Course Main Segment Start -->
+<div class="tutor-course-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Activity</h4>
+
+    {% include 'emodule/partial/warning-message.html' with message="None" %}
+
+</div>
+<!-- Tutor Course Main Segment End -->
+{% endif %}

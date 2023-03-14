@@ -55,18 +55,17 @@
                     <div class="header-top-bar-wrap d-sm-flex justify-content-between">
                         <div class="header-top-bar-wrap__info">
                             <ul class="header-top-bar-wrap__info-list">
-                                <li>
-                                    <a href="tel:+8819906886"><i class="fas fa-phone"></i>
-                                        <span class="info-text">(+88) 1990 6886</span></a>
-                                </li>
-                                <li>
-                                    <a href="mailto:basketry@example.com"><i class="far fa-envelope"></i>
-                                        <span class="info-text">basketry@example.com</span></a>
-                                </li>
                             </ul>
                         </div>
 
                         <div class="header-top-bar-wrap__info d-sm-flex">
+                            <ul class="header-top-bar-wrap__info-social">
+                                <li>
+                                    <a href="{% url 'emodule:home' %}"><i class="far fa-user"></i>
+                                        Hi <span class="info-text">{{user.first_name}}</span>
+                                    </a>
+                                </li>
+                            </ul>
                             {% if user.is_authenticated  %}
                             <ul class="header-top-bar-wrap__info-list d-none d-lg-flex">
                                 <li>
@@ -89,23 +88,7 @@
                                 </li>
                             </ul>
                             {% endif %}
-                            <ul class="header-top-bar-wrap__info-social">
-                                <li>
-                                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://www.facebook.com/" target="_blank"><i
-                                            class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/" target="_blank"><i
-                                            class="fab fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://www.linkedin.com/" target="_blank"><i
-                                            class="fab fa-linkedin-in"></i></a>
-                                </li>
-                            </ul>
+                            
                         </div>
                     </div>
                     <!-- Header Top Bar Wrapper End -->
@@ -322,6 +305,7 @@
     <!-- Vendors JS -->
     <script src="{% static 'emodule/js/vendor/modernizr-3.11.7.min.js' %}"></script>
     <script src="{% static 'emodule/js/vendor/jquery-3.6.0.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script src="{% static 'emodule/js/vendor/jquery-migrate-3.3.2.min.js' %}"></script>
     <script src="{% static 'emodule/js/vendor/bootstrap.bundle.min.js' %}"></script>
 

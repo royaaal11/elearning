@@ -1,5 +1,6 @@
 {% extends 'emodule/base.html' %}
 {% load static %}
+{% load emodule_extras %}
 
 {% block content %}
 <!-- Page Banner Section Start -->
@@ -44,7 +45,7 @@
                             </div>
                             <div class="instructor-name text-white">{{module.title}}</div>
                         </div>
-                        <div class="tutor-course-top-info__meta-update text-white">{% if module.quiz_set.first.date_taken %}Last Taken {{module.quiz_set.first.date_taken}}{% elif not module.quiz_set.all %}No activity{% else %}Quiz not yet taken{% endif %}</div>
+                        <div class="tutor-course-top-info__meta-update text-white">{% if latest_result.latest.date_taken %}Last Taken {{latest_result.latest.date_taken}}{% elif not module.quiz_set.all %}No activity{% else %}Quiz not yet taken{% endif %}</div>
                     </div>
                 </div>
                 <!-- Tutor Course Top Info End -->
@@ -89,18 +90,12 @@
                                 <div class="tutor-course-segment tutor-course-wrap">
                                     <h4 class="tutor-course-segment__title">Unit of Competency</h4>
 
-                                    <!-- Tutor Course Segment Prerequisites Start -->
-                                    <div class="tutor-course-segment__prerequisites">
-                                        <div class="tutor-course-segment__prerequisites-warning">
-                                            <i class="fas fa-exclamation-triangle"></i>
-                                            {{module.unit_of_competency}}
-                                        </div>
-                                    </div>
-                                    <!-- Tutor Course Segment Prerequisites End -->
+                                    {% include 'emodule/partial/warning-message.html' with message=module.unit_of_competency %}
 
                                 </div>
                                 <!-- Tutor Course Segment End -->
-
+                                
+                                {% block lesson-content %}
                                 <!-- Tutor Course Segment Start -->
                                 <div class="tutor-course-segment tutor-course-wrap">
                                     <h4 class="tutor-course-segment__title">About This Module</h4>
@@ -127,22 +122,9 @@
                                     </div>
                                     <!-- Tutor Course Segment Content Wrapper End -->
 
-                                    <!-- Tutor Course Segment Tags Start -->
-                                    <div class="tutor-course-segment__tags">
-                                        <div class="tutor-course-segment__tags-title">
-                                            <i class="fas  fa-tags"></i>
-                                        </div>
-                                        <div class="tutor-course-segment__tags-list">
-                                            <a href="#"> big data,</a>
-                                            <a href="#">data,</a>
-                                            <a href="#">data analysis,</a>
-                                            <a href="#">data modeling</a>
-                                        </div>
-                                    </div>
-                                    <!-- Tutor Course Segment Tags End -->
-
                                 </div>
                                 <!-- Tutor Course Segment End -->
+                                {% endblock lesson-content %}
 
                                 <!-- Tutor Course Segment Start -->
                                 <div class="tutor-course-segment tutor-course-wrap benefits-wrap">
@@ -160,14 +142,9 @@
                                         </div>
                                         {% endfor %}
                                         {% else %}
-                                        <div class="tutor-course-segment__benefit-item">
-                                            <div class="tutor-course-segment__prerequisites">
-                                                <div class="tutor-course-segment__prerequisites-warning">
-                                                    <i class="fas fa-exclamation-triangle"></i>
-                                                    None
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                        {% include 'emodule/partial/warning-message.html' with message="None" %}
+                                        
                                         {% endif %}
                                     </div>
                                     <!-- Tutor Course Segment Benefits Items End -->
@@ -193,6 +170,9 @@
                 <!-- Tutor Course Sidebar Start -->
                 <div class="tutor-course-sidebar sidebar-label">
 
+                    {% emodule_status latest_result.latest.status as current_quiz_status %}
+                    {% emodule_score quiz_score.latest.score as current_quiz_score %}
+
                     <!-- Tutor Course Price Preview Start -->
                     <div class="tutor-course-price-preview">
                         <div class="col-md-12">
@@ -200,24 +180,28 @@
                                 <button 
                                 id="id_activity_form_submit" 
                                 class="btn btn-primary btn-hover-secondary w-100" 
-                                {% if module.status == 'Complete' or module.quiz_list.count < 1 %}disabled{% endif %}
+                                {% if current_quiz_score or not quiz_list %}disabled{% endif %}
                                 >Submit Quiz</button>
                             </div>
                         </div><br>
-                        <span class="course-info-02__badge-text {% if module.status == 'Complete' %}badge-all{% else %}badge-beginner{% endif %}">{% if module.quiz_list %}{{module.status}}{% else %}No activity{% endif %}</span>
+                        
                         <div class="tutor-course-price-preview__meta">
                             <ul class="tutor-course-meta-list">
                                 <li>
-                                    <div class="label"><i class="fas fa-play-circle"></i> Activity Score </div>
-                                    <div class="value"><span>{{module.quiz_total_score}}</span></div>
+                                    <div class="label"><i class="fas fa-info"></i> Status </div>
+                                    <div class="value"><span>{% show_emodule_badge quiz_list current_quiz_status %}</span></div>
+                                </li>
+                                <li>
+                                    <div class="label"><i class="fas fa-star"></i> Activity Score </div>
+                                    <div class="value"><span>{{current_quiz_score}}</span></div>
+                                </li>
+                                <li>
+                                    <div class="label"><i class="fas fa-list"></i> Number of Questions </div>
+                                    <div class="value">{{module.quiz_count}}</div>
                                 </li>
                                 <li>
                                     <div class="label"><i class="fas fa-clock"></i> Duration </div>
                                     <div class="value">{{module.duration}}</div>
-                                </li>
-                                <li>
-                                    <div class="label"><i class="fas fa-sliders-h"></i> Number of Questions </div>
-                                    <div class="value">{{module.quiz_count}}</div>
                                 </li>
                             </ul>
                         </div>
@@ -235,20 +219,24 @@
                         <div class="sidebar-widget__course">
 
                             {% for other_module in other_modules_in_quarter %}
+
+                            {% emodule_status other_module.latest_result.latest.status as other_current_quiz_status %}
+                            
                             <div class="sidebar-widget__course-item">
                                 <div class="sidebar-widget__course-thumbnail">
-                                    <a href="{% url 'emodule:module-detail' other_module.quarter.subject.id other_module.quarter.id other_module.id %}"><img
-                                            src="{% static 'emodule/images/courses/module-cover-sm.png' %}" alt="Courses"
-                                            width="120" height="72"></a>
+                                    <a href="{% url 'emodule:module-detail' other_module.module_obj.quarter.subject.id other_module.module_obj.quarter.id other_module.module_obj.id %}">
+                                        <img src="{% static 'emodule/images/courses/module-cover-sm.png' %}" alt="Courses"
+                                            width="120" height="72">
+                                    </a>
                                 </div>
                                 <div class="sidebar-widget__course-content">
-                                    <h4 class="sidebar-widget__course-title"><a href="{% url 'emodule:module-detail' other_module.quarter.subject.id other_module.quarter.id other_module.id %}">{{other_module.title}}</a></h4>
+                                    <h4 class="sidebar-widget__course-title"><a href="{% url 'emodule:module-detail' other_module.module_obj.quarter.subject.id other_module.module_obj.quarter.id other_module.module_obj.id %}">{{other_module.module_obj.title}}</a></h4>
                                     <div class="sidebar-widget__course-price">
                                         <div class="course-info-02__description">
-                                            <p>{{other_module.description}}</p>
+                                            <p>{{other_module.module_obj.description}}</p>
                                         </div>
                                     </div>
-                                    <span class="course-info-02__badge-text {% if other_module.status == 'Complete' %}badge-all{% else %}badge-beginner{% endif %}">{% if other_module.quiz_list %}{{other_module.status}}{% else %}No activity{% endif %}</span>
+                                    {% show_emodule_badge ther_module.module_obj.quiz_list other_current_quiz_status %}
                                 </div>
                             </div>
                             {% endfor %}

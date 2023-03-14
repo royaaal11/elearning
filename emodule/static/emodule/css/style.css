@@ -20368,3 +20368,25 @@ span.flatpickr-weekday {
 .border-wrong-answer {
   border: 1px solid #f5c2c7 !important;
 }
+
+.course-info-02__badge-text.badge-success {
+  background: rgba(23, 184, 193, 0.15);
+  color: #17b8c1;
+}
+
+.course-info-02__badge-text.badge-info {
+  background: rgba(0, 113, 220, 0.15);
+  color: #0071dc;
+}
+
+.course-info-02__badge-text.badge-alert {
+  background: rgba(255, 99, 71, 0.15);
+  color: #d31819;
+}
+
+.list-score {
+  font-size: 18px;
+  line-height: 1.8;
+  font-weight: 700;
+  color: #252525;
+}

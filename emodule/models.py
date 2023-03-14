@@ -2,6 +2,9 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import models
 
+from . import configs
+
+
 ACTIVITY_TYPE_CHOICES = (
     ("Quiz", "Quiz"),
     ("Assessment", "Assessment"),
@@ -12,6 +15,7 @@ MODULE_STATUS_CHOICES = (
     ("Not yet started", "Not yet started"),
     ("No activity", "No activity"),
 )
+
 
 
 class Profile(models.Model):
@@ -65,8 +69,6 @@ class Quarter(models.Model):
     name = models.CharField(max_length=200) # e.g. TLE Quarter 1
     title = models.CharField(max_length=200) # e.g. 1st Quarter
     other_title = models.CharField(max_length=200) # e.g. Quarter 1
-    status = models.CharField(max_length=200, choices=MODULE_STATUS_CHOICES, default="Not yet started") # e.g. Complete
-    date_assessment_taken = models.DateTimeField(null=True, blank=True)
     seqno = models.IntegerField()
 
     def __str__(self):
@@ -77,19 +79,10 @@ class Quarter(models.Model):
         return Quarter.objects.get(id=self.id).assessment_set.all()
     
     @property
-    def assessment_total_score(self):
-        assessment_list = self.assessment_list
-        return sum([m.assessmentquestion_set.filter(student_correct=True).count() for m in assessment_list])
-    
-    @property
     def assessment_count(self):
         assessment_list = self.assessment_list
         return sum([m.assessmentquestion_set.all().count() for m in assessment_list])
     
-    @property
-    def student_passed(self):
-        passing_score = self.assessment_total_score * (settings.PASSED_PERCENTAGE/100)
-        return True if self.assessment_total_score > passing_score else False
 
 class Module(models.Model):
     quarter = models.ForeignKey(Quarter, on_delete=models.CASCADE)
@@ -99,8 +92,6 @@ class Module(models.Model):
     module_lesson = models.CharField(max_length=200, null=True, blank=True) # e.g. Enumerate Different Kinds of Macrame and Basketry Products
     unit_of_competency = models.CharField(max_length=200, null=True, blank=True) # e.g. ENUMERATE DIFFERENT KINDS OF MACRAME AND BASKETRY PRODUCTS
     duration = models.CharField(max_length=200, null=True, blank=True) # e.g. 5 days
-    status = models.CharField(max_length=200, choices=MODULE_STATUS_CHOICES, default="Not yet started") # e.g. Complete
-    date_quiz_taken = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "3. Modules"
@@ -111,11 +102,6 @@ class Module(models.Model):
     @property
     def quiz_list(self):
         return Module.objects.get(id=self.id).quiz_set.all()
-    
-    @property
-    def quiz_total_score(self):
-        quiz_list = self.quiz_list
-        return sum([m.quizquestion_set.filter(student_correct=True).count() for m in quiz_list])
 
     @property
     def quiz_count(self):
@@ -134,8 +120,7 @@ class LearningOutcome(models.Model):
 class Quiz(models.Model):
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
     title = models.CharField(max_length=200, blank=True, null=True)
-    direction = models.CharField(max_length=200)
-    date_taken = models.DateTimeField(auto_now=True) #ignore this field. use the data_quiz_taken field in Module model
+    direction = models.CharField(max_length=1000)
 
     class Meta:
         verbose_name_plural = "4. Quizzes"
@@ -147,8 +132,6 @@ class Quiz(models.Model):
 class QuizQuestion(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
-    student_answer = models.CharField(max_length=200, blank=True, null=True) # (Student's Answer) will be filled out once user has submitted the quiz
-    student_correct = models.BooleanField(blank=True, null=True) # (Is the student's answer corret?) will be filled out once user has submitted the quiz
 
 
 class QuizChoice(models.Model):
@@ -157,11 +140,33 @@ class QuizChoice(models.Model):
     is_correct = models.BooleanField()
 
 
+# TODO: refactor these models: StudentQuizResult, StudentQuizQuestionAnswers
+# add an extra test_type field ("Assessment" or "Quiz") to reduce the number of tables
+# but this will require restructuring of the database.
+class StudentQuizResult(models.Model):
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    score = models.IntegerField()
+    date_taken = models.DateTimeField()
+    group = models.IntegerField() # increment this after form submit. This is to group every attempt.
+    status = models.CharField(max_length=100, choices=configs.ACTIVITY_STATUS)
+
+    class Meta:
+        get_latest_by = "-group"
+
+
+class StudentQuizQuestionAnswers(models.Model):
+    quiz_question = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    answer_id = models.IntegerField() # (Student's Answer) will be filled out once user has submitted the quiz
+    is_correct = models.BooleanField(blank=True, null=True) # (Is the student's answer corret?) will be filled out once user has submitted the quiz
+    group = models.IntegerField() # increment this after form submit. This is to group every attempt.
+
+
 class Assessment(models.Model):
     quarter = models.ForeignKey(Quarter, on_delete=models.CASCADE)
     title = models.CharField(max_length=200, blank=True, null=True)
-    direction = models.CharField(max_length=200)
-    date_taken = models.DateTimeField(auto_now=True)
+    direction = models.CharField(max_length=1000)
 
     class Meta:
         verbose_name_plural = "5. Assessments"
@@ -170,14 +175,32 @@ class Assessment(models.Model):
 class AssessmentQuestion(models.Model):
     assessment = models.ForeignKey(Assessment, on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
-    student_answer = models.CharField(max_length=200, blank=True, null=True) # (Student's Answer) will be filled out once user has submitted the quiz
-    student_correct = models.BooleanField(blank=True, null=True) # (Is the student's answer corret?) will be filled out once user has submitted the quiz
 
 
 class AssessmentChoice(models.Model):
     question = models.ForeignKey(AssessmentQuestion, on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
     is_correct = models.BooleanField()
+
+
+class StudentAssessmentResult(models.Model):
+    quarter = models.ForeignKey(Quarter, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    score = models.IntegerField()
+    date_taken = models.DateTimeField()
+    group = models.IntegerField() # increment this after form submit. This is to group every attempt.
+    status = models.CharField(max_length=100, choices=configs.ACTIVITY_STATUS)
+
+    class Meta:
+        get_latest_by = "-group"
+
+
+class StudentQuestionAnswers(models.Model):
+    assessment_question = models.ForeignKey(AssessmentQuestion, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    answer_id = models.IntegerField() # (Student's Answer) will be filled out once user has submitted the quiz
+    is_correct = models.BooleanField(blank=True, null=True) # (Is the student's answer corret?) will be filled out once user has submitted the quiz
+    group = models.IntegerField() # increment this after form submit. This is to group every attempt.
 
 
 class VideoLesson(models.Model):
@@ -196,10 +219,4 @@ class PerformanceTask(models.Model):
 
     def __str__(self):
         return self.title
-    
 
-class QuarterAssessmentResult(models.Model):
-    quarter = models.ForeignKey(Quarter, on_delete=models.CASCADE)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    score = models.IntegerField()
-    date_taken = models.DateTimeField()

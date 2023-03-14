@@ -34,7 +34,7 @@
 
             <!-- Signup Form Wrapper Start -->
             <div class="contact-form__wrapper" data-aos="fade-up" data-aos-duration="1000">
-                {% include 'emodule/messages.html' %}
+                {% include 'emodule/partial/messages.html' %}
                 {{ form.non_field_errors }}
                 <form method="post">
                     {% csrf_token %}

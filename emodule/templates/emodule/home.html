@@ -1,5 +1,6 @@
 {% extends 'emodule/base.html' %}
 {% load static %}
+{% load emodule_extras %}
 
 {% block content %}
 <!-- Slider Section Start -->
@@ -36,14 +37,6 @@
             </div>
         </div>
 
-        <!-- <img class="slider-section__shape-01" data-depth="0.8"
-            src="{% static 'emodule/images/shape/edumall-shape-grid-dots.png' %}" alt="Shape" width="417"
-            height="371" />
-        <div class="slider-section__shape-02" data-depth="-1"></div>
-        <div class="slider-section__shape-03" data-depth="-1.6"></div>
-        <img class="slider-section__shape-04" data-depth="-0.6"
-            src="{% static 'emodule/images/shape/edumall-shape-grid-dots.png' %}" alt="Shape" width="179"
-            height="178" /> -->
     </div>
 </div>
 <!-- Slider Section End -->
@@ -51,7 +44,7 @@
 <!-- Course Section Start -->
 <div class="courses-section section-padding-02">
     <div class="container">
-        {% include 'emodule/messages.html' %}
+        {% include 'emodule/partial/messages.html' %}
         <div class="row">
             <div class="col-lg-6">
                 <!-- Section Title Start -->
@@ -63,38 +56,28 @@
                 <!-- Section Title End -->
             </div>
         </div>
-
+        
         <div class="tab-content">
+            {% if recent_quiz_attempts %}
             <div class="tab-pane fade show active" id="tab1">
-                <div class="row row-cols-xl-5 g-6">
-                    {% for module in recent_module_list %}
-                    <div class="col-xl col-lg-3 col-md-4 col-sm-6">
-                        <!-- Course Start -->
-                        <div class="course-item aos-init aos-animate">
-                            <div class="course-header">
-                                <div class="course-header__thumbnail">
-                                    <a href="{% url 'emodule:module-detail' module.quarter.subject.id module.quarter.id module.id %}"><img
-                                            src="{% static 'emodule/images/courses/module-cover.png' %}" alt="courses"
-                                            width="258" height="173" /></a>
-                                </div>
-                            </div>
-                            <div class="course-info">
-                                <span class="course-info-02__badge-text {% if module.status == 'Complete' %}badge-all{% else %}badge-beginner{% endif %}">{% if module.quiz_list %}{{module.status}}{% else %}No activity{% endif %}</span>
-                                <h3 class="course-info__title">
-                                    <a href="{% url 'emodule:module-detail' module.quarter.subject.id module.quarter.id module.id %}">{{module.title}}</a>
-                                </h3>
-                                <a href="#" class="course-info__instructor">{{module.quarter.title}}</a>
-                                <div class="course-info-02__description">
-                                    <p>{{module.description}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Course End -->
-                    </div>
+                <div class="row row-cols-xl-4 g-6">
+                    {% for attempt in recent_quiz_attempts %}
+
+                    {% emodule_status attempt.module.studentquizresult_set.latest.status as current_quiz_status %}
+                    {% emodule_score attempt.module.studentquizresult_set.latest.score as current_score %}
+
+                    {% include 'emodule/partial/module-card-grid.html' with module=attempt.module quiz_status=current_quiz_status quiz_score=current_score %}
+                    
                     {% endfor %}
                 </div>
             </div>
+            {% else %}
+
+            {% include 'emodule/partial/warning-message.html' with message="You don't have recent activities." %}
+
+            {% endif %}
         </div>
+        
     </div>
 </div>
 <!-- Course Section End -->

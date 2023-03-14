@@ -52,23 +52,22 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab1">
 
-                            {% if quarter.assessment_list %}
-                            {% for assessment in quarter.assessment_list %}
+                            {% if assessment_list %}
                             <form id="id_activity_form" method="post">
                                 {% csrf_token %}
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        {% for assessment in quarter.assessment_list %}
-                                        <button class="nav-link active" id="assessment-{{assessment.id}}-tab" data-bs-toggle="tab" data-bs-target="#assessment-{{assessment.id}}"
-                                            type="button" role="tab" aria-controls="assessment-{{assessment.id}}" aria-selected="true">
-                                            {% if assessment.title %}{{assessment.title}}{% else %}Assessment-{{forloop.counter}}{% endif %}
+                                        {% for key, assessment in assessment_list.items %}
+                                        <button class="nav-link active" id="assessment-{{assessment.assessment_obj.id}}-tab" data-bs-toggle="tab" data-bs-target="#assessment-{{assessment.assessment_obj.id}}"
+                                            type="button" role="tab" aria-controls="assessment-{{assessment.assessment_obj.id}}" aria-selected="true">
+                                            {% if assessment.assessment_obj.title %}{{assessment.assessment_obj.title}}{% else %}Assessment - {{forloop.counter}}{% endif %}
                                         </button>
                                         {% endfor %}
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
-                                    {% for assessment in quarter.assessment_list %}
-                                    <div class="tab-pane fade show active" id="assessment-{{assessment.id}}" role="tabpanel" aria-labelledby="assessment-{{assessment.id}}-tab">
+                                    {% for key, assessment in assessment_list.items %}
+                                    <div class="tab-pane fade show active" id="assessment-{{assessment.assessment_obj.id}}" role="tabpanel" aria-labelledby="assessment-{{assessment.assessment_obj.id}}-tab">
                                         <!-- Tutor Course Main Segment Start -->
                                         <div class="tutor-course-main-segment">
 
@@ -76,31 +75,30 @@
                                             <div class="tutor-course-segment tutor-course-wrap">
 
                                                 <div class="tutor-course-segment__header">
-                                                    <h4 class="tutor-course-segment__title">{{assessment.direction}}</h4>
+                                                    <h4 class="tutor-course-segment__title">{{assessment.assessment_obj.direction}}</h4>
                                                 </div>
 
-                                                {% include 'emodule/messages.html' %}
+                                                {% include 'emodule/partial/messages.html' %}
 
                                                 <div class="course-curriculum accordion">
-                                                    {% for assessment_question in assessment.assessmentquestion_set.all %}
-                                                    <div class="accordion-item {% if assessment_question.student_correct %}border-correct-answer{% elif assessment_question.student_correct is False %}border-wrong-answer{% endif %}">
-                                                        <a class="accordion-button">{{forloop.counter}}. {{assessment_question.text}}</a>
-                                                        <div id="collapse-{{assessment_question.id}}" class="accordion-collapse collapse show"
-                                                            data-bs-parent="#accordionCourse">
+                                                    {% for assessment_question_key, assessment_question in assessment.question_list.items %}
+                                                    <div class="accordion-item {% if assessment_question.student_answer.is_correct %}border-correct-answer{% elif assessment_question.student_answer.is_correct is False %}border-wrong-answer{% endif %}">
+                                                        <a class="accordion-button">{{forloop.counter}}. {{assessment_question.question_obj.text}}</a>
+                                                        <div id="collapse-{{assessment_question.question_obj.id}}" class="accordion-collapse collapse show" data-bs-parent="#accordionCourse">
 
                                                             <div class="course-curriculum__lessons">
 
-                                                                {% for assessment_choice in assessment_question.assessmentchoice_set.all %}
-                                                                <div class="course-curriculum__lesson {% if assessment_question.student_correct and assessment_choice.text == assessment_question.student_answer %}correct-answer{% elif assessment_question.student_correct is False and assessment_choice.text == assessment_question.student_answer %}wrong-answer{% endif %}">
+                                                                {% for assessment_choice in assessment_question.question_obj.assessmentchoice_set.all %}
+                                                                <div class="course-curriculum__lesson {% if assessment_question.student_answer.is_correct and assessment_choice.id == assessment_question.student_answer.answer_id %}correct-answer{% elif assessment_question.student_answer.is_correct is False and assessment_choice.id == assessment_question.student_answer.answer_id %}wrong-answer{% endif %}">
                                                                     <span class="course-curriculum__title">
                                                                         <div class="form-check">
-                                                                            <input name="assessment_choice_{{assessment_question.id}}"
-                                                                                id="id_assessment_choice_{{assessment_question.id}}_{{assessment_choice.id}}"
-                                                                                class="form-check-input" type="radio" value="{{assessment_choice.text}}"
-                                                                                {% if assessment_question.student_correct and assessment_choice.text == assessment_question.student_answer %}checked{% elif assessment_question.student_correct is False and assessment_choice.text == assessment_question.student_answer %}checked{% endif %}
-                                                                                {% if quarter.date_assessment_taken %}disabled{% endif %}>
+                                                                            <input name="assessment_choice_{{assessment_question.question_obj.id}}"
+                                                                                id="id_assessment_choice_{{assessment_question.question_obj.id}}_{{assessment_choice.id}}"
+                                                                                class="form-check-input" type="radio" value="{{assessment_choice.id}}"
+                                                                                {% if assessment_question.student_answer.is_correct and assessment_choice.id == assessment_question.student_answer.answer_id %}checked{% elif assessment_question.student_answer.is_correct is False and assessment_choice.id == assessment_question.student_answer.answer_id %}checked{% endif %}
+                                                                                {% if assessment_question.student_answer.answer_id %}disabled{% endif %}>
                                                                             <label class="form-check-label"
-                                                                                for="id_assessment_choice_{{assessment_question.id}}_{{assessment_choice.id}}">
+                                                                                for="id_assessment_choice_{{assessment_question.question_obj.id}}_{{assessment_choice.id}}">
                                                                                 {{assessment_choice.text}}
                                                                             </label>
                                                                         </div>
@@ -126,20 +124,12 @@
                                 </div>
 
                             </form>
-                            {% endfor %}
                             {% else %}
                             <!-- Tutor Course Main Segment Start -->
                             <div class="tutor-course-segment tutor-course-wrap">
                                 <h4 class="tutor-course-segment__title">Assessment</h4>
 
-                                <!-- Tutor Course Segment Prerequisites Start -->
-                                <div class="tutor-course-segment__prerequisites">
-                                    <div class="tutor-course-segment__prerequisites-warning">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                        None
-                                    </div>
-                                </div>
-                                <!-- Tutor Course Segment Prerequisites End -->
+                                {% include 'emodule/partial/warning-message.html' with message="None" %}
 
                             </div>
                             <!-- Tutor Course Main Segment End -->
@@ -162,19 +152,26 @@
                                 <button 
                                 id="id_activity_form_submit" 
                                 class="btn btn-primary btn-hover-secondary w-100" 
-                                {% if quarter.status == 'Complete' or quarter.assessment_list.count < 1 %}disabled{% endif %}
+                                {% if assessment_score or not assessment_list %}disabled{% endif %}
                                 >Submit Assessment</button>
                             </div>
                         </div><br>
-                        <span class="course-info-02__badge-text {% if quarter.status == 'Complete' %}badge-all{% else %}badge-beginner{% endif %}">{% if quarter.assessment_list %}{{quarter.status}}{% else %}No activity{% endif %}</span>
+
+                        {% emodule_status latest_result.status as current_assessment_status %}
+                        {% emodule_score assessment_score.score as current_score %}
+                        
                         <div class="tutor-course-price-preview__meta">
                             <ul class="tutor-course-meta-list">
                                 <li>
-                                    <div class="label"><i class="fas fa-play-circle"></i> Assessment Score </div>
-                                    <div class="value"><span>{{quarter.assessment_total_score}}</span></div>
+                                    <div class="label"><i class="fas fa-info"></i> Status </div>
+                                    <div class="value"><span>{% show_emodule_badge assessment_list current_assessment_status %}</span></div>
                                 </li>
                                 <li>
-                                    <div class="label"><i class="fas fa-sliders-h"></i> Number of Questions </div>
+                                    <div class="label"><i class="fas fa-star"></i> Assessment Score </div>
+                                    <div class="value"><span>{{current_score}}</span></div>
+                                </li>
+                                <li>
+                                    <div class="label"><i class="fas fa-list"></i> Number of Questions </div>
                                     <div class="value">{{quarter.assessment_count}}</div>
                                 </li>
                             </ul>
@@ -190,11 +187,28 @@
 
                             <div class="col-md-12">
                                 <div class="contact-form__input">
+                                    <!-- Student cannot proceed if:
+                                        1. Current Quarter has no assessment or
+                                        2. Curret Quarter assessment status == Failed or
+                                        3. Next Quarter has no assessment 
+                                    -->
                                     <a 
                                         id="id_activity_form_submit" 
                                         href="{% url 'emodule:assessment-detail' next_quarter_assessment.subject.id next_quarter_assessment.id 'assessment' %}"
-                                        class="btn btn-secondary btn-hover-primary w-100 {% if quarter.status != 'Complete' %}disabled{% endif %}"
+                                        class="btn btn-secondary btn-hover-primary w-100 {% if not assessment_list or not next_quarter_assessment.assessment_set.all or current_assessment_status == 'Failed' %}disabled{% endif %}"
                                         >Proceed to next assessment</a>
+                                </div>
+                            </div><br/>
+                            <div class="col-md-12">
+                                <div class="contact-form__input">
+                                    <!-- Student cannot go back if:
+                                        1. Current Quarter is the first one
+                                    -->
+                                    <a 
+                                        id="id_activity_form_submit" 
+                                        href="{% if previous_quarter_assessment %}{% url 'emodule:assessment-detail' previous_quarter_assessment.subject.id previous_quarter_assessment.id 'assessment' %}{% endif %}"
+                                        class="btn btn-dark btn-hover-primary w-100 {% if not previous_quarter_assessment %}disabled{% endif %}"
+                                        >Previous assessment</a>
                                 </div>
                             </div>
 

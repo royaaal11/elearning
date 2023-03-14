@@ -3,7 +3,9 @@ from django.urls import reverse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+
 from .forms import SignUpForm
+from emodule.models import Student, Subject
 
 
 def signup_request(request):
@@ -14,6 +16,10 @@ def signup_request(request):
             user.refresh_from_db()
             # load the profile instance created by the signal
             user.save()
+            tle_subject = Subject.objects.all().first()
+            new_student = Student.objects.create(user=user)
+            new_student.subjects.add(tle_subject)
+            new_student.save()
             raw_password = form.cleaned_data.get('password1')
             # login user after signing up
             user = authenticate(username=user.username, password=raw_password)

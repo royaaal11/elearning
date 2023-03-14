@@ -1160,7 +1160,17 @@
         quizForm.submit();
     });
 
-    
+    quizForm.validate(
+        {
+            rules: {
+                quiz_choice_16:{required:true}
+            },
+            messages: {
+                quiz_choice_16:"Testawert"
+            }
+        }
+    );
+
 })(jQuery);
 
 
