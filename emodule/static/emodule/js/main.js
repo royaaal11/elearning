@@ -1171,6 +1171,18 @@
         }
     );
 
+    /*--
+        Initialize search
+    -----------------------------------*/
+    jQuery.initializeSearch = function initializeSearch(searchSource) {
+        $( "#id_search_input" ).autocomplete({
+            source: searchSource,
+            select: function (event, ui) {
+                window.location.href = ui.item.value;
+            }
+        });
+    }
+
 })(jQuery);
 
 

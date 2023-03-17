@@ -2,6 +2,8 @@
 {% load static %}
 {% load emodule_extras %}
 
+{% block page_title %}Basketry - {{subject.title}} Quarters {% endblock page_title %}
+
 {% block content %}
 <!-- Page Banner Section Start -->
 <div class="page-banner bg-color-04">
@@ -69,11 +71,13 @@
                                     -->
                                     <a href="{% url 'emodule:assessment-detail' subject.id current_quarter.quarter.id 'assessments' %}"
                                         class="banner-caption-02__btn btn btn-primary btn-hover-secondary {% if current_quarter.assessment_set.all or current_quarter.prerequisite and prereq_assessment_status != 'Passed' %}disabled{% endif %}"
-                                        >Take the Assessment</a>
+                                        >{% if current_assessment_score %}View Result{% else %}Take the Assessment{% endif %}</a>
+                                        {% comment %}
                                         <h5 class="banner-caption-02__sub-title">
                                             Assessment Score: {{current_assessment_score}}/{{current_quarter.quarter.assessment_count}}
                                         </h5>
                                         {% show_emodule_badge current_quarter.quarter.assessment_set.all current_assessment_status %}
+                                        {% endcomment %}
                                 </div>
                             </div>
                             <div class="col-md-6">

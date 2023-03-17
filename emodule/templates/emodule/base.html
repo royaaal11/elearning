@@ -6,14 +6,15 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>EduMall - LMS & e-Learning Platform Template</title>
+    
+    <title>{% block page_title %}Basketry - Elearning site{% endblock page_title %}</title>
+    
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'emodule/images/favicon.png' %}" />
 
-    <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
 
     <!-- Font CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,6 +37,7 @@
     <link rel="stylesheet" href="{% static 'emodule/css/plugins/flatpickr.min.css' %}" />
     <link rel="stylesheet" href="{% static 'emodule/css/plugins/ion.rangeSlider.min.css' %}" />
     <link rel="stylesheet" href="{% static 'emodule/css/plugins/select2.min.css' %}" />
+    <link href="{% static 'emodule/css/plugins/jquery-ui.min.css' %}" rel="stylesheet" type="text/css" />
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="{% static 'emodule/css/style.css' %}" />
@@ -114,7 +116,7 @@
                             <!-- Header Search Start -->
                             <div class="header-serach">
                                 <form action="#">
-                                    <input type="text" class="header-serach__input" placeholder="Search..." />
+                                    <input id="id_search_input" type="text" class="header-serach__input" placeholder="Search..." />
                                     <button class="header-serach__btn">
                                         <i class="fas fa-search"></i>
                                     </button>
@@ -305,6 +307,8 @@
     <!-- Vendors JS -->
     <script src="{% static 'emodule/js/vendor/modernizr-3.11.7.min.js' %}"></script>
     <script src="{% static 'emodule/js/vendor/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/jquery-ui.min.js' %}">  
+    </script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script src="{% static 'emodule/js/vendor/jquery-migrate-3.3.2.min.js' %}"></script>
     <script src="{% static 'emodule/js/vendor/bootstrap.bundle.min.js' %}"></script>
@@ -326,6 +330,19 @@
 
     <!-- Activation JS -->
     <script src="{% static 'emodule/js/main.js' %}"></script>
+    <script>
+        $(function() {
+            var modules = [
+                {% for search_item in search_source %}
+                    {
+                        value: "{% url 'emodule:module-detail' search_item.quarter.subject.id search_item.quarter.id search_item.id %}",
+                        label: "{{search_item.description}}"
+                    },
+                {% endfor %}
+            ];
+            $.initializeSearch(modules);
+        });
+    </script>
 </body>
 
 </html>

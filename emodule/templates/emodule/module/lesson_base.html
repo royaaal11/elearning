@@ -1,0 +1,45 @@
+{% extends 'emodule/module/module_tab_base.html' %}
+{% load static %}
+
+{% block tab-conent-head %}
+<div class="tutor-course-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Unit of Competency</h4>
+
+    {% include 'emodule/partial/warning-message.html' with message=module.unit_of_competency %}
+
+</div>
+{% endblock tab-conent-head %}
+
+{% block tab-conent-head-secondary %}
+<div class="tutor-course-segment tutor-course-wrap benefits-wrap">
+    <h4 class="tutor-course-segment__title">Learning Outcomes</h4>
+    {% if learning_outcomes %}
+    <div class="tutor-course-segment__benefits-items">
+        
+        {% for learning in learning_outcomes %}
+        <div class="tutor-course-segment__benefit-item">
+            <div class="tutor-course-segment__benefit-content">
+                <i class="fas fa-check"></i>
+                <span class="benefit-text">{{learning.text}}</span>
+            </div>
+        </div>
+        {% endfor %}
+        
+    </div>
+    {% else %}
+
+        {% include 'emodule/partial/warning-message.html' with message="None" %}
+    
+    {% endif %}
+</div>
+{% endblock tab-conent-head-secondary %}
+
+{% block tab-conent-body-1 %}
+{% endblock tab-conent-body-1 %}
+
+{% block tab-conent-body-2 %}
+{% endblock tab-conent-body-2 %}
+
+{% block tab-conent-footer %}
+
+{% endblock tab-conent-footer %}

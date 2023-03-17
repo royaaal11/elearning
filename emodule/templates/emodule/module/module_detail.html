@@ -2,6 +2,8 @@
 {% load static %}
 {% load emodule_extras %}
 
+{% block page_title %}Basketry - {{module.title}} {% endblock page_title %}
+
 {% block content %}
 <!-- Page Banner Section Start -->
 <div class="page-banner bg-color-12">
@@ -34,16 +36,12 @@
                 <!-- Tutor Course Top Info Start -->
                 <div class="tutor-course-top-info__content">
                     <div class="tutor-course-top-info__badges">
-                        <a class="badges-category" href="#">{{module.quarter.title}}</a>
+                        <a class="badges-category" href="{% url 'emodule:quarter-detail' module.quarter.subject.id module.quarter.id %}">Back</a>
                     </div>
-                    <h1 class="tutor-course-top-info__title text-white">{{module.title}}</h1>
+                    <h1 class="tutor-course-top-info__title text-white">{{module.description}}</h1>
                     <div class="tutor-course-top-info__meta">
                         <div class="tutor-course-top-info__meta-instructor">
-                            <div class="instructor-avatar">
-                                <img src="{% static 'emodule/images/instructor/instructor-01.jpg' %}" alt="Instructor"
-                                    width="36" height="36">
-                            </div>
-                            <div class="instructor-name text-white">{{module.title}}</div>
+                            <div class="instructor-name text-white">{{module.quarter.title}}</div>
                         </div>
                         <div class="tutor-course-top-info__meta-update text-white">{% if latest_result.latest.date_taken %}Last Taken {{latest_result.latest.date_taken}}{% elif not module.quiz_set.all %}No activity{% else %}Quiz not yet taken{% endif %}</div>
                     </div>
@@ -63,9 +61,9 @@
 
         <ul class="nav justify-content-center">
             <li><button class="active" data-bs-toggle="tab" data-bs-target="#tab1">Lessons</button></li>
-            {% if module.quiz_list.count %}<li><button data-bs-toggle="tab" data-bs-target="#tab2">Activity</button></li>{% endif %}
-            {% if module.videolesson_set.count %}<li><button data-bs-toggle="tab" data-bs-target="#tab2">Vide</button></li>{% endif %}
-            {% if module.performancetask_set.count %}<li><button data-bs-toggle="tab" data-bs-target="#tab2">Performance Task</button></li>{% endif %}
+            {% if module.quiz_list.all %}<li><button data-bs-toggle="tab" data-bs-target="#tab2">Activity</button></li>{% endif %}
+            {% if module.videolesson_set.all %}<li><button data-bs-toggle="tab" data-bs-target="#tab3">Video</button></li>{% endif %}
+            {% if module.performancetask_set.all %}<li><button data-bs-toggle="tab" data-bs-target="#tab4">Performance Task</button></li>{% endif %}
         </ul>
 
     </div>
@@ -82,85 +80,52 @@
                 <div class="course-main-sticky">
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab1">
-
-                            <!-- Tutor Course Main Segment Start -->
                             <div class="tutor-course-main-segment">
 
-                                <!-- Tutor Course Segment Start -->
-                                <div class="tutor-course-segment tutor-course-wrap">
-                                    <h4 class="tutor-course-segment__title">Unit of Competency</h4>
-
-                                    {% include 'emodule/partial/warning-message.html' with message=module.unit_of_competency %}
-
-                                </div>
-                                <!-- Tutor Course Segment End -->
+                                {% if lesson_templates.lesson_template|template_exists %}
+                                    {% include lesson_templates.lesson_template %}
+                                {% else %}
+                                    {% include 'emodule/module/default_tab_template.html' %}
+                                {% endif %}
                                 
-                                {% block lesson-content %}
-                                <!-- Tutor Course Segment Start -->
-                                <div class="tutor-course-segment tutor-course-wrap">
-                                    <h4 class="tutor-course-segment__title">About This Module</h4>
+                            </div>
+                        </div>
 
-                                    <!-- Tutor Course Segment Content Wrapper Start -->
-                                    <div class="tutor-course-segment__content-wrap">
-                                        <p>In this course, I take you from the fundamentals and concepts of data
-                                            modeling all the way through a number of best practices and techniques that
-                                            you’ll need to build data models in your organization. You’ll find many
-                                            examples that clearly demonstrate the key concepts and techniques covered
-                                            throughout the course.</p>
-                                        <p>By the end of the course, you’ll be all set to not only put these principles
-                                            to work, but also to make the key data modeling and design decisions
-                                            required by the “art” of data modeling that transcend the nuts-and-bolts
-                                            techniques and design patterns.</p>
-                                        <p>Organisations, or groups of organisations, may establish the need for master
-                                            data management when they hold more than one copy of data about a business
-                                            entity. Holding more than one copy of this master data inherently means that
-                                            there is an inefficiency in maintaining a “single version of the truth”
-                                            across all copies. Unless people, processes and technology are in place to
-                                            ensure that the data values are kept aligned across all copies, it is almost
-                                            inevitable that different versions of information about a business entity
-                                            will be held.</p>
-                                    </div>
-                                    <!-- Tutor Course Segment Content Wrapper End -->
+                        {% if module.quiz_list.all %}
+                        <div class="tab-pane fade" id="tab2">
+                            <div class="tutor-course-main-segment">
 
-                                </div>
-                                <!-- Tutor Course Segment End -->
-                                {% endblock lesson-content %}
-
-                                <!-- Tutor Course Segment Start -->
-                                <div class="tutor-course-segment tutor-course-wrap benefits-wrap">
-                                    <h4 class="tutor-course-segment__title">Learning Outcomes</h4>
-
-                                    <!-- Tutor Course Segment Benefits Items Start -->
-                                    <div class="tutor-course-segment__benefits-items">
-                                        {% if learning_outcomes %}
-                                        {% for learning in learning_outcomes %}
-                                        <div class="tutor-course-segment__benefit-item">
-                                            <div class="tutor-course-segment__benefit-content">
-                                                <i class="fas fa-check"></i>
-                                                <span class="benefit-text">{{learning.text}}</span>
-                                            </div>
-                                        </div>
-                                        {% endfor %}
-                                        {% else %}
-
-                                        {% include 'emodule/partial/warning-message.html' with message="None" %}
-                                        
-                                        {% endif %}
-                                    </div>
-                                    <!-- Tutor Course Segment Benefits Items End -->
-
-                                </div>
-                                <!-- Tutor Course Segment End -->
+                                {% include 'emodule/module/module_activity.html' %}
 
                             </div>
-                            <!-- Tutor Course Main Segment End -->
+                        </div>
+                        {% endif %}
+
+                        {% if module.videolesson_set.all %}
+                        <div class="tab-pane fade" id="tab3">
+                            <div class="tutor-course-main-segment">
+
+                                {% if lesson_templates.video_template|template_exists %}
+                                    {% include lesson_templates.video_template %}
+                                {% else %}
+                                    {% include 'emodule/module/default_tab_template.html' %}
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if module.performancetask_set.all %}
+                        <div class="tab-pane fade" id="tab4">
+                            
+                            {% if lesson_templates.performance_task_template|template_exists %}
+                                {% include lesson_templates.performance_task_template %}
+                            {% else %}
+                                {% include 'emodule/module/default_tab_template.html' %}
+                            {% endif %}
 
                         </div>
-                        <div class="tab-pane fade" id="tab2">
-
-                            {% include 'emodule/module/module_detail_activity.html' %}
-
-                        </div>
+                        {% endif %}
                     </div>
                 </div>
 

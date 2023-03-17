@@ -1,0 +1,105 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+<div class="tutor-course-segment tutor-course-wrap">
+    {% with quarter_id=module.quarter.id module_id=module.id %}
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-1" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-1" type="button" role="tab" aria-controls="lesson-{{module_id}}-1"
+                aria-selected="true">
+                Differentiate the Kinds of Macramé Knots
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-1" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-1">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+
+                    <h5>Differentiate the Kinds of Macramé Knots</h5><br>
+                    <p>Our world changes rapidly nowadays, teaching Technology and Livelihood Education
+                        plays an important role on each one of us. In the 21st century, each student must see how
+                        this subject would help them to cope up with that changes.</p>
+                    <p>In this lesson, you will learn a little more about the fascinating kinds of macramé as
+                        well as its different patterns and techniques before diving into actual macramé making.</p>
+                    
+                    <h6>Kinds of Macramé Knots</h6>
+                    <p>Knots and weaving used in making crafts can be traced back to ancient times when
+                        people used these activities during their extra time. Macramé items look beautiful, but often
+                        too complicated and hard to do. You won't believe it, but the design of the most macramé
+                        works is built up from the different combinations of a few basic knots! There are few of them.</p>
+                    <p>If you are a beginner and you want to learn macramé, it is very important to familiarize
+                        yourself with the different knots used to create beautiful designs. Below are the different types
+                        of macramé knots.</p>
+
+                    <h6>Square Knots</h6>
+                    <p>A square knot is one of the most widely used macramé knots and it can be created as
+                        left facing or right facing. These knots need to have at least four cords (two working cords and
+                        two filler cords) but can have more. The first and last cords are the working cords. We'll call
+                        them working cord one and four. The middle cords are filler cords and we'll number those two
+                        and three. These cords will switch places but will still keep their original numbering.</p>
+                    <img src="{% static 'emodule/images/module/quarter_1/unit_iv/unit_iv_1.png' %}">
+                    <img src="{% static 'emodule/images/module/quarter_1/unit_iv/unit_iv_2.png' %}"><br><br>
+
+                    <h6>The Half Hitch Knots</h6>
+                    <p>The half hitch is a simple overhand knot where the working ends of a line is brought
+                        over and under the standing part. The vertical hitch makes a very dense work and usually is
+                        used for making belts, other accessories, and also rugs and wall decors.</p>
+                    <img src="{% static 'emodule/images/module/quarter_1/unit_iv/unit_iv_3.png' %}"><br><br>
+
+                    <h6>Lark's Head Knot</h6>
+                    <p>The first knot you'll need to know is the Lark's Head Knot, sometimes referred to as a
+                        Cow Hitch Knots. This knot is what gets your macramé cords attached to an object, such as
+                        dowel, branch, or an anchor cord and usually used for garnishing the edges of macramé
+                        pieces.</p>
+                    <img src="{% static 'emodule/images/module/quarter_1/unit_iv/unit_iv_4.png' %}"><br><br>
+
+                    <h6>Finishing Knot</h6>
+                    <p>This method is often used for finishing a macramé work, if you don't want to leave
+                        tassels.</p>
+                    <img src="{% static 'emodule/images/module/quarter_1/unit_iv/unit_iv_5.png' %}"><br><br>
+
+                    <h6>Decorative Knots</h6>
+                    <p>Decorative, ornamental, or fancy knots are not necessarily strong but they have an
+                        aesthetic appeal. It usually exhibit repetitive patterns and are complex in structure. They were
+                        used back in the ancient times to enhance the ship- like shape of a nautical vessel.</p>
+                    <p>Decorative knots can be made with single or multiple strands and it may be used
+                        alone or in conjunction with other knots of the same nature. The tying guides can be utilized
+                        for making it around poles, curtains, handles, and in designing jewelry. You can tie them with
+                        paracord, ribbon, rope ends, braid and lanyards.</p>
+                    <img src="{% static 'emodule/images/module/quarter_1/unit_iv/unit_iv_6.png' %}"><br><br>
+
+                    <h6>Braid and Bars</h6>
+                    <img src="{% static 'emodule/images/module/quarter_1/unit_iv/unit_iv_7.png' %}"><br><br>
+
+                    <h6>Chinese Knots</h6>
+                    <p>A Chinese knot is a knot that is tied and woven from a single length of cord or rope to
+                        be a variety of shapes and varying complexity. Its shape has its own symbolic meaning, and
+                        nowadays you can find them as decoration, gifts for special occasions and adornment on
+                        clothes.</p>
+                    <p>Most knots are double-layered and symmetrical and have two cords entering the
+                        knots from the top and two leaving from the bottom. The weavers can use variety of colors,
+                        but they usually weave deep red ones because they believe it signifies good fortune.</p>
+                    <img src="{% static 'emodule/images/module/quarter_1/unit_iv/unit_iv_8.png' %}"><br><br>
+
+                    <h6>Celtic Knots</h6>
+                    <p>These knots are complete loops that have no start or finish and could be said to
+                        represent eternity whether this means loyalty, faith, friendship or love. Only one thread is
+                        used in each design which symbolizes how life and eternity are interconnected.</p>
+                    <p>Most knots are double-layered and symmetrical and have two cords entering the
+                    <img src="{% static 'emodule/images/module/quarter_1/unit_iv/unit_iv_9.png' %}"><br><br>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endwith %}
+</div>
+{% endblock tab-conent-body-1 %}

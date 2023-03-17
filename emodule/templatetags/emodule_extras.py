@@ -1,4 +1,6 @@
 from django import template
+from django.template.defaultfilters import stringfilter
+
 from emodule import configs
 
 register = template.Library()
@@ -10,6 +12,15 @@ def emodule_pluralize(list_length, options):
         return split_options[1]
     else:
         return split_options[0]
+    
+@register.filter
+@stringfilter
+def template_exists(template_name):
+    try:
+        template.loader.get_template(template_name)
+        return True
+    except template.TemplateDoesNotExist:
+        return False
     
 
 @register.simple_tag

@@ -23,6 +23,7 @@ class BaseView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context = utils.update_context(context, utils.base_context())
+        context['search_source'] = Module.objects.all()
         return context
 
 
@@ -34,7 +35,7 @@ class HomePage(BaseView):
         context = super().get_context_data(**kwargs)
         recent_quiz_attempts = StudentQuizResult.objects.filter(student=student_user).order_by("-group")[:5]
         context['recent_quiz_attempts'] = recent_quiz_attempts
-        print("recent_quiz_attempts:", recent_quiz_attempts)
+        print(recent_quiz_attempts)
         return context
 
 
@@ -54,6 +55,24 @@ class ModuleDetail(BaseView, DetailView):
     template_name = 'emodule/module/module_detail.html'
     model = Module
     context_object_name = 'module'
+
+    def _get_templates(self):
+        module = self.get_object()
+        # <lesson_type>_<quarter_seqno>_<module_title>.html
+        template = '{}_{}_{}.html'
+        quarter_seqno = 'quarter_{}'.format(module.quarter.seqno)
+        module_title = utils.emodule_slugify(module.title, '_')
+
+        lesson_template = template.format('lesson', module.quarter.seqno, module_title)
+        video_template = template.format('video', module.quarter.seqno, module_title)
+        performance_task_template = template.format('performance_task', module.quarter.seqno, module_title)
+
+        base_dir = 'emodule/module/{}/{}/{}'
+        return {
+            'lesson_template': base_dir.format(quarter_seqno, module_title, lesson_template),
+            'video_template': base_dir.format(quarter_seqno, module_title, video_template),
+            'performance_task_template': base_dir.format(quarter_seqno, module_title, performance_task_template)
+        }
 
     def build_quiz_list(self):
         module = self.get_object()
@@ -141,10 +160,12 @@ class ModuleDetail(BaseView, DetailView):
             except TypeError:
                 messages.error(self.request, "You cannot leave a question blank.")
             except:
-                messages.error(self.request, "Something went wrong. Please try again.")
+                messages.error(self.request, "Something went wrong. Please try again or contact your adviser. Thank you")
             else:
-                for _model in models_for_saving: _model.save()
+                if settings.ALLOW_SAVE_TO_DB:
+                    for _model in models_for_saving: _model.save()
                 messages.success(self.request, "Your quiz has been submitted")
+            finally:
                 return HttpResponseRedirect(reverse("emodule:module-detail", kwargs=kwargs))
         else:
             messages.info(self.request, "You are already done with this quiz.")
@@ -173,6 +194,7 @@ class ModuleDetail(BaseView, DetailView):
             .filter(module=self.get_object())\
             .filter(student=self.get_current_student())
         context['other_modules_in_quarter'] = self.get_other_modules_in_quarter()
+        context['lesson_templates'] = self._get_templates()
         context['lesson_menu_active'] = True
         return context
 
@@ -289,7 +311,7 @@ class QuarterAssessmentDetail(BaseView, DetailView):
                         else:
                             raise TypeError
 
-                        # TODO: this is very inefficient for large data. but this is just for demo so should be fine :)
+                        # TODO: this is very inefficient for large data. but it's not part of the agreement :)
                         latest_result = StudentAssessmentResult.objects.all().order_by("-group").first()
                         next_group_id = latest_result.group + 1 if latest_result else 1
                         is_correct = False
@@ -318,11 +340,15 @@ class QuarterAssessmentDetail(BaseView, DetailView):
                     status=configs.ACTIVITY_STATUS[0][0] if correct_answer_count >= passing_score else configs.ACTIVITY_STATUS[1][0]
                 )
                 models_for_saving.append(student_result)
+            except TypeError:
+                messages.error(self.request, "You cannot leave a question blank.")
             except:
-                messages.error(self.request, "Something went wrong. Please try again.")
+                messages.error(self.request, "Something went wrong. Please try again or contact your adviser. Thank you")
             else:
-                for _model in models_for_saving: _model.save()
+                if settings.ALLOW_SAVE_TO_DB:
+                    for _model in models_for_saving: _model.save()
                 messages.success(self.request, "Your assessment has been submitted")
+            finally:
                 return HttpResponseRedirect(reverse("emodule:assessment-detail", kwargs=kwargs))
         else:
             messages.info(self.request, "You are already done with this assessment.")

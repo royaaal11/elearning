@@ -1,0 +1,110 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+<div class="tutor-course-segment tutor-course-wrap">
+    {% with quarter_id=module.quarter.id module_id=module.id %}
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-1" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-1" type="button" role="tab" aria-controls="lesson-{{module_id}}-1"
+                aria-selected="true">
+                Methods and Procedures in making Basketry Products
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-1" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-1">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+
+                    <h5>Methods and Procedures in making Basketry Products</h5><br>
+                    <p>Technology and Livelihood Education in the global community is a subject that helps
+                        student to be trained in daily aspects of life and learn daily works of our daily living. It does not
+                        just help students but also the people who need the knowledge of it. It develops our skills that
+                        will help us in the present time and the near future.</p>
+                    <p>In this lesson, you will learn the procedures and techniques in making basketry
+                        products before making your own basketry products.</p>
+
+                    <h6>Basketry Weaving Techniques</h6>
+                    <p>There are four basic techniques used to weave a basket. These are coiling, plaiting,
+                        stake and strand, and twining. The use of these four techniques creates a variety of different
+                        types of useful articles from small baskets to huge ones.</p>
+                    <p>
+                        <b>Definition of Terms</b><br>
+                        <ul>
+                            <li><b>Weavers.</b> These are the basket strands that weave through the spokes; they are
+                                lighter, thinner, and more flexible than the spokes to enable them to be woven in and
+                                out.</li>
+                            <li><b>Spokes.</b> These are the strands that stand upright and form the side supports of the
+                                basket; they are much stiffer than the weavers and are strong</li>
+                            <li><b>Waling.</b> is a kind of weaving with three or more weavers and is used at intervals to
+                                strengthen the basket.</li>
+                            <li><b>Randing</b> is a kind of weaving with one weaver.</li>
+                        </ul>
+                    </p>
+
+                    <h6>1. COILING</h6>
+                    <p>Coiling is believed to be the earliest basketry technique used. This method is
+                        usually employed for softer materials such as grasses. Strands of grass are stitched
+                        together to form a spiral that is forced into a basket shape. The base material is usually
+                        straw, willow, palmetto or yucca, while raffia and horsehair are stitched together using
+                        straw.</p>
+                    <p>
+                        <b>Steps in Coiling</b>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vii/unit_vii_1.png' %}">
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vii/unit_vii_2.png' %}">
+                    </p>
+                    <p>
+                        <b>Sample Coiling Stitches</b>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vii/unit_vii_3.png' %}">
+                    </p>
+
+                    <h6>2. PLAITING</h6>
+                    <p>This technique is similar to textile weaving where the materials is plaited or
+                        woven to produce a wide variety of items like bags, basket, purse, fan, etc.</p>
+                    <p>
+                        <b>Steps in Plaiting Weave</b>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vii/unit_vii_4.png' %}">
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vii/unit_vii_5.png' %}">
+                    </p>
+
+                    <h6>3. STAKE AND STRAND</h6>
+                    <p>Stake and strand weaving involves two elements, namely, the rigid stakes that
+                        form the ribs or warp and a more pliable material that is used to weave in and out of
+                        the ribs to create the sides of the basket or the waft. This method allows the use of a
+                        wide range of materials as long as they are flexible enough for the waft and rigid
+                        enough for the warp.</p>
+                    <p>
+                        <b>Steps in Stake and Strand</b>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vii/unit_vii_6.png' %}">
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vii/unit_vii_7.png' %}">
+                    </p>
+
+                    <h6>4. TWINING</h6>
+                    <p>Twining Basketry uses materials from roots and tree bark. Twining actually refers to a
+                        weaving technique where two or more flexible weaving elements or weavers cross
+                        each other as they weave through the stiffer radial spokes.</p>
+                    <p>
+                        <b>Steps in Twining</b>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vii/unit_vii_8.png' %}">
+                    </p>
+
+                    <h6>5. RANDING AND CHASING</h6>
+                    <p>
+                        <b>Steps in French Randing and Chasing</b>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vii/unit_vii_9.png' %}">
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endwith %}
+</div>
+{% endblock tab-conent-body-1 %}

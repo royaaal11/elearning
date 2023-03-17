@@ -1,0 +1,123 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+<div class="tutor-course-segment tutor-course-wrap">
+    {% with quarter_id=module.quarter.id module_id=module.id %}
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-1" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-1" type="button" role="tab" aria-controls="lesson-{{module_id}}-1"
+                aria-selected="true">
+                Identify and Use of Materials, Tools, and Equipment for Macramé and Basketry
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-1" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-1">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+
+                    <h5>Identify and Use of Materials, Tools, and Equipment for Macramé and Basketry</h5><br>
+                    <p>The right tools and materials can make the project so much easier. Below are basic tools
+                        and materials you will need in macramé and basketry projects.</p>
+
+                    <h6>Macramé Tools and Materials</h6>
+                    <p>The only tools and materials to do macramé are pair of scissors, various sizes of pins, cord or
+                        string, rings or rods, and a wooden dowel or something, like table or chair, that could hold and
+                        support the cords while knotting them. Below are examples of cord suitable for macramé
+                        projects:</p>
+                    <ol>
+                        <li>Cotton crochet is a simple cord type, which is soft and easy to work with.</li>
+                        <li>Embroidery floss makes use of strong cords in a variety of colors.</li>
+                        <li>Hemp or Abaca is a strong natural fabric and durable for clothing.</li>
+                        <li>Polypropylene or Plastic is a type of cord available in various sizes.</li>
+                        <li>Rattail is a type of cord lends a satin feel to the crafted object.</li>
+                        <li>Soutache is a kind of flat-ribbed satin cord often used for trimming.</li>
+                        <li>Waxed linen is mostly used in creating crisp knots.</li>
+                        <li>Wire is used in macramé jewelry. The best choice for wire is copper because it is strong
+                            and durable.</li>
+                    </ol>
+
+                    <h6>Basketry Materials</h6>
+                    <p>The Philippines serves as home to a wide variety of plants growing on forest, swamps, hills, or
+                        plains that are excellent materials for basketry. The plants that are usually used in basketry
+                        are generally classified into ferns, pandan, grasses, bamboos, sedges, palms, rattans, and
+                        vines. They are scattered over a large territory in the different regions of the country, growing
+                        with other species of plants. Below are the basketry materials:</p>
+                    <ol>
+                        <li>Rattan core is one of the most popular materials used in basketry because it is readily
+                            available</li>
+                        <li>Abaca is also used as a material in basketry because it is very flexible and durable. It
+                            is the strongest of the natural fibers and resistant to saltwater damage.</li>
+                        <li>Pandan is a tropical plant widely used in cooking as flavoring, but it could also be used
+                            as a material in basketry. Baskets made of pandan are used as a pot for coking rice.</li>
+                        <li>Tikug belongs to the grass family. It is very versatile, pliable, and smooth.</li>
+                        <li>Buri palm is an excellent material for making coiled basket. Many industrial products
+                            are derived from buri palms. The young leaves of the plant are made into strips. Raffia
+                            is the skin stripped from the leaf segments of the buri shoots before the blade has
+                            unfolded.</li>
+                        <li>Karagumoy leaves are coarse. They split while they are fresh and they press as they
+                            dry. These strips are used for weaving mats, hats, bags, or work basket.</li>
+                        <li>Nito fern grows in humid, shaded places where timbers is not very thick. It loses many
+                            of its leaves as it grows. The stem of the nito changes as it grows from green to light
+                            green, to dark brown, and finally to black.</li>
+                        <li>Dog rose, honeysuckle, and blackberry briars are examples of plants used once their
+                            spikes and creepers have been worn off.</li>
+                        <li>Willow grows fast and is easy to harvest. It is also known for its flexibility.</li>
+                        <li>Water hyacinth has become a serious pest in some areas. For it to become useful,
+                            water hyacinth is made into one of the materials to make handicrafts.</li>
+                    </ol>
+
+                    <h6>Macramé Tools</h6>
+                    <p>Specific macramé supplies and crafting tools are necessary to create a macramé
+                        project. Great variety in texture and design can result from the arrangement of just a few
+                        knots since each knot can be tied in two different ways.</p>
+                    <ol>
+                        <li>Macramé Board is where you do the knotting. This can be a padded clipboard,
+                            corkboard, or a piece of polyurethane or square cardboard that is rubber banded
+                            together.</li>
+                        <li>Pins should ideally be T-pins that can hold thicker cord.</li>
+                        <li>Macrame Rod or Rings are used to support or hold the cord while knotting.</li>
+                    </ol>
+
+                    <h6>Basketry Tools</h6>
+                    <p>The main tools of basketry are simple and these include the following:</p>
+                    <ol>
+                        <li>Awl or Boldkin is used for making holes for inserting willow, cane, or reed. Small bodkin
+                            is used for pegging the work to the workboard while medium bodkin is for easing cane
+                            into position and for tapping down the rows of weaving to keep the work level.</li>
+                        <li>Secateurs are used for cutting off ends of a cane.</li>
+                        <li>Nose pliers are used to pinch the reed where you want to bend it at right angle when
+                            making borders.</li>
+                        <li>Tape measure or Meter sticks is used for measuring materials.</li>
+                        <li>Rapping iron looks similar to a chisel, but it is blunt and used for tapping down the willow
+                            weave into position.</li>
+                        <li>Utility knife is used for cutting materials, sharpening stakes, and trimming. It is originally
+                            a fixed blade knife with a cutting edge suitable for general work.</li>
+                    </ol>
+
+                    <h6>Words to Remember!</h6>
+                    <ol>
+                        <li><b>Board</b> - a long, thin, flat piece of wood or other hard material, used for floors or other
+                            building purposes.</li>
+                        <li><b>Pins</b> - a small, slender, often pointed piece of wood, metal, etc., used to fasten, support or
+                            attach things.</li>
+                        <li><b>Rod</b> - a thin straight bar, especially of wood or metal.</li>
+                        <li><b>Rings</b> - a small circular band, typically of precious metal often set with one or more
+                            gemstones, worn on a finger.</li>
+                        <li><b>Tape Measure</b> - used for measuring materials.</li>
+                    </ol>
+                        
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endwith %}
+</div>
+{% endblock tab-conent-body-1 %}

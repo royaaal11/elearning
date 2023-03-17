@@ -11,6 +11,9 @@
                         src="{% static 'emodule/images/courses/module-cover-sm.png' %}" alt="courses" width="330"
                         height="221"></a>
             </div>
+            <div class="course-header__badge">
+                <span class="quiz-score-badge">{{quiz_score}}/{{module.quiz_count}}</span>
+            </div>
         </div>
         <div class="course-info-02">
             {% show_emodule_badge module.quiz_set.all quiz_status %}

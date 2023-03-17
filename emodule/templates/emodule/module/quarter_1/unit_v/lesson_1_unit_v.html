@@ -1,0 +1,88 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+<div class="tutor-course-segment tutor-course-wrap">
+    {% with quarter_id=module.quarter.id module_id=module.id %}
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-1" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-1" type="button" role="tab" aria-controls="lesson-{{module_id}}-1"
+                aria-selected="true">
+                Differentiate the Basketry Weaving Techniques and Patterns
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-1" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-1">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+
+                    <h5>Differentiate the Basketry Weaving Techniques and Patterns</h5><br>
+                    <p>Basket weaving has been used in cultures all over the world for at least a
+                        thousand of years now. There are a multitude of uses for baskets, ranging from table
+                        top decorations to traps meant for catching fish. They play a prominent role in some
+                        religious ceremonies.</p>
+                    <p>It is important that you will be introduced to the different basket weaving
+                        techniques and patterns first before you decide to do your own basket. There are
+                        many applications for basketry and the most common will be presented and discuss
+                        on this module.</p>
+                    
+                    <h6>Kinds of Macramé Knots</h6>
+                    <p>Knots and weaving used in making crafts can be traced back to ancient times when
+                        people used these activities during their extra time. Macramé items look beautiful, but often
+                        too complicated and hard to do. You won't believe it, but the design of the most macramé
+                        works is built up from the different combinations of a few basic knots! There are few of them.</p>
+                    <p>If you are a beginner and you want to learn macramé, it is very important to familiarize
+                        yourself with the different knots used to create beautiful designs. Below are the different types
+                        of macramé knots.</p>
+                    
+                    <p>Basket weaving is an extremely satisfying and relaxing activity that allows you a free
+                        flow of all your creative imaginations. You will feel the satisfaction if you can be able to make
+                        your own basket.</p>
+                    <p>But before you make one you need to be familiar first of the patterns and techniques
+                        used in basket making/weaving.</p>
+                    
+                    <p>
+                        <h6>BASKETRY WEAVING</h6>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_v/unit_v_1.png' %}">
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_v/unit_v_2.png' %}">
+                    </p>
+
+                    <h6>Fundamental Weaves in Hard and Soft Strip</h6>
+
+                    <p>
+                        <h6>A. Hard Strips</h6>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_v/unit_v_3.png' %}">
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_v/unit_v_4.png' %}">
+                    </p>
+                    
+                    <p>
+                        <b><i>Basket Bottoms</i></b>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_v/unit_v_5.png' %}">
+                    </p>
+
+                    <p>
+                        <h6>B. Soft Strips</h6>
+                        <p><i>Basket Bottoms</i></p>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_v/unit_v_6.png' %}">
+                    </p>
+
+                    <p>
+                        <b><i>Steps for Making Eight- strands Weavers (Ric-Rac)</i></b>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_v/unit_v_7.png' %}">
+                    </p>
+
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endwith %}
+</div>
+{% endblock tab-conent-body-1 %}

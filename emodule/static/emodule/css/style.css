@@ -20327,6 +20327,10 @@ span.flatpickr-weekday {
 
 
 /* Refactor: Uses SCSS instead pero para mabilis :) */ 
+.course-header__badge .quiz-score-badge {
+  background: #4da54d
+}
+
 .slider-section-02 {
   background-color: #2385c4;
 }

@@ -2,6 +2,8 @@
 {% load static %}
 {% load emodule_extras %}
 
+{% block page_title %}Basketry - Home {% endblock page_title %}
+
 {% block content %}
 <!-- Slider Section Start -->
 <div class="slider-section slider-section-02">
@@ -63,8 +65,8 @@
                 <div class="row row-cols-xl-4 g-6">
                     {% for attempt in recent_quiz_attempts %}
 
-                    {% emodule_status attempt.module.studentquizresult_set.latest.status as current_quiz_status %}
-                    {% emodule_score attempt.module.studentquizresult_set.latest.score as current_score %}
+                    {% emodule_status attempt.status as current_quiz_status %}
+                    {% emodule_score attempt.score as current_score %}
 
                     {% include 'emodule/partial/module-card-grid.html' with module=attempt.module quiz_status=current_quiz_status quiz_score=current_score %}
                     
