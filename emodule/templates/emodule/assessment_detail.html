@@ -60,16 +60,16 @@
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                         {% for key, assessment in assessment_list.items %}
-                                        <button class="nav-link active" id="assessment-{{assessment.assessment_obj.id}}-tab" data-bs-toggle="tab" data-bs-target="#assessment-{{assessment.assessment_obj.id}}"
-                                            type="button" role="tab" aria-controls="assessment-{{assessment.assessment_obj.id}}" aria-selected="true">
-                                            {% if assessment.assessment_obj.title %}{{assessment.assessment_obj.title}}{% else %}Assessment - {{forloop.counter}}{% endif %}
+                                        <button class="nav-link active" id="assessment-{{assessment.activity_obj.id}}-tab" data-bs-toggle="tab" data-bs-target="#assessment-{{assessment.activity_obj.id}}"
+                                            type="button" role="tab" aria-controls="assessment-{{assessment.activity_obj.id}}" aria-selected="true">
+                                            {% if assessment.activity_obj.title %}{{assessment.activity_obj.title}}{% else %}Assessment - {{forloop.counter}}{% endif %}
                                         </button>
                                         {% endfor %}
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
                                     {% for key, assessment in assessment_list.items %}
-                                    <div class="tab-pane fade show active" id="assessment-{{assessment.assessment_obj.id}}" role="tabpanel" aria-labelledby="assessment-{{assessment.assessment_obj.id}}-tab">
+                                    <div class="tab-pane fade show active" id="assessment-{{assessment.activity_obj.id}}" role="tabpanel" aria-labelledby="assessment-{{assessment.activity_obj.id}}-tab">
                                         <!-- Tutor Course Main Segment Start -->
                                         <div class="tutor-course-main-segment">
 
@@ -77,7 +77,7 @@
                                             <div class="tutor-course-segment tutor-course-wrap">
 
                                                 <div class="tutor-course-segment__header">
-                                                    <h4 class="tutor-course-segment__title">{{assessment.assessment_obj.direction}}</h4>
+                                                    <h4 class="tutor-course-segment__title">{{assessment.activity_obj.direction}}</h4>
                                                 </div>
 
                                                 {% include 'emodule/partial/messages.html' %}

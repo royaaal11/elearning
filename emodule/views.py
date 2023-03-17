@@ -25,6 +25,150 @@ class BaseView(LoginRequiredMixin, TemplateView):
         context = utils.update_context(context, utils.base_context())
         context['search_source'] = Module.objects.all()
         return context
+    
+
+class ActivityBaseDetail(BaseView, DetailView):
+    type = '' # assessment or quiz
+    model = '' # Quarter or Module
+    redirect_to_after_submit = "" # url name to go to after submitting activity
+
+    def build_activity_list(self):
+        # Hierarchy:
+        # group_type_obj -> activity_group -> activity -> questions -> choice
+        # eg. Module -> Quiz - 1 -> True/False -> True/False Question 1 -> Question 1 choices
+        group_type_obj = self.get_object()
+        activity_group = {} # Group of questions. A module or assessment can have multiple types i.e. True/False or Multiple Choice
+        _activity_group = group_type_obj.assessment_set.all() if self.type == 'assessment' else group_type_obj.quiz_set.all()
+        
+        # recreate the group list
+        for activity in _activity_group:
+            activity_id = "activity_{}".format(activity.id)
+            question_list = {}
+
+            # create the question object then map the student's answer per question if there are any
+            activity_questions = activity.assessmentquestion_set.all() if self.type == 'assessment' else activity.quizquestion_set.all()
+            for question in activity_questions:
+                question_id = "question_{}".format(question.id)
+
+                # get the student's latest answer for this question
+                if self.type == 'assessment':
+                    student_answer = StudentQuestionAnswers.objects.\
+                        filter(student=self.get_current_student()).\
+                        filter(assessment_question=question).\
+                        order_by("-group").first()
+                else:
+                    student_answer = StudentQuizQuestionAnswers.objects.\
+                        filter(student=self.get_current_student()).\
+                        filter(quiz_question=question).\
+                        order_by("-group").first()
+                
+                question_list[question_id] = {
+                    "question_obj": question,
+                    "student_answer": student_answer
+                }
+
+            activity_group[activity_id] = {
+                "activity_obj": activity,
+                "question_list": question_list
+            }
+        return activity_group
+    
+    def post(self, *args, **kwargs):
+        context = self.get_context_data()
+        group_type_obj = self.get_object()
+        post_data = self.request.POST
+        models_for_saving = []
+        correct_answer_count = 0
+
+        # check first if the student already took the assessment or quiz.
+        if self.type == 'assessment':
+            done_with_activity = StudentAssessmentResult.objects\
+                .filter(quarter=group_type_obj)\
+                .filter(student=self.get_current_student())
+        else:
+            done_with_activity = StudentQuizResult.objects\
+                .filter(module=group_type_obj)\
+                .filter(student=self.get_current_student())
+        
+        if not done_with_activity:
+            try:
+                _activity_group = group_type_obj.assessment_list if self.type == 'assessment' else group_type_obj.quiz_list
+                for activity in _activity_group:
+
+                    activity_questions = activity.assessmentquestion_set.all() if self.type == 'assessment' else activity.quizquestion_set.all()
+                    for question in activity_questions:
+                        correct_answer = int(question.assessmentchoice_set.get(is_correct=True).id) if self.type == 'assessment' else int(question.quizchoice_set.get(is_correct=True).id)
+                        form_answer = post_data.get('{}_choice_{}'.format(self.type, question.id))
+                        if form_answer:
+                            form_answer = int(form_answer)
+                        else:
+                            raise TypeError
+
+                        # TODO: this is very inefficient for large data. but it's not part of the agreement :)
+                        result_model = StudentAssessmentResult if self.type == 'assessment' else StudentQuizResult
+                        latest_result = result_model.objects.all().order_by("-group").first()
+                        next_group_id = latest_result.group + 1 if latest_result else 1
+                        is_correct = False
+                        
+                        if correct_answer == form_answer:
+                            is_correct = True
+                            correct_answer_count += 1
+
+                        if self.type == 'assessment':
+                            student_answer = StudentQuestionAnswers (
+                                assessment_question=question,
+                                student=self.get_current_student(),
+                                answer_id=form_answer,
+                                is_correct=is_correct,
+                                group=next_group_id
+                            )
+                        else:
+                            student_answer = StudentQuizQuestionAnswers (
+                            quiz_question=question,
+                            student=self.get_current_student(),
+                            answer_id=form_answer,
+                            is_correct=is_correct,
+                            group=next_group_id
+                        )
+
+                        models_for_saving.append(student_answer)
+                
+                activity_total_count = group_type_obj.assessment_count if self.type == 'assessment' else group_type_obj.quiz_count
+                passing_score = (settings.PASSING_PERCENTAGE/100) * activity_total_count
+
+                if self.type == 'assessment':
+                    student_result = StudentAssessmentResult (
+                        quarter=group_type_obj,
+                        student=self.get_current_student(),
+                        score=correct_answer_count,
+                        date_taken=datetime.now(),
+                        group=next_group_id,
+                        status=configs.ACTIVITY_STATUS[0][0] if correct_answer_count >= passing_score else configs.ACTIVITY_STATUS[1][0]
+                    )
+                else:
+                    student_result = StudentQuizResult (
+                        module=group_type_obj,
+                        student=self.get_current_student(),
+                        score=correct_answer_count,
+                        date_taken=datetime.now(),
+                        group=next_group_id,
+                        status=configs.ACTIVITY_STATUS[0][0] if correct_answer_count >= passing_score else configs.ACTIVITY_STATUS[1][0]
+                    )
+
+                models_for_saving.append(student_result)
+            except TypeError:
+                messages.error(self.request, "You cannot leave a question blank.")
+            except:
+                messages.error(self.request, "Something went wrong. Please try again or contact your adviser. Thank you")
+            else:
+                if settings.ALLOW_SAVE_TO_DB:
+                    for _model in models_for_saving: _model.save()
+                messages.success(self.request, "Your assessment has been submitted" if self.type == 'assessment' else "Your activity has been submitted")
+            finally:
+                return HttpResponseRedirect(reverse(self.redirect_to_after_submit, kwargs=kwargs))
+        else:
+            messages.info(self.request, "You are done with this already.")
+        return render(self.request, self.template_name, context)
 
 
 class HomePage(BaseView):
@@ -51,9 +195,11 @@ class HomePage(BaseView):
 #         return {}
 
 
-class ModuleDetail(BaseView, DetailView):
+class ModuleDetail(ActivityBaseDetail):
     template_name = 'emodule/module/module_detail.html'
     model = Module
+    type = 'quiz'
+    redirect_to_after_submit = "emodule:module-detail"
     context_object_name = 'module'
 
     def _get_templates(self):
@@ -73,103 +219,6 @@ class ModuleDetail(BaseView, DetailView):
             'video_template': base_dir.format(quarter_seqno, module_title, video_template),
             'performance_task_template': base_dir.format(quarter_seqno, module_title, performance_task_template)
         }
-
-    def build_quiz_list(self):
-        module = self.get_object()
-        quiz_list = {}
-        _quiz_list = module.quiz_set.all()
-        
-        # create the quiz list
-        for quiz in _quiz_list:
-            quiz_id = "quiz_{}".format(quiz.id)
-            question_list = {}
-
-            # create the quiz object
-            for question in quiz.quizquestion_set.all():
-                question_id = "question_{}".format(question.id)
-
-                # get the student's latest answer for this question
-                student_answer = StudentQuizQuestionAnswers.objects.\
-                    filter(student=self.get_current_student()).\
-                    filter(quiz_question=question).\
-                    order_by("-group").first()
-                
-                question_list[question_id] = {
-                    "question_obj": question,
-                    "student_answer": student_answer
-                }
-
-            quiz_list[quiz_id] = {
-                "quiz_obj": quiz,
-                "question_list": question_list
-            }
-        return quiz_list
-
-    def post(self, *args, **kwargs):
-        context = self.get_context_data()
-        module = self.get_object()
-        post_data = self.request.POST
-        models_for_saving = []
-        correct_answer_count = 0
-
-        # check first if the student already took the quiz.
-        done_with_quiz = StudentQuizResult.objects\
-            .filter(module=module)\
-            .filter(student=self.get_current_student())
-        
-        if not done_with_quiz:
-            try:
-                for quiz in module.quiz_list:
-                    for question in quiz.quizquestion_set.all():
-                        correct_answer = int(question.quizchoice_set.get(is_correct=True).id)
-                        form_answer = post_data.get('quiz_choice_{}'.format(question.id))
-                        if form_answer:
-                            form_answer = int(form_answer)
-                        else:
-                            raise TypeError
-
-                        # TODO: this is very inefficient for large data. but this is just for demo so should be fine :)
-                        latest_result = StudentQuizResult.objects.all().order_by("-group").first()
-                        next_group_id = latest_result.group + 1 if latest_result else 1
-                        is_correct = False
-                        
-                        if correct_answer == form_answer:
-                            is_correct = True
-                            correct_answer_count += 1
-
-                        student_answer = StudentQuizQuestionAnswers (
-                            quiz_question=question,
-                            student=self.get_current_student(),
-                            answer_id=form_answer,
-                            is_correct=is_correct,
-                            group=next_group_id
-                        )
-
-                        models_for_saving.append(student_answer)
-
-                passing_score = (settings.PASSING_PERCENTAGE/100) * module.quiz_count
-                student_result = StudentQuizResult (
-                    module=module,
-                    student=self.get_current_student(),
-                    score=correct_answer_count,
-                    date_taken=datetime.now(),
-                    group=next_group_id,
-                    status=configs.ACTIVITY_STATUS[0][0] if correct_answer_count >= passing_score else configs.ACTIVITY_STATUS[1][0]
-                )
-                models_for_saving.append(student_result)
-            except TypeError:
-                messages.error(self.request, "You cannot leave a question blank.")
-            except:
-                messages.error(self.request, "Something went wrong. Please try again or contact your adviser. Thank you")
-            else:
-                if settings.ALLOW_SAVE_TO_DB:
-                    for _model in models_for_saving: _model.save()
-                messages.success(self.request, "Your quiz has been submitted")
-            finally:
-                return HttpResponseRedirect(reverse("emodule:module-detail", kwargs=kwargs))
-        else:
-            messages.info(self.request, "You are already done with this quiz.")
-        return render(self.request, self.template_name, context)
     
     def get_other_modules_in_quarter(self):
         other_modules = []
@@ -185,7 +234,7 @@ class ModuleDetail(BaseView, DetailView):
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
         context = super().get_context_data(**kwargs)
-        context['quiz_list'] = self.build_quiz_list()
+        context['quiz_list'] = self.build_activity_list()
         context['quiz_score'] = StudentQuizResult.objects\
             .filter(student=self.get_current_student())\
             .filter(module=self.get_object())
@@ -251,114 +300,18 @@ class QuarterDetail(BaseView, DetailView):
         return context
 
 
-class QuarterAssessmentDetail(BaseView, DetailView):
+class QuarterAssessmentDetail(ActivityBaseDetail):
     template_name = 'emodule/assessment_detail.html'
-    # template_name = 'emodule/test.html'
     model = Quarter
+    type = 'assessment'
+    redirect_to_after_submit = "emodule:assessment-detail"
     context_object_name = 'quarter'
-
-    def build_assessment_list(self):
-        quarter = self.get_object()
-        assessment_list = {}
-        _assessment_list = quarter.assessment_set.all()
-        
-        # create the assessment list
-        for assessment in _assessment_list:
-            assessment_id = "assessment_{}".format(assessment.id)
-            question_list = {}
-
-            # create the question object
-            for question in assessment.assessmentquestion_set.all():
-                question_id = "question_{}".format(question.id)
-
-                # get the student's latest answer for this question
-                student_answer = StudentQuestionAnswers.objects.\
-                    filter(student=self.get_current_student()).\
-                    filter(assessment_question=question).\
-                    order_by("-group").first()
-                
-                question_list[question_id] = {
-                    "question_obj": question,
-                    "student_answer": student_answer
-                }
-
-            assessment_list[assessment_id] = {
-                "assessment_obj": assessment,
-                "question_list": question_list
-            }
-        return assessment_list
-        
-    # TODO: if you have time. refactor this :)
-    def post(self, *args, **kwargs):
-        context = self.get_context_data()
-        quarter = self.get_object()
-        post_data = self.request.POST
-        models_for_saving = []
-        correct_answer_count = 0
-
-        # check first if the student already took the assessment.
-        done_with_assessment = StudentAssessmentResult.objects\
-            .filter(quarter=quarter)\
-            .filter(student=self.get_current_student())
-        if not done_with_assessment:
-            try:
-                for assessment in quarter.assessment_list:
-                    for question in assessment.assessmentquestion_set.all():
-                        correct_answer = int(question.assessmentchoice_set.get(is_correct=True).id)
-                        form_answer = post_data.get('assessment_choice_{}'.format(question.id))
-                        if form_answer:
-                            form_answer = int(form_answer)
-                        else:
-                            raise TypeError
-
-                        # TODO: this is very inefficient for large data. but it's not part of the agreement :)
-                        latest_result = StudentAssessmentResult.objects.all().order_by("-group").first()
-                        next_group_id = latest_result.group + 1 if latest_result else 1
-                        is_correct = False
-                        
-                        if correct_answer == form_answer:
-                            is_correct = True
-                            correct_answer_count += 1
-
-                        student_answer = StudentQuestionAnswers (
-                            assessment_question=question,
-                            student=self.get_current_student(),
-                            answer_id=form_answer,
-                            is_correct=is_correct,
-                            group=next_group_id
-                        )
-
-                        models_for_saving.append(student_answer)
-
-                passing_score = (settings.PASSING_PERCENTAGE/100) * quarter.assessment_count
-                student_result = StudentAssessmentResult (
-                    quarter=quarter,
-                    student=self.get_current_student(),
-                    score=correct_answer_count,
-                    date_taken=datetime.now(),
-                    group=next_group_id,
-                    status=configs.ACTIVITY_STATUS[0][0] if correct_answer_count >= passing_score else configs.ACTIVITY_STATUS[1][0]
-                )
-                models_for_saving.append(student_result)
-            except TypeError:
-                messages.error(self.request, "You cannot leave a question blank.")
-            except:
-                messages.error(self.request, "Something went wrong. Please try again or contact your adviser. Thank you")
-            else:
-                if settings.ALLOW_SAVE_TO_DB:
-                    for _model in models_for_saving: _model.save()
-                messages.success(self.request, "Your assessment has been submitted")
-            finally:
-                return HttpResponseRedirect(reverse("emodule:assessment-detail", kwargs=kwargs))
-        else:
-            messages.info(self.request, "You are already done with this assessment.")
-        return render(self.request, self.template_name, context)
 
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
         current_seqno = self.get_object().seqno
         context = super().get_context_data(**kwargs)
-        context['assessment_list'] = self.build_assessment_list()
+        context['assessment_list'] = self.build_activity_list()
         context['assessment_score'] = StudentAssessmentResult.objects\
             .filter(student=self.get_current_student())\
             .filter(quarter=self.get_object()).order_by('-group').first()
