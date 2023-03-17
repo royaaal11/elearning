@@ -1,0 +1,24 @@
+{% extends 'emodule/module/module_tab_base.html' %}
+
+{% block tab-conent-head %}
+{% for video_lesson in module.videolesson_set.all %}
+<div class="tutor-course-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">{{video_lesson}}</h4>
+    <div class="tutor-course-top-info__video">
+        <div class="ratio ratio-16x9">
+            <iframe src="{{video_lesson.video_url}}" title="{{video_lesson.title}}" allowfullscreen=""></iframe>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock tab-conent-head %}
+
+{% block tab-conent-body-1 %}
+{% endblock tab-conent-body-1 %}
+
+{% block tab-conent-body-2 %}
+{% endblock tab-conent-body-2 %}
+
+{% block tab-conent-footer %}
+{% endblock tab-conent-footer %}
+    

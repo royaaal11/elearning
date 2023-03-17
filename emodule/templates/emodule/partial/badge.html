@@ -1,0 +1,9 @@
+
+<!-- Show the badge if there is an activity/assessment for the quarter/module AND if there is already a result -->
+{% if quiz_or_assessment_list and status %}
+    <span class="course-info-02__badge-text {% if status == 'Passed' %}badge-success{% elif status == 'Failed' %}badge-alert{% endif %}">{{status}}</span>
+{% elif quiz_or_assessment_list and not status %}
+    <span class="course-info-02__badge-text badge-info">Not yet taken</span>
+{% else %}
+<span class="course-info-02__badge-text badge-warning">No activity</span>
+{% endif %}

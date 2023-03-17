@@ -1,0 +1,348 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    
+    <title>{% block page_title %}Basketry - Elearning site{% endblock page_title %}</title>
+    
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'emodule/images/favicon.png' %}" />
+
+
+    <!-- Font CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap"
+        rel="stylesheet" />
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <link rel="stylesheet" href="{% static 'emodule/css/vendor/fontawesome-all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'emodule/css/vendor/edumall-icon.css' %}" />
+    <link rel="stylesheet" href="{% static 'emodule/css/vendor/bootstrap.min.css' %}" />
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <link rel="stylesheet" href="{% static 'emodule/css/plugins/aos.css' %}" />
+    <link rel="stylesheet" href="{% static 'emodule/css/plugins/swiper-bundle.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'emodule/css/plugins/perfect-scrollbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'emodule/css/plugins/jquery.powertip.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'emodule/css/plugins/glightbox.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'emodule/css/plugins/flatpickr.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'emodule/css/plugins/ion.rangeSlider.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'emodule/css/plugins/select2.min.css' %}" />
+    <link href="{% static 'emodule/css/plugins/jquery-ui.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'emodule/css/style.css' %}" />
+</head>
+
+<body>
+    {% block content-wrapper %}
+    <main class="main-wrapper">
+
+        {% block header %}
+        <!-- Header start -->
+        <div class="header-section header-sticky">
+            <!-- Header Top Start -->
+            <div class="header-top d-none d-sm-block">
+                <div class="container">
+                    <!-- Header Top Bar Wrapper Start -->
+                    <div class="header-top-bar-wrap d-sm-flex justify-content-between">
+                        <div class="header-top-bar-wrap__info">
+                            <ul class="header-top-bar-wrap__info-list">
+                            </ul>
+                        </div>
+
+                        <div class="header-top-bar-wrap__info d-sm-flex">
+                            <ul class="header-top-bar-wrap__info-social">
+                                <li>
+                                    <a href="{% url 'emodule:home' %}"><i class="far fa-user"></i>
+                                        Hi <span class="info-text">{{user.first_name}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            {% if user.is_authenticated  %}
+                            <ul class="header-top-bar-wrap__info-list d-none d-lg-flex">
+                                <li>
+                                    <a href="{% url 'accounts:logout' %}">
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                            {% else %}
+                            <ul class="header-top-bar-wrap__info-list d-none d-lg-flex">
+                                <li>
+                                    <a href="{% url 'accounts:login' %}">
+                                        Log in
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'accounts:signup' %}">
+                                        Signup
+                                    </a>
+                                </li>
+                            </ul>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                    <!-- Header Top Bar Wrapper End -->
+                </div>
+            </div>
+            <!-- Header Top End -->
+
+            <!-- Header Main Start -->
+            <div class="header-main">
+                <div class="container">
+                    <!-- Header Main Wrapper Start -->
+                    <div class="header-main-wrapper">
+                        <!-- Header Logo Start -->
+                        <div class="header-logo">
+                            <a class="header-logo__logo" href="{% url 'emodule:home' %}"><img
+                                    src="{% static 'emodule/images/logo.png' %}" width="296" height="64"
+                                    alt="Logo" /></a>
+                        </div>
+                        <!-- Header Logo End -->
+
+                        <!-- Header Inner Start -->
+                        <div class="header-inner">
+                            <!-- Header Search Start -->
+                            <div class="header-serach">
+                                <form action="#">
+                                    <input id="id_search_input" type="text" class="header-serach__input" placeholder="Search..." />
+                                    <button class="header-serach__btn">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <!-- Header Search End -->
+
+                            <!-- Header Navigation Start -->
+                            <div class="header-navigation d-none d-xl-block">
+                                <nav class="menu-primary">
+                                    <ul class="menu-primary__container">
+                                        {% url 'emodule:home' as home_url %}
+                                        <li>
+                                            <a class="{% if request.path == home_url %}active{% endif %}" href="{{home_url}}"><span>Home</span></a>
+                                        </li>
+                                        {% if user.is_authenticated %}
+                                        <li>
+                                            <a href="{% url 'emodule:subject-detail' subject_list.first.id %}" class="{% if lesson_menu_active %}active{% endif %}"><span>Lessons</span></a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!-- Header Navigation End -->
+
+                            <!-- Header Mobile Toggle Start -->
+                            <div class="header-toggle">
+                                <button class="header-toggle__btn d-xl-none" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasMobileMenu">
+                                    <span class="line"></span>
+                                    <span class="line"></span>
+                                    <span class="line"></span>
+                                </button>
+                                <button class="header-toggle__btn search-open d-flex d-md-none">
+                                    <span class="dots"></span>
+                                    <span class="dots"></span>
+                                    <span class="dots"></span>
+                                </button>
+                            </div>
+                            <!-- Header Mobile Toggle End -->
+                        </div>
+                        <!-- Header Inner End -->
+                    </div>
+                    <!-- Header Main Wrapper End -->
+                </div>
+            </div>
+            <!-- Header Main End -->
+        </div>
+        <!-- Header End -->
+        {% endblock header %}
+
+        {% block mobile_menu %}
+        <!-- Offcanvas Start -->
+        <div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu"
+            style="background-color: #2385c4;">
+            <div class="offcanvas-header bg-white">
+                <div class="offcanvas-logo">
+                    <a class="offcanvas-logo__logo" href="{% url 'emodule:home' %}"><img
+                            src="{% static 'emodule/images/logo.png' %}" alt="Logo"></a>
+                </div>
+                <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i
+                        class="fas fa-times"></i></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <nav class="canvas-menu">
+                    <ul class="offcanvas-menu">
+                        <li><a class="active" href="{% url 'emodule:home' %}"><span>Home</span></a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'emodule:subject-detail' subject_list.first.id %}"><span>Lessons</span></a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Header User Button Start -->
+            <div class="offcanvas-user d-lg-none">
+                <div class="offcanvas-user__button">
+                    <a class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" href="{% url 'accounts:login' %}">Log In</a>
+                </div>
+                <div class="offcanvas-user__button">
+                    <a class="offcanvas-user__signup btn btn-primary btn-hover-primary" href="{% url 'accounts:signup' %}">Sign Up</a>
+                </div>
+            </div>
+            <!-- Header User Button End -->
+
+        </div>
+        <!-- Offcanvas End -->
+        {% endblock mobile_menu %}
+
+        {% block content %}
+        {% endblock content %}
+
+        {% block footer %}
+        <!-- Footer Start -->
+        <div class="footer-section">
+            <!-- Footer Widget Area Start -->
+            <div class="footer-widget-area section-padding-01">
+                <div class="container">
+                    <div class="row gy-6">
+                        <div class="col-lg-4">
+                            <!-- Footer Widget Start -->
+                            <div class="footer-widget">
+                                <a href="{% url 'emodule:home' %}" class="footer-widget__logo"><img
+                                        src="{% static 'emodule/images/logo.png' %}" alt="Logo" width="150"
+                                        height="32" /></a>
+
+                                <div class="footer-widget__info">
+                                    <span class="title">Call us</span>
+                                    <span class="number">800 388 80 90</span>
+                                </div>
+                                <div class="footer-widget__info">
+                                    <p>123 Baguio City, Benguet 2616</p>
+                                    <p>contact@elearningsite.com</p>
+                                </div>
+
+                                <div class="footer-widget__social-02">
+                                    <a class="twitter" href="https://twitter.com/" target="_blank"><i
+                                            class="fab fa-twitter"></i></a>
+                                    <a class="facebook" href="https://www.facebook.com/" target="_blank"><i
+                                            class="fab fa-facebook-f"></i></a>
+                                    <a class="skype" href="#" target="_blank"><i class="fab fa-skype"></i></a>
+                                    <a class="youtube" href="https://www.youtube.com/" target="_blank"><i
+                                            class="fab fa-youtube"></i></a>
+                                    <a class="linkedin" href="https://www.linkedin.com/" target="_blank"><i
+                                            class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                            <!-- Footer Widget End -->
+                        </div>
+
+                        <div class="col-lg-8">
+                            <div class="row gy-6">
+                                <div class="col-sm-4">
+                                    <!-- Footer Widget Start -->
+                                    <div class="footer-widget">
+                                        <h4 class="footer-widget__title">Links</h4>
+
+                                        <ul class="footer-widget__link">
+                                            <li><a href="{% url 'emodule:home' %}">Home</a></li>
+                                            {% if user.is_authenticated %}
+                                            <li><a href="{% url 'emodule:subject-detail' subject_list.first.id %}">Lessons</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                    <!-- Footer Widget End -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Widget Area End -->
+
+            <!-- Footer Copyright Area End -->
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="copyright-wrapper text-center">
+                        <ul class="footer-widget__link flex-row gap-8 justify-content-center">
+                            <li><a href="#">Terms of Use</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                        <p class="footer-widget__copyright mt-0">
+                            &copy; 2023 <span> Basketry </span> Made with
+                            <i class="fa fa-heart"></i> by
+                            <a>CAK</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Copyright Area End -->
+        </div>
+        <!-- Footer End -->
+        {% endblock footer %}
+
+        <!--Back To Start-->
+        <button id="backBtn" class="back-to-top backBtn">
+            <i class="arrow-top fas fa-arrow-up"></i>
+            <i class="arrow-bottom fas fa-arrow-up"></i>
+        </button>
+        <!--Back To End-->
+    </main>
+
+    {% endblock content-wrapper %}
+
+    <!-- JS Vendor, Plugins & Activation Script Files -->
+
+    <!-- Vendors JS -->
+    <script src="{% static 'emodule/js/vendor/modernizr-3.11.7.min.js' %}"></script>
+    <script src="{% static 'emodule/js/vendor/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/jquery-ui.min.js' %}">  
+    </script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="{% static 'emodule/js/vendor/jquery-migrate-3.3.2.min.js' %}"></script>
+    <script src="{% static 'emodule/js/vendor/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Plugins JS -->
+    <script src="{% static 'emodule/js/plugins/aos.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/parallax.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/jquery.powertip.min.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/nice-select.min.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/glightbox.min.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/jquery.sticky-kit.min.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/flatpickr.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/range-slider.js' %}"></script>
+    <script src="{% static 'emodule/js/plugins/select2.min.js' %}"></script>
+
+    <!-- Activation JS -->
+    <script src="{% static 'emodule/js/main.js' %}"></script>
+    <script>
+        $(function() {
+            var modules = [
+                {% for search_item in search_source %}
+                    {
+                        value: "{% url 'emodule:module-detail' search_item.quarter.subject.id search_item.quarter.id search_item.id %}",
+                        label: "{{search_item.description}}"
+                    },
+                {% endfor %}
+            ];
+            $.initializeSearch(modules);
+        });
+    </script>
+</body>
+
+</html>

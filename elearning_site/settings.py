@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-oqlitl$4t&%^dtvbfn-pp^pfol1fopm)0te!#+k^$dy6)w9855
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['1be7-120-29-78-169.ap.ngrok.io', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://1be7-120-29-78-169.ap.ngrok.io']
 
 
 # Application definition
@@ -38,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'nested_admin',
     'emodule.apps.EmoduleConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +128,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+# Custom Settings
+PASSING_PERCENTAGE = 60;
+ALLOW_SAVE_TO_DB = True

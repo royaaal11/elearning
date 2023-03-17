@@ -1,0 +1,86 @@
+{% extends 'emodule/base.html' %}
+{% load static %}
+{% load emodule_extras %}
+
+{% block page_title %}Basketry - {{quarter.title}} Modules {% endblock page_title %}
+
+{% block content %}
+<!-- Page Banner Section Start -->
+<div class="page-banner bg-color-12">
+    <div class="page-banner__wrapper">
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+                <ul class="breadcrumb breadcrumb-white">
+                    <li class="breadcrumb-item"><a href="{% url 'emodule:home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'emodule:subject-detail' quarter.subject.id %}">Quarters</a></li>
+                    <li class="breadcrumb-item active"><a href="{% url 'emodule:quarter-detail' quarter.subject.id quarter.id %}">{{quarter.title}}</a></li>
+                </ul>
+            </div>
+            <!-- Page Breadcrumb End -->
+
+            <!-- Page Banner Caption Start -->
+            <div class="page-banner__caption text-center">
+                <h2 class="page-banner__main-title text-white">{{quarter.title}}</h2>
+            </div>
+            <!-- Page Banner Caption End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Courses Start -->
+<div class="courses-section section-padding-01">
+    <div class="container">
+        {% if module_list %}
+        <!-- Archive Filter Bars Start -->
+        <div class="archive-filter-bars">
+            <div class="archive-filter-bar">
+                <p><span>{{module_list|length}}</span> modules available for you</p>
+            </div>
+
+            <div class="archive-filter-bar">
+
+                <div class="filter-bar-wrapper">
+                    <span>See</span>
+                    <ul class="nav">
+                        <li><button class="active" data-bs-toggle="tab" data-bs-target="#grid"><i
+                                    class="fas fa-th"></i></button></li>
+                        <li><button data-bs-toggle="tab" data-bs-target="#list"><i class="fas fa-bars"></i></button>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Archive Filter Bars End -->
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="grid">
+
+                <div class="row gy-6">
+
+                    {% include 'emodule/partial/module-cards.html' with module_list=module_list layout='grid' %}
+
+                </div>
+
+            </div>
+
+            <div class="tab-pane fade" id="list">
+
+                {% include 'emodule/partial/module-cards.html' with module_list=module_list layout='list' %}
+
+            </div>
+        </div>
+        {% else %}
+
+        {% include 'emodule/partial/warning-message.html' with message="No available modules for this quarter." %}
+
+        {% endif %}
+    </div>
+</div>
+<!-- Courses End -->
+{% endblock content %}

@@ -1,0 +1,107 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+<div class="tutor-course-segment tutor-course-wrap">
+    {% with quarter_id=module.quarter.id module_id=module.id %}
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-1" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-1" type="button" role="tab" aria-controls="lesson-{{module_id}}-1"
+                aria-selected="true">
+                Following Methods and Procedure in Making Macramé and Basketry
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-1" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-1">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+
+                    <h5>Following Methods and Procedure in Making Macramé and Basketry</h5><br>
+                    <p>Macramé is the art/craft of tying cords into knots in such a way that they form a useful
+                        decorative shape. Learning the methods and procedures in making macramé will help you
+                        start with a good project/work.</p>
+                    <p>Now that you have already acquired knowledge on the different kinds of macramé knots, get
+                        ready to learn more on the methods and procedure in making macramé.</p>
+                    
+                    <h6>Macramé Defined</h6>
+                    <p>Macramé is an art of tying knots in string to make decorative things. Try reading this
+                        poem and see how it will be related to the lesson that will be introduced to you.</p>
+
+                    <h6>Macramé Poem</h6>
+                    <p>
+                        When she would macramé<br>
+                        I stayed and watched.<br>
+                        Taking her needles,<br>
+                        And attaching small knots.<br>
+                        Making crisp doilies….<br>
+                        With different patterns,<br>
+                        Little mats she would starch.<br>
+                        Amazing my curiosity,<br>
+                        At the speed she delivered such art.<br>
+
+                        When she would macramé,<br>
+                        I would ask her how it was done.<br>
+                        She took my hands in between hers…<br>
+
+                        Until I alone did start.<br>
+                        She noticed soon I got extremely bored,<br>
+                        And my grandmother made me stop.<br>
+                        Boy…<br>
+                        You something else.<br>
+                        Why you so nosy?<br>
+                        I ain’t nosy, grandma.<br>
+                        You got enough apples to make a pie today<br>
+                        I would ask.<br>
+                        And she would just shake her head<br>
+                        With nothing from her to me to say…<br>
+                        She would hum and continue doing,<br>
+                        Her fast paced macramé.<br>
+                    </p>
+
+                    <p>
+                        <b>Motive Questions:</b><br>
+                        <ol>
+                            <li>As a young adult, can you relate to the poem presented?</li>
+                            <li>Why do we need to focus when we do something important?</li>
+                            <li>How do you accept advice from your elders?</li>
+                        </ol>
+                    </p>
+
+                    <p>Macramé is a form of textile produced using knotting (rather than weaving or knitting)
+                        techniques. Its items look beautiful, but often too complicated and hard to do. The design of
+                        the most macramé works is made up from the different combinations of a few basic knots.
+                        Few of them are:
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vi/unit_vi_1.png' %}">
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vi/unit_vi_2.png' %}">
+                    </p>
+
+                    <p>
+                        <b><i>Sample on Basic Macramé Knotting</i></b>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vi/unit_vi_3.png' %}">
+                    </p>
+
+                    <p>
+                        <b><i>Illustration on Reversed Effect of Knotting</i></b>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vi/unit_vi_4.png' %}">
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vi/unit_vi_5.png' %}">
+                    </p>
+
+                    <p>
+                        <b><i>Practicing with Braids</i></b>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_vi/unit_vi_6.png' %}">
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endwith %}
+</div>
+{% endblock tab-conent-body-1 %}

@@ -1,0 +1,21 @@
+{% extends 'emodule/module/module_tab_base.html' %}
+
+{% block tab-conent-head %}
+<div class="tutor-course-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Direction</h4>
+    <p>{{module.performancetask_set.first.direction}}</p>
+</div>
+{% endblock tab-conent-head %}
+
+{% block tab-conent-body-1 %}
+{% endblock tab-conent-body-1 %}
+
+{% block tab-conent-body-2 %}
+{% endblock tab-conent-body-2 %}
+
+{% block tab-conent-footer %}
+<div class="tutor-course-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Submit</h4>
+    <a href="{{module.performancetask_set.first.gdrive_link}}" target="_blank">{{module.performancetask_set.first.gdrive_link}}</a>
+</div>
+{% endblock tab-conent-footer %}

@@ -1,0 +1,22 @@
+{% extends 'emodule/module/module_tab_base.html' %}
+
+{% block tab-conent-head %}
+<div class="tutor-course-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title"></h4>
+    <div class="tutor-course-segment__content-wrap">
+        <p>Need mu ito gawan ng template. Eto yung mga format</p>
+        <ul>
+            <li>Lesson Template Format: <i>lesson_{quarter_number}_{module_title}</i></li>
+            <li>Video Template Format: <i>video_{quarter_number}_{module_title}</i></li>
+            <li>Performance Task Template Format: <i>performance_task_{quarter_number}_{module_title}</i></li>
+        </ul>
+        <h5>Examples:</h5>
+        <ul>
+            <li>Lesson Template: <i>lesson_1_unit_vii</i></li>
+            <li>Video Template: <i>video_1_unit_v</i></li>
+            <li>Performance Task Template: <i>performance_task_2_unit_ii</i></li>
+        </ul>
+        <i>Note: Naka lower case Roman Numeral yung unit numbers</i>
+    </div>
+</div>
+{% endblock tab-conent-head %}

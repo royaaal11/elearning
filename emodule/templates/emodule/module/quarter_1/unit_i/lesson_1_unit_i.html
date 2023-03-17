@@ -1,0 +1,303 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+{% with quarter_id=module.quarter.id module_id=module.id %}
+
+<div class="tutor-course-main-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-2" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-2" type="button" role="tab" aria-controls="lesson-{{module_id}}-2"
+                aria-selected="true">
+                Different Kinds of Macrame and Basketry
+            </button>
+            <button class="nav-link" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-3" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-3" type="button" role="tab" aria-controls="lesson-{{module_id}}-3"
+                aria-selected="true">
+                Different Kinds of Macrame Knots
+            </button>
+            <button class="nav-link" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-4" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-4" type="button" role="tab" aria-controls="lesson-{{module_id}}-4"
+                aria-selected="true">
+                Different Kinds of Basketry Weaving and Techniques
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-2" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-2">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>Different Kinds of Macrame and Basketry</h5><br>
+                    <p>
+                        Macrame’ and basketry products are wonderful and delightful crafts that
+                        are useful from bags and hanging baskets to purely decorative objects like jewelry
+                        and wall hangings
+                    </p>
+
+                    <h6>Cultural and Economic Importance</h6>
+
+                    <p><b>Macrame</b> - come in various designs and styles. The famous style is
+                        macramé Y-shaped necklaces. By varying the knots, the position, and the
+                        kind of gemstone used, several one-of-a kind designer necklaces are produced. Macrame chokers
+                        that come with semi-precious stones and freshwater pearls are created.
+                    </p>
+                    <p><b>Macrame’ Earrings</b> - are light and various sizes and shapes</p>
+                    <p><b>Macrame’ Bracelets</b> - are made of nylon-waxed twine; are light to wear in contrast to
+                        silver, gold, and traditional jewelry with crystals and gemstone.
+                    </p>
+                    <p><b>Macrame’ Textiles</b> - is a form of textile making using knots instead of weaving
+                        or knitting. It is similar to crochet or Chinese knotting, which is used to create intricate
+                        textiles. A variety of macramé called cavandolimacrame’ is used
+                        to form geometric patterns especially in weaving.
+                    </p>
+                    <p><b>Chinese Macrame’</b> - is used to decorate the palace halls and country households in China
+                        since the ancient times. Chinese macrame’ has also appeared
+                        in paintings and other pieces of folk art. Royalties in China had their chairs,
+                        lady’s dresses, mirrors, pouches, eyeglasses, fans, and Buddhist rosaries
+                        decorated with macrame’. Chinese macramé is ornamental and of immense
+                        aesthetic value. Complicated Chinese macramé allows all kinds of variations
+                        that enhance its decorative value
+                    </p>
+                    <p><b>Macrame' Bags</b> - are fashion accessories now a days, trendy style made of
+                        beads or sequences
+                    </p>
+                    <p><b>Macrame' Belts</b> - are considered as unique item for fashion used around the
+                        waist as an accessory or to support trousers or other clothing articles.
+                    </p>
+
+                    <h6>Basketry Technique</h6>
+                    <p><b>Coiled Basketry</b> is a type of technique in basket making, which is Native
+                        Americans of the Southwest are well renowned for. This comes in various
+                        styles and shapes depending on the materials used and the type of stitch
+                        used to interlock the coil together.
+                    </p>
+                    <p><b>Plaiting Basketry</b> is like to textile weaving where the material is plaited or
+                        woven to produce a wide variety of items like bags, basket, purse, fan, etc.
+                    </p>
+                    <p><b>Twining Basketry</b> uses materials from roots and tree bark. Twining refers to a
+                        weaving technique where two or more flexible weaving elements through
+                        the stiffer radial spokes.
+                    </p>
+                    <p><b>Wicker and Splint Basketry</b> uses materials like reed, cane, willow, oak, and
+                        ash to create useful basket designs.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane fade show" id="lesson-{{module_id}}-3" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-3">
+            
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>Different Kinds of Macrame Knots</h5><br>
+                    <p>
+                        Macrame has been a popular way to decorate , bringing texture and warmth
+                        into a home with knots that can be put together in unique ways in order to create
+                        one-of-a-kind wall hangings, plant holders, and more.
+                    </p>
+                    <p>
+                        A good variety in texture and design can result from the arrangement of
+                        just a few knots. The two basic knots used in macramé are the half knot and the
+                        half hitch. Other macramé knots are mostly derived from these two. The flat knot
+                        consist of two half knots (one regular, one reverse) and can be used as is or with
+                        a space left in between to produce the butterfly effect. With slight variations, it
+                        makes the inside out square knot and alternating square knot. Cording is the
+                        other most used knot made up of rows of double half hitches.
+                    </p>
+
+                    <table class="table table-bordered caption-top">
+                        <caption>Basic Macrame Knots</caption>
+                        <tbody>
+                            <tr>
+                                <td style="width: 40%;"><img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_2.png' %}"></td>
+                                <td>A half knot is used in tying the shoe lace.
+                                    Procedure: Cross the two ends over each other. Pass
+                                    one end over and then under the other to make the
+                                    half knot which takes the load (arrows) in both ropes.</td>
+                            </tr>
+                            <tr>
+                                <td><img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_3.png' %}"></td>
+                                <td>A <b>square knot</b> is two half knots In opposite directions.
+                                    Procedure: Take two ropes and cross them (red over
+                                    blue) to form a half knot. Cross them a second time
+                                    (red over blue again) and pull the ends tight to form
+                                    the square knot.</td>
+                            </tr>
+                            <tr>
+                                <td><img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_4.png' %}"></td>
+                                <td>A double half hitch has one string bearing the knot
+                                    while the other string wraps around it.
+                                    Procedure: Pass the end of a rope around the object
+                                    and tie an overhand knot. For the two half hitches,
+                                    repeat with a second overhand knot in the same direction.</td>
+                            </tr>
+                            <tr>
+                                <td><img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_5.png' %}"></td>
+                                <td>An <b>overhand knot</b> is created with just one string
+                                    where you make a loop knot onto itself.
+                                    Procedure: Form a loop and pass the end through it.
+                                    Tighten it to form the overhand knot. When pulled
+                                    tight, it can function as a simple stopper knot.</td>
+                            </tr>
+                            <tr>
+                                <td><img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_6.png' %}"></td>
+                                <td>Larks head knot is used to tie the yarn mounted to
+                                    its anchor or starting cord.
+                                    Procedure: Pass the rope around the object, back
+                                    around itself, around the object in the reverse direction, and down beside it</td>
+                            </tr>
+                            <tr>
+                                <td><img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_7.png' %}"></td>
+                                <td><b>Flat knot</b> (Two Half Knot) consists of two half knots:
+                                    one to the left and one to the right. Four working
+                                    cords are normally used: two outer cords are tied
+                                    around two vertical cords.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane fade show" id="lesson-{{module_id}}-4" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-4">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>Different Kinds of Basketry Weaving and Techniques</h5><br>
+                    <p>
+                        Basketry is a craft or process of making baskets or objects woven like baskets from plants and
+                        synthetic materials.
+                    </p>
+                    <p>
+                        In this lesson you will be able to:
+                    </p>
+                    <ul>
+                        <li>Differentiate the kinds of macramé knots and basketry weaving
+                            techniques and patterns</li>
+                        <li>Identify the different weaving techniques and pattern.</li>
+                        <li>Describe the different weaving pattern.</li>
+                        <li>Select appropriate weaving pattern.</li>
+                        <li>Demonstrate the different kinds of basketry weaving pattern. </li>
+                    </ul>
+
+                    <h6>TERMS TO REMEMBER</h6>
+                    <p><b>Weavers.</b>These are the basket strands that weave through the spokes; they are
+                        lighter, thinner and more flexible than the spokes to enable them to be woven in
+                        and out.</p>
+                    <p><b>Spokes.</b>These are the strands that stand upright and form the side supports of
+                        the basket; they are much stiffer than the weavers and are strong.</p>
+                    <p><b>Warp.</b>The set of parallel bamboo strips that provide a basis for weaving patterns.
+                        In plane bamboo weaving, the warp strips are positioned vertically on the workbench.</p>
+                    <p><b>Weft.</b>Made up of the bamboo strips that are inserted perpendicularly under and
+                        over the warp to create a design. In plane bamboo, weaving the weft strips are positioned
+                        horizontally on the workbench.</p>
+
+                    <h6>Basketry Weaving Techniques</h6>
+                    <p>There are four basic techniques used to weave a basket. These are stake
+                        and strand, coiling, plaiting and twining. The use of these four techniques creates
+                        a variety of different types of useful products from small to big basket.</p>
+
+                    <b>1. Stake and Strand</b>
+                    <p>Stake and strand weaving involve two elements: the rigid stakes that form the ribs or warp and a more or the weft. 
+                        This method allows the use of a wide range of materials as long as they are flexible enough for the weft and rigid enough for the warp.
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_14.png' %}">
+                    </p>
+                    <b>2. Coiling/ Coiled Basketry</b>
+                    <p>Believed to be the earliest basketry techniques used. This method is usually employed for softer materials such as grasses. 
+                        Strands of grass are stitched together to form a spiral that is forced into a basket shape. The base material is usually a straw, willow,
+                        palmetto or yucca, while raffia and horse hair are stitched together using a straw.
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_15.png' %}">
+                    </p>
+                    <b>3. Plaiting</b>
+                    <p>Plaited weaving involves weaving wide materials, similar in shape to ribbons, such as palm, yucca, or flax. Both the stakes as well as
+                        the weaving materials are identical, which are then woven together at right angle. The plaiting can be either open or closed. By using 
+                        variations of the basic plaiting methods as well as the wide range of materials available means that each basket can be a unique masterpiece.
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_16.png' %}">
+                    </p>
+                    <b>4. Twining</b>
+                    <p>Twine weaving refers to using multiple materials, one that is more rigid at the base and another two that are more flexible at the sides of
+                        the basket. Twining is similar to weaving but two strands are used to go under and over the ribs. Baskets made by twining can be quite
+                        spectacular because 3 or more materials can be used to twine a basket. In twining basketry, you need to be quite experienced as the
+                        strands have to be woven over and under the ribs in opposite directions. There are also many variations to twining such as leaving the
+                        warp open or twining on the diagonal.
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_17.png' %}">
+                    </p>
+
+                    <h6>Basketry Weaving Patterns (Hard and Soft Strip)</h6><br>
+
+                    <h6>A. Hard Strips</h6>
+                    <p>
+                        <b>1. Randing Weaves (Over One Under One)</b><br>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_18.png' %}">
+                    </p>
+
+                    <p>
+                        <b>2. Closed Weaves (Over One Under One)</b><br>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_19.png' %}">
+                    </p>
+
+                    <p>
+                        <b>3. Sawali Weaves (Under Two Over Two)</b><br>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_20.png' %}">
+                    </p>
+
+                    <p>
+                        <b>4. Over Three Under Three</b><br>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_21.png' %}">
+                    </p>
+
+                    <p>
+                        <b>5. Over Four Under Four</b><br>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_22.png' %}">
+                    </p>
+
+                    <p>
+                        <b>6. Basic Hexagona</b><br>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_23.png' %}">
+                    </p>
+
+                    <p>
+                        <b>7. Chevron</b><br>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_24.png' %}">
+                    </p>
+
+                    <p>
+                        <b>8. Zigzag</b><br>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_25.png' %}">
+                    </p>
+
+                    <p>
+                        <b>Basket Bottoms</b><br>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_26.png' %}">
+                    </p>
+
+                    <h6>B. Soft Strips</h6>
+                    <p>
+                        <b>Basket Bottoms</b><br>
+                        <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_27.png' %}">
+                    </p>
+                    
+                    <h6>Steps for Making Eight-Strand Weavers (Ric-Rac)</h6>
+                    <img src="{% static 'emodule/images/module/quarter_1/unit_i/unit_i_28.png' %}">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endwith %}
+{% endblock tab-conent-body-1 %}

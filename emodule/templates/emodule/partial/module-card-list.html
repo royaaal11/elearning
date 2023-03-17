@@ -1,0 +1,30 @@
+{% load static %}
+{% load emodule_extras %}
+
+<div class="course-list-item">
+    <div class="course-list-header">
+        <div class="course-list-header__thumbnail ">
+            <a href="{% url 'emodule:module-detail' module.quarter.subject.id module.quarter.id module.id %}"><img src="{% static 'emodule/images/courses/module-cover.png' %}"
+                    alt="courses" width="270" height="181"></a>
+        </div>
+    </div>
+    <div class="course-list-info">
+        <h3 class="course-list-info__title"><a href="{% url 'emodule:module-detail' module.quarter.subject.id module.quarter.id module.id %}">{{module.title}}</a></h3>
+        {% show_emodule_badge module.quiz_set.all quiz_status %}
+        <div class="course-list-info__meta">
+            <span><i class="fas fa-play-circle"></i>{{module.quiz_count}} Activit{{module.quiz_count|emodule_pluralize:"y,ies"}}</span>
+            <span><i class="fas fa-clock"></i>{{module.duration}}</span>
+        </div>
+        <div class="course-list-info__description">
+            <p>{{module.description}}</p>
+        </div>
+        <div class="course-list-info__action">
+            <a href="{% url 'emodule:module-detail' module.quarter.subject.id module.quarter.id module.id %}" class="btn btn-primary btn-hover-secondary">Enter this Module</a>
+        </div>
+        <div class="course-list-info__footer">
+            <div class="course-list-info__price">
+                <span class="list-score">Score: {{quiz_score}}/<small class="separator">{{module.quiz_count}}</small></span>
+            </div>
+        </div>
+    </div>
+</div>

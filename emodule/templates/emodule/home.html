@@ -1,0 +1,127 @@
+{% extends 'emodule/base.html' %}
+{% load static %}
+{% load emodule_extras %}
+
+{% block page_title %}Basketry - Home {% endblock page_title %}
+
+{% block content %}
+<!-- Slider Section Start -->
+<div class="slider-section slider-section-02">
+    <div class="slider-wrapper scene">
+        <div class="container">
+            <div class="row align-items-center gy-10">
+                <div class="col-md-6">
+                    <!-- Slider Caption Start -->
+                    <div class="slider-caption-02" data-aos="fade-up" data-aos-duration="1000">
+                        <!-- <h3 class="slider-caption-02__sub-title" style="opacity: 0;">Keep Learning</h3> -->
+                        <h2 class="slider-caption-02__main-title" sty>
+                            <mark>WELCOME</mark> <br> TO OUR CLASS
+                        </h2>
+                        <!-- <p style="opacity: 0;">Acquire global knowledge and build your professional skills</p> -->
+                        <a href="{% url 'emodule:subject-detail' subject_list.first.id %}"
+                            class="slider-caption-02__btn btn btn-primary btn-hover-secondary">Go to your Lessons</a>
+                    </div>
+                    <!-- Slider Caption End -->
+                </div>
+                <div class="col-md-6">
+                    <!-- Slider Caption Start -->
+                    <div class="slider-image pb-0">
+                        <div class="slider-image__image text-center" data-aos="fade-up" data-aos-duration="1000">
+                            <img src="{% static 'emodule/images/home-05-hero-image.fw.png' %}" alt="Hero Image" width="700" height="541">
+                        </div>
+
+                        <div class="slider-image-widget-02" data-aos="zoom-in-left" data-aos-duration="1000"
+                            data-aos-delay="1000">
+                        </div>
+                    </div>
+                    <!-- Slider Caption End -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Slider Section End -->
+
+<!-- Course Section Start -->
+<div class="courses-section section-padding-02">
+    <div class="container">
+        {% include 'emodule/partial/messages.html' %}
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Section Title Start -->
+                <div class="section-title" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="section-title__title">
+                        <mark>Recent</mark>
+                    </h2>
+                </div>
+                <!-- Section Title End -->
+            </div>
+        </div>
+        
+        <div class="tab-content">
+            {% if recent_quiz_attempts %}
+            <div class="tab-pane fade show active" id="tab1">
+                <div class="row row-cols-xl-4 g-6">
+                    {% for attempt in recent_quiz_attempts %}
+
+                    {% emodule_status attempt.status as current_quiz_status %}
+                    {% emodule_score attempt.score as current_score %}
+
+                    {% include 'emodule/partial/module-card-grid.html' with module=attempt.module quiz_status=current_quiz_status quiz_score=current_score %}
+                    
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+
+            {% include 'emodule/partial/warning-message.html' with message="You don't have recent activities." %}
+
+            {% endif %}
+        </div>
+        
+    </div>
+</div>
+<!-- Course Section End -->
+
+{% comment %}
+<!-- Category Start -->
+<div class="category-seaction section-padding-02">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <!-- Section Title Start -->
+                <div class="section-title" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="section-title__title"><mark>Subjects </mark></h2>
+                </div>
+                <!-- Section Title End -->
+            </div>
+        </div>
+
+        
+        <!-- Category Title End -->
+        <div class="category-active" data-aos="fade-up" data-aos-duration="1000">
+            <div class="row row-cols-xl-5 g-6">
+                <div class="col-xl col-lg-3 col-md-4 col-sm-6">
+                    <!-- Category Item Start -->
+                    <div class="category-item">
+                        <a class="category-item__link" href="{% url 'emodule:subject-detail' 1 %}">
+                            <div class="category-item__image">
+                                <img src="{% static 'emodule/images/category/tle-category-bg.jpg' %}" alt="Category"
+                                    width="258" height="318" />
+                            </div>
+                            <div class="category-item__caption">
+                                <h3 class="category-item__name">T.L.E</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Category Item End -->
+                </div>
+            </div>
+            <!-- Category End -->
+        </div>
+        
+    </div>
+    <!-- Category End -->
+    {% endcomment %}
+    {% endblock content %}
