@@ -179,20 +179,7 @@ class HomePage(BaseView):
         context = super().get_context_data(**kwargs)
         recent_quiz_attempts = StudentQuizResult.objects.filter(student=student_user).order_by("-group")[:5]
         context['recent_quiz_attempts'] = recent_quiz_attempts
-        print(recent_quiz_attempts)
         return context
-
-
-# class SubjectList(BaseView, ListView):
-#     context_object_name = 'subject_list'
-#     template_name = 'emodule/subject_list.html'
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         return context
-
-#     def get_queryset(self):
-#         return {}
 
 
 class ModuleDetail(ActivityBaseDetail):

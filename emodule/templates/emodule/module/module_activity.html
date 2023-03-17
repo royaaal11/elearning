@@ -40,13 +40,13 @@
                                 <div class="course-curriculum__lessons">
 
                                     {% for quiz_choice in quiz_question.question_obj.quizchoice_set.all %}
-                                    <div class="course-curriculum__lesson {% if quiz_question.student_answer.is_correct and quiz_choice.id == quiz_question.student_answer.answer_id %}correct-answer{% elif quiz_question.student_answer.is_correct is False and quiz_choice.id == quiz_question.student_answer.answer_id %}wrong-answer{% endif %}">
+                                    <div class="course-curriculum__lesson {% if quiz_choice.id == quiz_question.student_answer.answer_id %}{% if quiz_question.student_answer.is_correct %}correct-answer{% else %}wrong-answer{% endif %}{% endif %}">
                                         <span class="course-curriculum__title">
                                             <div class="form-check">
                                                 <input name="quiz_choice_{{quiz_question.question_obj.id}}"
                                                     id="id_quiz_choice_{{quiz_question.question_obj.id}}_{{quiz_choice.id}}"
                                                     class="form-check-input" type="radio" value="{{quiz_choice.id}}"
-                                                    {% if quiz_question.student_answer.is_correct and quiz_choice.id == quiz_question.student_answer.answer_id %}checked{% elif quiz_question.student_answer.is_correct is False and quiz_choice.id == quiz_question.student_answer.answer_id %}checked{% endif %}
+                                                    {% if quiz_choice.id == quiz_question.student_answer.answer_id and quiz_question.student_answer is not None %}checked{% endif %}
                                                     {% if quiz_question.student_answer.answer_id %}disabled{% endif %}
                                                     required="required">
                                                 <label class="form-check-label"

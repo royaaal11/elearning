@@ -194,12 +194,18 @@
 
             <!-- Header User Button Start -->
             <div class="offcanvas-user d-lg-none">
+                {% if user.is_authenticated %}
+                <div class="offcanvas-user__button">
+                    <a class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" href="{% url 'accounts:logout' %}">Log out</a>
+                </div>
+                {% else %}
                 <div class="offcanvas-user__button">
                     <a class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" href="{% url 'accounts:login' %}">Log In</a>
                 </div>
                 <div class="offcanvas-user__button">
                     <a class="offcanvas-user__signup btn btn-primary btn-hover-primary" href="{% url 'accounts:signup' %}">Sign Up</a>
                 </div>
+                {% endif %}
             </div>
             <!-- Header User Button End -->
 
@@ -321,7 +327,7 @@
                 {% for search_item in search_source %}
                     {
                         value: "{% url 'emodule:module-detail' search_item.quarter.subject.id search_item.quarter.id search_item.id %}",
-                        label: "{{search_item.description}}"
+                        label: "{{search_item.title}} - {{search_item.description}}"
                     },
                 {% endfor %}
             ];
