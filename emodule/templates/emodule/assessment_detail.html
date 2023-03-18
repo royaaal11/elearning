@@ -60,16 +60,16 @@
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                         {% for key, assessment in assessment_list.items %}
-                                        <button class="nav-link active" id="assessment-{{assessment.assessment_obj.id}}-tab" data-bs-toggle="tab" data-bs-target="#assessment-{{assessment.assessment_obj.id}}"
-                                            type="button" role="tab" aria-controls="assessment-{{assessment.assessment_obj.id}}" aria-selected="true">
-                                            {% if assessment.assessment_obj.title %}{{assessment.assessment_obj.title}}{% else %}Assessment - {{forloop.counter}}{% endif %}
+                                        <button class="nav-link active" id="assessment-{{assessment.activity_obj.id}}-tab" data-bs-toggle="tab" data-bs-target="#assessment-{{assessment.activity_obj.id}}"
+                                            type="button" role="tab" aria-controls="assessment-{{assessment.activity_obj.id}}" aria-selected="true">
+                                            {% if assessment.activity_obj.title %}{{assessment.activity_obj.title}}{% else %}Assessment - {{forloop.counter}}{% endif %}
                                         </button>
                                         {% endfor %}
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
                                     {% for key, assessment in assessment_list.items %}
-                                    <div class="tab-pane fade show active" id="assessment-{{assessment.assessment_obj.id}}" role="tabpanel" aria-labelledby="assessment-{{assessment.assessment_obj.id}}-tab">
+                                    <div class="tab-pane fade show active" id="assessment-{{assessment.activity_obj.id}}" role="tabpanel" aria-labelledby="assessment-{{assessment.activity_obj.id}}-tab">
                                         <!-- Tutor Course Main Segment Start -->
                                         <div class="tutor-course-main-segment">
 
@@ -77,7 +77,7 @@
                                             <div class="tutor-course-segment tutor-course-wrap">
 
                                                 <div class="tutor-course-segment__header">
-                                                    <h4 class="tutor-course-segment__title">{{assessment.assessment_obj.direction}}</h4>
+                                                    <h4 class="tutor-course-segment__title">{{assessment.activity_obj.direction}}</h4>
                                                 </div>
 
                                                 {% include 'emodule/partial/messages.html' %}
@@ -101,13 +101,13 @@
                                                             <div class="course-curriculum__lessons">
 
                                                                 {% for assessment_choice in assessment_question.question_obj.assessmentchoice_set.all %}
-                                                                <div class="course-curriculum__lesson {% if assessment_question.student_answer.is_correct and assessment_choice.id == assessment_question.student_answer.answer_id %}correct-answer{% elif assessment_question.student_answer.is_correct is False and assessment_choice.id == assessment_question.student_answer.answer_id %}wrong-answer{% endif %}">
+                                                                <div class="course-curriculum__lesson {% if assessment_choice.id == assessment_question.student_answer.answer_id %}{% if assessment_question.student_answer.is_correct %}correct-answer{% else %}wrong-answer{% endif %}{% endif %}">
                                                                     <span class="course-curriculum__title">
                                                                         <div class="form-check">
                                                                             <input name="assessment_choice_{{assessment_question.question_obj.id}}"
                                                                                 id="id_assessment_choice_{{assessment_question.question_obj.id}}_{{assessment_choice.id}}"
                                                                                 class="form-check-input" type="radio" value="{{assessment_choice.id}}"
-                                                                                {% if assessment_question.student_answer.is_correct and assessment_choice.id == assessment_question.student_answer.answer_id %}checked{% elif assessment_question.student_answer.is_correct is False and assessment_choice.id == assessment_question.student_answer.answer_id %}checked{% endif %}
+                                                                                {% if assessment_choice.id == assessment_question.student_answer.answer_id and assessment_question.student_answer is not None %}checked{% endif %}
                                                                                 {% if assessment_question.student_answer.answer_id %}disabled{% endif %}>
                                                                             <label class="form-check-label"
                                                                                 for="id_assessment_choice_{{assessment_question.question_obj.id}}_{{assessment_choice.id}}">

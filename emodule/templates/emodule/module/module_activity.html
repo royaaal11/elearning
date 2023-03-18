@@ -8,16 +8,16 @@
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             {% for key, quiz in quiz_list.items %}
-            <button class="nav-link {% if forloop.first %}active{% endif %}" id="quiz-{{quiz.quiz_obj.id}}-tab" data-bs-toggle="tab" data-bs-target="#quiz-{{quiz.quiz_obj.id}}"
-                type="button" role="tab" aria-controls="quiz-{{quiz.quiz_obj.id}}" aria-selected="true">
-                {% if quiz.quiz_obj.title %}{{quiz.quiz_obj.title}}{% else %}Quiz-{{forloop.counter}}{% endif %}
+            <button class="nav-link {% if forloop.first %}active{% endif %}" id="quiz-{{quiz.activity_obj.id}}-tab" data-bs-toggle="tab" data-bs-target="#quiz-{{quiz.activity_obj.id}}"
+                type="button" role="tab" aria-controls="quiz-{{quiz.activity_obj.id}}" aria-selected="true">
+                {% if quiz.activity_obj.title %}{{quiz.activity_obj.title}}{% else %}Quiz-{{forloop.counter}}{% endif %}
             </button>
             {% endfor %}
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
         {% for key, quiz in quiz_list.items %}
-        <div class="tab-pane fade show {% if forloop.first %}active{% endif %}" id="quiz-{{quiz.quiz_obj.id}}" role="tabpanel" aria-labelledby="quiz-{{quiz.quiz_obj.id}}-tab">
+        <div class="tab-pane fade show {% if forloop.first %}active{% endif %}" id="quiz-{{quiz.activity_obj.id}}" role="tabpanel" aria-labelledby="quiz-{{quiz.activity_obj.id}}-tab">
             <!-- Tutor Course Main Segment Start -->
             <div class="tutor-course-main-segment">
 
@@ -25,7 +25,7 @@
                 <div class="tutor-course-segment tutor-course-wrap">
 
                     <div class="tutor-course-segment__header">
-                        <h4 class="tutor-course-segment__title">{{quiz.quiz_obj.direction}}</h4>
+                        <h4 class="tutor-course-segment__title">{{quiz.activity_obj.direction}}</h4>
                     </div>
 
                     {% include 'emodule/partial/messages.html' %}
@@ -40,13 +40,13 @@
                                 <div class="course-curriculum__lessons">
 
                                     {% for quiz_choice in quiz_question.question_obj.quizchoice_set.all %}
-                                    <div class="course-curriculum__lesson {% if quiz_question.student_answer.is_correct and quiz_choice.id == quiz_question.student_answer.answer_id %}correct-answer{% elif quiz_question.student_answer.is_correct is False and quiz_choice.id == quiz_question.student_answer.answer_id %}wrong-answer{% endif %}">
+                                    <div class="course-curriculum__lesson {% if quiz_choice.id == quiz_question.student_answer.answer_id %}{% if quiz_question.student_answer.is_correct %}correct-answer{% else %}wrong-answer{% endif %}{% endif %}">
                                         <span class="course-curriculum__title">
                                             <div class="form-check">
                                                 <input name="quiz_choice_{{quiz_question.question_obj.id}}"
                                                     id="id_quiz_choice_{{quiz_question.question_obj.id}}_{{quiz_choice.id}}"
                                                     class="form-check-input" type="radio" value="{{quiz_choice.id}}"
-                                                    {% if quiz_question.student_answer.is_correct and quiz_choice.id == quiz_question.student_answer.answer_id %}checked{% elif quiz_question.student_answer.is_correct is False and quiz_choice.id == quiz_question.student_answer.answer_id %}checked{% endif %}
+                                                    {% if quiz_choice.id == quiz_question.student_answer.answer_id and quiz_question.student_answer is not None %}checked{% endif %}
                                                     {% if quiz_question.student_answer.answer_id %}disabled{% endif %}
                                                     required="required">
                                                 <label class="form-check-label"

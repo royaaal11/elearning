@@ -194,12 +194,18 @@
 
             <!-- Header User Button Start -->
             <div class="offcanvas-user d-lg-none">
+                {% if user.is_authenticated %}
+                <div class="offcanvas-user__button">
+                    <a class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" href="{% url 'accounts:logout' %}">Log out</a>
+                </div>
+                {% else %}
                 <div class="offcanvas-user__button">
                     <a class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" href="{% url 'accounts:login' %}">Log In</a>
                 </div>
                 <div class="offcanvas-user__button">
                     <a class="offcanvas-user__signup btn btn-primary btn-hover-primary" href="{% url 'accounts:signup' %}">Sign Up</a>
                 </div>
+                {% endif %}
             </div>
             <!-- Header User Button End -->
 
@@ -233,17 +239,6 @@
                                     <p>contact@elearningsite.com</p>
                                 </div>
 
-                                <div class="footer-widget__social-02">
-                                    <a class="twitter" href="https://twitter.com/" target="_blank"><i
-                                            class="fab fa-twitter"></i></a>
-                                    <a class="facebook" href="https://www.facebook.com/" target="_blank"><i
-                                            class="fab fa-facebook-f"></i></a>
-                                    <a class="skype" href="#" target="_blank"><i class="fab fa-skype"></i></a>
-                                    <a class="youtube" href="https://www.youtube.com/" target="_blank"><i
-                                            class="fab fa-youtube"></i></a>
-                                    <a class="linkedin" href="https://www.linkedin.com/" target="_blank"><i
-                                            class="fab fa-linkedin-in"></i></a>
-                                </div>
                             </div>
                             <!-- Footer Widget End -->
                         </div>
@@ -275,10 +270,6 @@
             <div class="footer-copyright">
                 <div class="container">
                     <div class="copyright-wrapper text-center">
-                        <ul class="footer-widget__link flex-row gap-8 justify-content-center">
-                            <li><a href="#">Terms of Use</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
                         <p class="footer-widget__copyright mt-0">
                             &copy; 2023 <span> Basketry </span> Made with
                             <i class="fa fa-heart"></i> by
@@ -336,7 +327,7 @@
                 {% for search_item in search_source %}
                     {
                         value: "{% url 'emodule:module-detail' search_item.quarter.subject.id search_item.quarter.id search_item.id %}",
-                        label: "{{search_item.description}}"
+                        label: "{{search_item.title}} - {{search_item.description}}"
                     },
                 {% endfor %}
             ];
