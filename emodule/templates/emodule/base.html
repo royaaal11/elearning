@@ -61,6 +61,7 @@
                         </div>
 
                         <div class="header-top-bar-wrap__info d-sm-flex">
+                            {% if user.is_authenticated  %}
                             <ul class="header-top-bar-wrap__info-social">
                                 <li>
                                     <a href="{% url 'emodule:home' %}"><i class="far fa-user"></i>
@@ -68,7 +69,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            {% if user.is_authenticated  %}
+                            
                             <ul class="header-top-bar-wrap__info-list d-none d-lg-flex">
                                 <li>
                                     <a href="{% url 'accounts:logout' %}">
@@ -114,6 +115,7 @@
                         <!-- Header Inner Start -->
                         <div class="header-inner">
                             <!-- Header Search Start -->
+                            {% if user.is_authenticated  %}
                             <div class="header-serach">
                                 <form action="#">
                                     <input id="id_search_input" type="text" class="header-serach__input" placeholder="Search..." />
@@ -122,17 +124,19 @@
                                     </button>
                                 </form>
                             </div>
+                            {% endif %}
                             <!-- Header Search End -->
 
                             <!-- Header Navigation Start -->
                             <div class="header-navigation d-none d-xl-block">
                                 <nav class="menu-primary">
                                     <ul class="menu-primary__container">
+                                        {% if user.is_authenticated %}
                                         {% url 'emodule:home' as home_url %}
                                         <li>
                                             <a class="{% if request.path == home_url %}active{% endif %}" href="{{home_url}}"><span>Home</span></a>
                                         </li>
-                                        {% if user.is_authenticated %}
+                                        
                                         <li>
                                             <a href="{% url 'emodule:subject-detail' subject_list.first.id %}" class="{% if lesson_menu_active %}active{% endif %}"><span>Lessons</span></a>
                                         </li>
@@ -184,8 +188,9 @@
             <div class="offcanvas-body">
                 <nav class="canvas-menu">
                     <ul class="offcanvas-menu">
-                        <li><a class="active" href="{% url 'emodule:home' %}"><span>Home</span></a></li>
                         {% if user.is_authenticated %}
+                        <li><a class="active" href="{% url 'emodule:home' %}"><span>Home</span></a></li>
+                        
                         <li><a href="{% url 'emodule:subject-detail' subject_list.first.id %}"><span>Lessons</span></a></li>
                         {% endif %}
                     </ul>
@@ -251,8 +256,9 @@
                                         <h4 class="footer-widget__title">Links</h4>
 
                                         <ul class="footer-widget__link">
-                                            <li><a href="{% url 'emodule:home' %}">Home</a></li>
                                             {% if user.is_authenticated %}
+                                            <li><a href="{% url 'emodule:home' %}">Home</a></li>
+                                            
                                             <li><a href="{% url 'emodule:subject-detail' subject_list.first.id %}">Lessons</a></li>
                                             {% endif %}
                                         </ul>
