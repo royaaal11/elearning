@@ -49,9 +49,11 @@
 
                 {% for current_quarter in quarter_list %}
 
-                {% emodule_score current_quarter.assessment_result.latest.score as current_assessment_score %}
-                {% emodule_status current_quarter.assessment_result.latest.status as current_assessment_status %}
+                {% emodule_score current_quarter.latest_result.score as current_assessment_score %}
+                {% emodule_status current_quarter.latest_result.status as current_assessment_status %}
                 {% emodule_status current_quarter.prerequisite_result.latest.status as prereq_assessment_status %}
+                {% get_assessment_button_text current_assessment_status current_quarter.assessment_result.count assessment_max_attempts as assessment_button_text %}
+                
                 
                 <div class="col-lg-6">
 
@@ -62,22 +64,27 @@
                                 <div class="banner-caption-02">
                                     <h3 class="banner-caption-02__title">{{current_quarter.quarter.title}}</h3>
                                     
-                                    <a href="{% url 'emodule:quarter-detail' subject.id current_quarter.quarter.id %}"
-                                        class="banner-caption-02__btn btn btn-secondary btn-hover-primary">Go to lesson</a>
-                                    <!-- Student cannot proceed if:
+                                    <div>
+                                        <a href="{% url 'emodule:quarter-detail' subject.id current_quarter.quarter.id %}"
+                                            class="banner-caption-02__btn btn btn-secondary btn-hover-primary">Go to lesson</a>
+                                    </div>
+                                    <!-- 
+                                        Button is disabled if:
                                         1. Current Quarter has no assessment or
                                         2. Current Quarter is not the first quarter or
                                         3. Curret Quarter assessment status != Passed
+
+                                        Button text:
+                                        1. 'View Result': if latest_score.status == 'Passed' or latest_score.status == 'Failed' and attemp_count > max_attempts
+                                        2. 'Take the assessment': if latest_score.status is None
+                                        3. 'Retake': if latest_score.status == 'Failed' and attempt_count <= max_attempts
                                     -->
-                                    <a href="{% url 'emodule:assessment-detail' subject.id current_quarter.quarter.id 'assessments' %}"
-                                        class="banner-caption-02__btn btn btn-primary btn-hover-secondary {% if current_quarter.assessment_set.all or current_quarter.prerequisite and prereq_assessment_status != 'Passed' %}disabled{% endif %}"
-                                        >{% if current_assessment_score %}View Result{% else %}Take the Assessment{% endif %}</a>
-                                        {% comment %}
-                                        <h5 class="banner-caption-02__sub-title">
-                                            Assessment Score: {{current_assessment_score}}/{{current_quarter.quarter.assessment_count}}
-                                        </h5>
-                                        {% show_emodule_badge current_quarter.quarter.assessment_set.all current_assessment_status %}
-                                        {% endcomment %}
+                                    <div>
+                                        <a href="{% url 'emodule:assessment-detail' subject.id current_quarter.quarter.id 'assessments' %}"
+                                            class="banner-caption-02__btn btn btn-primary btn-hover-secondary {% if current_quarter.assessment_set.all or current_quarter.prerequisite and prereq_assessment_status != 'Passed' %}disabled{% endif %}"
+                                            >{{assessment_button_text}}</a>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-md-6">

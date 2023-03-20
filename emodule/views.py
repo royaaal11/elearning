@@ -24,6 +24,7 @@ class BaseView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context = utils.update_context(context, utils.base_context())
         context['search_source'] = Module.objects.all()
+        context['assessment_max_attempts'] = configs.ASSESSMENT_MAX_ATTEMPTS
         return context
     
 
@@ -82,13 +83,24 @@ class ActivityBaseDetail(BaseView, DetailView):
 
         # check first if the student already took the assessment or quiz.
         if self.type == 'assessment':
-            done_with_activity = StudentAssessmentResult.objects\
+            activity_result = StudentAssessmentResult.objects\
                 .filter(quarter=group_type_obj)\
                 .filter(student=self.get_current_student())
+            
+            done_with_activity = True if activity_result else False
+
+            # if there is already a recorded attempt and the attempt's status is Failed
+            # then check if the number of attempts is <= configs.ASSESSMENT_MAX_ATTEMPTS,
+            # if it is, then the student can retake the assessment otherwise not
+            if activity_result and activity_result.latest().status == 'Failed':
+                if activity_result.count() <= configs.ASSESSMENT_MAX_ATTEMPTS:
+                    done_with_activity = False
+
         else:
-            done_with_activity = StudentQuizResult.objects\
+            activity_result = StudentQuizResult.objects\
                 .filter(module=group_type_obj)\
                 .filter(student=self.get_current_student())
+            done_with_activity = True if activity_result else False
         
         if not done_with_activity:
             try:
@@ -134,7 +146,7 @@ class ActivityBaseDetail(BaseView, DetailView):
                         models_for_saving.append(student_answer)
                 
                 activity_total_count = group_type_obj.assessment_count if self.type == 'assessment' else group_type_obj.quiz_count
-                passing_score = (settings.PASSING_PERCENTAGE/100) * activity_total_count
+                passing_score = (configs.PASSING_PERCENTAGE/100) * activity_total_count
 
                 if self.type == 'assessment':
                     student_result = StudentAssessmentResult (
@@ -161,7 +173,7 @@ class ActivityBaseDetail(BaseView, DetailView):
             except:
                 messages.error(self.request, "Something went wrong. Please try again or contact your adviser. Thank you")
             else:
-                if settings.ALLOW_SAVE_TO_DB:
+                if configs.ALLOW_SAVE_TO_DB:
                     for _model in models_for_saving: _model.save()
                 messages.success(self.request, "Your assessment has been submitted" if self.type == 'assessment' else "Your activity has been submitted")
             finally:
@@ -252,6 +264,10 @@ class SubjectDetail(BaseView, DetailView):
                 "assessment_result": StudentAssessmentResult.objects\
                     .filter(quarter=quarter)\
                     .filter(student=student_user),
+                # TODO: this is redundant, but somehow latest() is not working properly
+                "latest_result": StudentAssessmentResult.objects\
+                    .filter(quarter=quarter)\
+                    .filter(student=student_user).order_by("-group").first(),
                 "prerequisite": quarter_list[idx - 1] if idx > 0 else None,
                 "prerequisite_result": StudentAssessmentResult.objects\
                     .filter(quarter=quarter)\
@@ -299,9 +315,9 @@ class QuarterAssessmentDetail(ActivityBaseDetail):
         current_seqno = self.get_object().seqno
         context = super().get_context_data(**kwargs)
         context['assessment_list'] = self.build_activity_list()
-        context['assessment_score'] = StudentAssessmentResult.objects\
+        context['assessment_results'] = StudentAssessmentResult.objects\
             .filter(student=self.get_current_student())\
-            .filter(quarter=self.get_object()).order_by('-group').first()
+            .filter(quarter=self.get_object()).order_by('-group')
         context['next_quarter_assessment'] = Quarter.objects.filter(seqno=current_seqno + 1).first()
         context['previous_quarter_assessment'] = Quarter.objects.filter(seqno=current_seqno - 1).first()
         context['latest_result'] = StudentAssessmentResult.objects\

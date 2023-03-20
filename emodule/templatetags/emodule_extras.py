@@ -13,6 +13,7 @@ def emodule_pluralize(list_length, options):
     else:
         return split_options[0]
     
+
 @register.filter
 @stringfilter
 def template_exists(template_name):
@@ -30,12 +31,46 @@ def emodule_status(status):
     else:
         return status
     
+
 @register.simple_tag
 def emodule_score(score):
     if score is None or score == "":
         return None
     else:
         return score
+    
+
+@register.simple_tag
+def get_assessment_button_text(latest_status, attempt_count, max_attempts):
+    button_text = 'Take the assessment'
+    if latest_status is not None:
+        if latest_status == 'Passed':
+            button_text = 'View result'
+        else:
+            if int(attempt_count) >= int(max_attempts):
+                button_text = 'View result'
+            else:
+                button_text = 'Retake'
+
+    else:
+        return button_text
+    
+    return button_text
+
+
+@register.simple_tag
+def get_assessment_submit_button_class(latest_status, attempt_count, max_attempts):
+    if latest_status is not None:
+        if latest_status == 'Passed':
+            return 'disabled'
+        else:
+            if int(attempt_count) >= int(max_attempts):
+                return 'disabled'
+            else:
+                return None
+
+    else:
+        return None
     
 
 @register.inclusion_tag("emodule/partial/badge.html")
