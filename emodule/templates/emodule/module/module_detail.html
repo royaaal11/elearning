@@ -95,7 +95,11 @@
                         <div class="tab-pane fade" id="tab2">
                             <div class="tutor-course-main-segment">
 
-                                {% include 'emodule/module/module_activity.html' %}
+                                {% if lesson_templates.activity_template|template_exists %}
+                                    {% include lesson_templates.activity_template %}
+                                {% else %}
+                                    {% include 'emodule/module/module_activity.html' %}
+                                {% endif %}
 
                             </div>
                         </div>
@@ -135,10 +139,11 @@
                 <!-- Tutor Course Sidebar Start -->
                 <div class="tutor-course-sidebar sidebar-label">
 
+                    {% if quiz_list|activity_has_questions %}
+
                     {% emodule_status latest_result.latest.status as current_quiz_status %}
                     {% emodule_score quiz_score.latest.score as current_quiz_score %}
 
-                    <!-- Tutor Course Price Preview Start -->
                     <div class="tutor-course-price-preview">
                         <div class="col-md-12">
                             <div class="contact-form__input">
@@ -175,7 +180,8 @@
                             <p>{{module.module_lesson}}</p>
                         </div>
                     </div>
-                    <!-- Tutor Course Price Preview End -->
+
+                    {% endif %}
 
                     <!-- Sidebar Widget Start -->
                     <div class="sidebar-widget border-0">

@@ -24,6 +24,15 @@ def template_exists(template_name):
         return False
     
 
+@register.filter
+def activity_has_questions(quiz_list):
+    has_questions = False
+    for key, activity in quiz_list.items():
+        has_questions = True if len(activity.get('question_list')) > 0 else False
+
+    return has_questions
+
+
 @register.simple_tag
 def emodule_status(status):
     if status is None or status == "":

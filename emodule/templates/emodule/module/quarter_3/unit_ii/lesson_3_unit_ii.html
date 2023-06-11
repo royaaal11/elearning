@@ -1,0 +1,72 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+{% with quarter_id=module.quarter.id module_id=module.id %}
+
+<div class="tutor-course-main-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-2" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-2" type="button" role="tab" aria-controls="lesson-{{module_id}}-2"
+                aria-selected="true">
+                Production Process
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-2" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-2">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>Production Process</h5><br>
+                    <p>
+                        There are four stages of production involved in the production process, namely, operation, assembly, finishing, and inspection.
+                    </p>
+                    
+                    <ol>
+                        <li><b><i>Operation</i></b> involves a series of steps a raw material goes through in the creation of a product.</li>
+                        <li><b><i>Assembly</i></b></li> is putting all parts together to form a final product.
+                        <li><b><i>Finishing</i></b></li> is a series of activities involved in the final polishing of a product such as varnishing, 
+                        trimming, cleaning, etc
+                        <li><b><i>Inspection</i></b></li> involves the process undertaken to make sure that the operation has been carried out 
+                        correctly as to the specified quality and quantity of the product.
+                    </ol>
+
+                    <p>
+                        The resources needed in the production of macramé and basketry products are the following:
+                    </p>
+
+                    <ol>
+                        <li>
+                            <b><i>Material resources.</i></b> These are tangible, physical resources needed in the creation of macramé and basketry 
+                            products which are used for production. Examples are raw materials like abaca, buri, tikug, and pandan, and tools used in 
+                            making products like macramé board, thread burner, scissors, tweezers, and hand knives, among others.
+                        </li>
+                        <li>
+                            <b><i>Human resources.</i></b>  These are the most important resources. These include the people who plan and create products. 
+                            Human resources development could be achieved through education and training.
+                        </li>
+                        <li>
+                            <b><i>Financial resources.</i></b> These involve funds for various purposes.
+                        </li>
+                        <li>
+                            <b><i>Informational resources.</i></b> Correct and complete information is vital to the success of producing products. Facts are 
+                            very important in making plans, decisions, and implementation of plans. One must know what, when, where, and how of producing the 
+                            products and the recent technological developments.
+                        </li>
+                    </ol>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endwith %}
+{% endblock tab-conent-body-1 %}

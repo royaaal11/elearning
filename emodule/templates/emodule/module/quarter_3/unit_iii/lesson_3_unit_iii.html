@@ -1,0 +1,512 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+{% with quarter_id=module.quarter.id module_id=module.id %}
+
+<div class="tutor-course-main-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-2" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-2" type="button" role="tab" aria-controls="lesson-{{module_id}}-2"
+                aria-selected="true">
+                Project Proposal for Basketry Products
+            </button>
+            <button class="nav-link" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-3" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-3" type="button" role="tab" aria-controls="lesson-{{module_id}}-3"
+                aria-selected="true">
+                Sample Project Proposal
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-2" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-2">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>Project Proposal for Basketry Products</h5><br>
+                    <p>
+                        A project proposal also called a "statement of work" is defined as a detailed description of a series of 
+                        activities aimed at solving a certain problem (NEBIU 2002). A project proposal is a prerequisite to achieve 
+                        success in whatever project you plan to do. The first step in planning is choosing the project to be done. 
+                        In deciding for any project, answer first the following questions:
+                    </p>
+                    
+                    <ul>
+                        <li>Will I and other people appreciate this project?</li>
+                        <li>Is this project beneficial?</li>
+                        <li>Is this project economical?</li>
+                        <li>Are the materials to be used available?</li>
+                        <li>Can I follow the steps in making this project?</li>
+                    </ul>
+
+                    <p>The following are the parts of a project proposal:</p>
+
+                    <ol>
+                        <li><b>Title</b> - talks about the title of the project, team name and individual member names, date, and the picture of the project.</li>
+                        <li><b>Rationale</b> - brief statement of the project, procedures employed to carry out the project, and the project outcome.</li>
+                        <li><b>Objectives</b> - talks about the goal or purpose of the project.</li>
+                        <li><b>Design Drawing or Illustration</b> - shows the design of the project.</li>
+                        <li><b>Project Organization and Management</b> - tells how the project will be handled. This includes the task 
+                            phases from planning to production, division of responsibilities, and duties of each team member.</li>
+                        <li><b>Budget</b> - tells how much is to be spent for the whole project to finish.</li>
+                    </ol>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane fade show" id="lesson-{{module_id}}-3" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-3">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>Sample Project Proposal</h5><br>
+
+                    <p><b>Title</b>: Production of Basket</p>
+
+                    <p><b>Rationale</b>:</p>
+                    <p style="text-indent:50px">
+                        Basketry refers to the art and craft of creating containers, usually in the form of baskets, by weaving 
+                        flexible plant materials or other materials together. It is a technique that has been practiced by various 
+                        cultures throughout history, utilizing natural materials such as grasses, reeds, branches, and bark strips. 
+                        Basketry serves both functional and decorative purposes, providing a means to carry, store, and organize items, 
+                        as well as serving as artistic expressions. The weaving techniques used in basketry can vary, including coiling, 
+                        plaiting, twining, and stake and strand weaving, among others. Basketry is a versatile craft that encompasses 
+                        a wide range of styles and designs, reflecting the cultural traditions and creativity of different societies.
+                    </p>
+                    <p style="text-indent:50px">
+                        This project gives the students an opportunity to discover a lot of things about basketry. As they go along creating 
+                        things using basketry, they will also discover that it can be a great source of income, which does not require many 
+                        supplies or tools.
+                    </p>
+
+                    <p><b>III. Objectives</b>:</p>
+                    <ol>
+                        <li>Make a basket.</li>
+                        <li>Develop industry and love for work.</li>
+                        <li>Apply one's aesthetic sense in making a basket.</li>
+                        <li>Show enthusiasm by working.</li>
+                        <li>Show creativity in promoting the product.</li>
+                    </ol>
+
+                    <p><b>IV. Design Drawing</b>:</p>
+                    <div class="row g-8">
+                        <div class="col-lg-8 col-sm-8">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_3/unit_iii/unit_iii_1.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Reed and Cane Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <p><b>V. Project Organization and Management</b>:</p>
+                    <p>The following phases were observed:</p>
+                    <ul>
+                        <li>Phase 1: Training in the conduct of the project and standardization of techniques to be adopted.</li>
+                        <li>
+                            Phase 2: Production of macramé plant basket hanger from assembly to packaging. <br>
+                            -  <i>Assembly</i> is putting all parts together to form a final product. <br>
+                            -  <i>Finishing</i> is done by painting, varnishing, or polishing the final product.
+                            -  <i>Inspection</i> makes sure that the operation has been carried out correctly as to the specified quality and quantity of the product.
+                            -  <i>Packaging</i> makes sure that the product is protected and ready for sale.
+                        </li>
+                        <li>Phase 3: Promotion of the product including distribution of flyers and exhibits.</li>
+                    </ul>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Tasks</th>
+                                <th style="text-align: center;">Dates</th>
+                                <th style="text-align: center;">Activities</th>
+                                <th style="text-align: center;">Person in Charge</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Training/workshop</td>
+                                <td>JANUARY 2024 15th-18th</td>
+                                <td>
+                                    First training/workshop:
+                                    <ul>
+                                        <li>Registration for workshop</li>
+                                        <li>Delegation of duties to each group member</li>
+                                        <li>Workshop in action</li>
+                                    </ul>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Production:
+                                    <ol>
+                                        <li>Assembly</li>
+                                        <li>Finishing</li>
+                                        <li>Inspection</li>
+                                        <li>Packaging</li>
+                                    </ol>
+                                </td>
+                                <td>21st-23rd <br>
+                                    24th-26th <br>
+                                    27th-28th <br>
+                                    29th
+                                    </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Promotion</td>
+                                <td>FEBRUARY 2024 <br>
+                                    Whole month of February
+                                    </td>
+                                <td>
+                                    Promotional activities:
+                                    <ul>
+                                        <li>Distribution of flyers</li>
+                                        <li>Exhibits</li>
+                                    </ul>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><b>VI. Budget</b>:</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Budget Item</th>
+                                <th style="text-align: center;">Details</th>
+                                <th style="text-align: center;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ol>
+                                        <li>Training/workshop</li>
+                                        <li>Production: <br>
+                                            Assembly <br>
+                                            Finishing <br>
+                                            Inspection <br>
+                                            Packaging <br>
+                                        </li>
+                                        <li>Promotion</li>
+                                    </ol>
+                                </td>
+                                <td>
+                                    Training materials <br>
+                                    Tools and materials for production and packaging
+                                </td>
+                                <td>
+                                    P1,000.00 <br>
+                                    P1,500.00
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td><b>Total</b></td>
+                                <td><b>P3,000.00</b></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <p><b>Product Costing and Selling Price</b></p>
+                    <p>
+                        The product cost is made up of three parts, namely, direct materials, direct labor, 
+                        and manufacturing overhead.
+                    </p>
+                    <ol>
+                        <li>
+                            <b><i>Direct materials</i></b> refer to the raw materials that become part of the product. 
+                            For example, the milk and sugar used to make pastillas or ice cream; the leather used in 
+                            making shoes; the precious stones used in crafting jewelry such as earrings and necklaces; 
+                            or buri, tikug, and abaca in making baskets and food trays.
+                        </li>
+                        <li>
+                            <b><i>Direct labor</i></b> comprises the workers whose outputs are closely related to or 
+                            directly related to the manufacturing of the merchandise. From the same example given, 
+                            direct labor is provided by the worker who prepares and mixes the ingredients for the ice cream; 
+                            the shoemaker for the shoes; the mounter who sets the stones on jewelry; or crafter for basketry.
+                        </li>
+                        <li>
+                            <b><i>Manufacturing overhead</i></b>  includes all other costs incurred in production but do not 
+                            become part of the product. These include:
+                            <ul style="list-style-type: '- ';">
+                                <li>the use of the facilities, machinery, and equipment and their maintenance.</li>
+                                <li>the use of utilities, which includes power, water, and fuel used in running the plantation.</li>
+                                <li>salaries for the employees or workers who are indirectly involved in making the product 
+                                    (e.g., the production foreman, the clerk, and security guard);</li>
+                                <li>transportation costs of raw materials; and</li>
+                                <li>office supplies and expenses such as paper, telephone, photocopying, etc. used in the operation 
+                                    of the plantation offices.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p>Manufacturing overhead is made up of the following:</p>
+                    <ul style="list-style-type: '- ';">
+                        <li>
+                            <b><i>Fixed expenses</i></b> are expenditure that continues even if no units are produced. It includes equipment downgrading, 
+                            taxes, interest on debts, and rent payments.
+                        </li>
+                        <li>
+                            <b><i>Variable expenses</i></b> are expenditure that varies with the volume of units produced. The major components of 
+                            variable costs are labor and materials. Variable expenses are inconsistent and not fixed. They also include the portion 
+                            of the utilities that varies with volume. The difference between selling price and variable cost is contribution. 
+                            There will be profit when total contribution exceeds total fixed cost.
+                        </li>
+                    </ul>
+
+                    <p><b>Computing for Cost and Selling Price</b></p>
+                    <p>
+                        Price setting seems to be an easy thing to do; yet it is one of the most crucial aspects of marketing. Price is the value placed on 
+                        goods and services offered to the public.
+                    </p>
+                    <p>
+                        The basic method in setting the price of your product is cost-oriented pricing. Under this method, all costs are added and divided 
+                        by the number of products produced in order to arrive at the selling price of a single product or unit. Markup refers to the margin 
+                        of difference between the cost price and the selling price.
+                    </p>
+                    <p>For example:</p>
+                    <ol>
+                        <li>List down all the costs of materials that were used in making your product.</li>
+                        <li>List down the operational expenses like labor cost, transportation, electricity, etc.</li>
+                        <li>Add all expenses in steps 1 and 2. This is your total cost.</li>
+                        <li>Multiply the sum in step 3 by .40 if the desired profit is 40%. This is your profit.</li>
+                        <li>Add the product of step 4 to the sum of step 3. This is your selling price.</li>
+                    </ol>
+
+                    <p>Example: Plant Hanger Basket</p>
+                    <ul class="no-bullets">
+                        <li>Cost of Materials: <span style="margin-left: 150px;">P105.00</span></li>
+                        <li>
+                            Operational Cost:
+                            <ul class="no-bullets">
+                                <li>Labor: <span style="margin-left: 195px;">10.00</span></li>
+                                <li>Transportation: <span style="margin-left: 120px;"><u>+ 20.00</u></span></li>
+                            </ul>
+                        </li>
+                        <li>Total Cost: <span style="margin-left: 195px;">P135.00</span></li>
+                        <li>Profit desired: <span style="margin-left: 155px;"><u>X .40(40%)</u></span></li>
+                        <li><span style="margin-left: 275px;">P54.00</span></li>
+                        
+                        <li>Expected Profit: <span>P 135.00</span></li>
+                        <li>Total Cost: <span style="margin-left: 40px;">P 54.00</span></li>
+                        <li>Selling Price: <span style="margin-left: 22px;">P 189.00</span></li>
+                    </ul>
+
+                    <p><b>Suggested Scoring Rubrics</b></p>
+                    <p>
+                        Evaluation of a finished product is important in assessing one's learning. It will tell whether 
+                        your outputs are excellent, satisfactory, or poor. It also gives you feedback on the aspects 
+                        you need to improve in order to produce better work next time.
+                    </p>
+                    <p>
+                        Evaluation is done in many ways. The use of rubric is a helpful tool to use in evaluating 
+                        student progress and learning after each lesson.
+                    </p>
+                    <p>
+                        Evaluation using a rubric can be done by you, a classmate, or your teacher. The more people 
+                        are involved in the evaluation process, the more accurate and reliable the result will be.
+                    </p>
+
+                    <h6 class="text-center">Suggested Scoring Rubric for Evaluation of Products and Performance</h6>
+                    {% include 'emodule/partial/evaluation_rubrics.html' %}
+
+                    <h6 class="text-center">Rubric for Product Evaluation</h6>
+                    <table class="table table-bordered table-responsive" style="font-size: 80%;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Items to be Evaluated</th>
+                                <th style="text-align: center;">Excellent</th>
+                                <th style="text-align: center;">Very Satisfactory</th>
+                                <th style="text-align: center;">Satisfactory</th>
+                                <th style="text-align: center;">Moderately Satisfactory</th>
+                                <th style="text-align: center;">Needs Improvement</th>
+                                <th style="text-align: center;">Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Marketability</th>
+                                <td style="text-align: center;"><b>5</b></td>
+                                <td style="text-align: center;"><b>4</b></td>
+                                <td style="text-align: center;"><b>3</b></td>
+                                <td style="text-align: center;"><b>2</b></td>
+                                <td style="text-align: center;"><b>1</b></td>
+                                <td style="text-align: center;"></td>
+                            </tr>
+                            <tr>
+                                <th>Materials Used</th>
+                                <td>Very much applicable to use</td>
+                                <td>Applicable to use to some</td>
+                                <td>To some extent can be used</td>
+                                <td>Least recommended to use</td>
+                                <td>Not recommended for use</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Packaging</th>
+                                <td>Very much enticing</td>
+                                <td>Very enticing</td>
+                                <td>Slightly enticing</td>
+                                <td>Not enticing</td>
+                                <td>Very ordinary</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Price</th>
+                                <td>Very much affordable</td>
+                                <td>Very affordable</td>
+                                <td>Affordable</td>
+                                <td>Slightly affordable</td>
+                                <td>Not affordable</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th colspan="7">Originality</td>
+                            </tr>
+                            <tr>
+                                <th>Design</th>
+                                <td>Very much novel</td>
+                                <td>Novel</td>
+                                <td>Slightly novel</td>
+                                <td>Slightly common</td>
+                                <td>Very common</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Color Combination</th>
+                                <td>Colors excellently go well together</td>
+                                <td>Colors mostly go well together</td>
+                                <td>Colors go well together</td>
+                                <td>Colors go slightly go well together</td>
+                                <td>Colors don't go well together</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h6 class="text-center">Rubric for Performance</h6>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Aspect</th>
+                                <th style="text-align: center;">Highly Competent and Skillful <br> 4</th>
+                                <th style="text-align: center;">Competent and Skillful <br> 3</th>
+                                <th style="text-align: center;">Approaching Competency and Skillfulness <br> 2</th>
+                                <th style="text-align: center;">Needs More Training and Practice <br> 1</th>
+                                <th style="text-align: center;">Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Proper use of tools, Proper choice, equipment, and material</th>
+                                <td>Proper choice, preparation, and use of materials, tools and equipment always.</td>
+                                <td>Proper choice, preparation, and use of materials, tools and equipment most of the time</td>
+                                <td>Proper choice, preparation, and use of materials, tools and equipment often</td>
+                                <td>Proper choice preparation and use of materials, tools and equipment seldom</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Proper application of procedure</th>
+                                <td>Organized application of procedure all the time with no supervision at all</td>
+                                <td>Organized application of procedure all the time with least amount of supervision</td>
+                                <td>Organized application of procedure all the time with regular supervision</td>
+                                <td>Never follows an organized application of procedure</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Safety pre-cautionary measures and proper work habits</th>
+                                <td>Highly self-motivated and observes all safety precautionary measures at all times</td>
+                                <td>Self-motivated and observes mostly safety precautionary measures most of the time.</td>
+                                <td>Self-motivated and sometimes observes safety precautionary measures</td>
+                                <td>Needs to be motivated and does not observe safety precautionary measures</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Speed of work</th>
+                                <td>Work done on the given time</td>
+                                <td>Work done few moments after the given time</td>
+                                <td>Work done beyond the given</td>
+                                <td>Does not observe time</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><b>Total</b></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <h6 class="text-center">Rubric for Product and Performance</h6>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Criteria</th>
+                                <th style="text-align: center;">Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <b>A. Apperance</b> <br>
+                                    Neat and attractive
+                                </td>
+                                <td style="text-align: center;"><b>25%</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>B. Workmanship</b> <br>
+                                    The surface is even and fine <br>
+                                    The ends are very secured
+                                </td>
+                                <td style="text-align: center;"><b>25%</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>C. Materials</b> <br>
+                                    Are the materials used locally available? <br>
+                                    Are the materials used economical?
+                                </td>
+                                <td style="text-align: center;"><b>25%</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>C. Enthusiasm</b> <br>
+                                    Having fun while doing the project <br>
+                                    Proudly shows the project to friends and family
+                                </td>
+                                <td style="text-align: center;"><b>25%</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endwith %}
+{% endblock tab-conent-body-1 %}

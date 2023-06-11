@@ -1,0 +1,182 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+{% with quarter_id=module.quarter.id module_id=module.id %}
+
+<div class="tutor-course-main-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-2" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-2" type="button" role="tab" aria-controls="lesson-{{module_id}}-2"
+                aria-selected="true">
+                Sample Basket Design
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-2" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-2">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>Sample Basket Design</h5><br>
+                    
+                    <div class="row g-6">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_ii/unit_ii_1.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Reed and Cane Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_ii/unit_ii_2.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Double Weave Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_ii/unit_ii_3.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Traditional Coiled Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_ii/unit_ii_4.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Grass Weaving Handle Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_ii/unit_ii_5.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Willow Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_ii/unit_ii_6.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Coiled Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_ii/unit_ii_7.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Plaiting Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_ii/unit_ii_8.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Twined Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_ii/unit_ii_9.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Ribbed Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_ii/unit_ii_10.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Splint Market Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_ii/unit_ii_11.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Wired Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_ii/unit_ii_12.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Wicker Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endwith %}
+{% endblock tab-conent-body-1 %}

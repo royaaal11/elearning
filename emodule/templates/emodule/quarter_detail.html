@@ -35,6 +35,14 @@
 <div class="courses-section section-padding-01">
     <div class="container">
         {% if module_list %}
+
+            {% if quarter.id == 4 %}
+                {% include 'emodule/module/quarter_4/quarter_4_overview.html' %}
+            {% elif quarter.id == 3 %}
+                {% include 'emodule/module/quarter_3/quarter_3_overview.html' %}
+            {% endif %}
+
+
         <!-- Archive Filter Bars Start -->
         <div class="archive-filter-bars">
             <div class="archive-filter-bar">

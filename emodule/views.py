@@ -209,12 +209,14 @@ class ModuleDetail(ActivityBaseDetail):
         module_title = utils.emodule_slugify(module.title, '_')
 
         lesson_template = template.format('lesson', module.quarter.seqno, module_title)
+        activity_template = template.format('activity', module.quarter.seqno, module_title)
         video_template = template.format('video', module.quarter.seqno, module_title)
         performance_task_template = template.format('performance_task', module.quarter.seqno, module_title)
 
         base_dir = 'emodule/module/{}/{}/{}'
         return {
             'lesson_template': base_dir.format(quarter_seqno, module_title, lesson_template),
+            'activity_template': base_dir.format(quarter_seqno, module_title, activity_template),
             'video_template': base_dir.format(quarter_seqno, module_title, video_template),
             'performance_task_template': base_dir.format(quarter_seqno, module_title, performance_task_template)
         }

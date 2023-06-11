@@ -1,0 +1,585 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+{% with quarter_id=module.quarter.id module_id=module.id %}
+
+<div class="tutor-course-main-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-2" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-2" type="button" role="tab" aria-controls="lesson-{{module_id}}-2"
+                aria-selected="true">
+                How to Measure your Own Rib Length
+            </button>
+            <button class="nav-link" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-3" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-3" type="button" role="tab" aria-controls="lesson-{{module_id}}-3"
+                aria-selected="true">
+                Suggested Basketry Projects
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-2" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-2">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>How to Measure your Own Rib Length</h5><br>
+
+                    <p>
+                        Determine the diameter of the base, 8" in the illustration. Add to that the height you want, 4" 
+                        in the illustration and then add the 6" for tucking in: 8" + 8" (4 for each side) + 6" = 22". 
+                        The number of stakes to be cut will be determined by the size reed you use and how close together 
+                        you want the spokes. You can use more stakes and start weaving closer in to the center if you taper 
+                        the center as in the illustration.
+                    </p>
+                    
+                    <div class="row g-6">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_1.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Reed and Cane Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane fade show" id="lesson-{{module_id}}-3" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-3">
+            
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>Suggested Basketry Projects</h5><br>
+
+                    <p>
+                        Baskets are made with standard shapes and sizes. Some baskets are unique to various parts of the world. 
+                        Most of them look very much alike as if they were machine made but indeed, they are explicitly handmade.
+                    </p>
+
+                    <h6 class="text-center">FASHIONABLE WEAVE SCHOOL BAG</h6>
+
+                    <p><b>I. Objectives:</b></p>
+                    <ol>
+                        <li>Make a fashionable weave school bag.</li>
+                        <li>Develop industry and love for work.</li>
+                        <li>Apply one's aesthetic sense in making fashionable weave school bag.</li>
+                        <li>Show enthusiasm by working.</li>
+                    </ol>
+
+                    <p><b>II. Design Drawing/Illustration:</b></p>
+                    <div class="row g-6">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_2.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <p><b>III. Tools and Materials:</b></p>
+                    <p>Tools:</p>
+                    <ul>
+                        <li>Scissors</li>
+                        <li>Ruler</li>
+                        <li>Tape Measure</li>
+                        <li>Pins</li>
+                        <li>Needle and thread</li>
+                    </ul>
+                    <p>Materials:</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Quantity</th>
+                                <th style="text-align: center;">Unit</th>
+                                <th style="text-align: center;">Description of Materials</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>32 pieces</td>
+                                <td>30-inch long, 1/2-inch wide</td>
+                                <td>Plastic Strap (2 colors)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><b>IV. Procedure:</b></p>
+                    <ol>
+                        <li>
+                            Take one piece of plastic strap and place it vertically across a flat surface. Place the second 
+                            piece horizontally across the first. Line up the center pins.
+                        </li>
+                        <li>
+                            Lay another 15 vertical pieces alternately over and under the horizontal pieces. The pin in the 
+                            horizontal piece should be kept centered. Pin the vertical pieces to the horizontal piece.
+                        </li>
+                        <li>
+                            Weave another 15 horizontal pieces alternately over and under the vertical pieces. The pin in 
+                            the first vertical piece should be kept centered as shown.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_3.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Pin the pieces at the four right-angled corners to secure them. The corners of the basket will be 
+                            formed at the center of each set of six pieces, indicated by the arrow.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_4.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Pick up the side of the basket farthest away from you and with three pieces in each hand, make a 
+                            corner by bending the pieces toward each other at right angle.
+                        </li>
+                        <li>
+                            Weave each of the six pieces over and under once. Secure the pieces with pins. Rotate the basket 
+                            and create the other three corners in the same way. Pin to secure.
+                        </li>
+                        <li>
+                            Continue to weave over one, under one toward the top of the basket, one row at a time until you 
+                            reach the desired height. Wherever necessary, pin the pieces to hold them in place.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_5.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_6.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            To make a saw-toothed top edge of the bag, begin doubling the pieces back on one another as shown in 
+                            the illustration. The loose ends will hang out until trimmed.
+                        </li>
+                        <li>
+                            To complete each saw-toothed edge at the top of the basket (begun as illustrated in step 8), make the 
+                            fold shown here. Do these all the way round the top of the bag.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_7.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_8.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Work anti-clockwise around, carefully repeating the motions of steps 8 and 9 until all the plastic strap 
+                            pieces have been folded and pinned in place.
+                        </li>
+                        <li>
+                            Continue to work anti-clockwise. Take each loose end formed in steps 8 and 9 and slide it under the next 
+                            plastic strap piece below it. Pull the ends all the way through.
+                        </li>
+                        <li>
+                            Cut off all the ends facing one way, then those facing the other way. Before cutting, pull ends of ribbon 
+                            slightly, so that when cut, the ends will slide back and be hidden.
+                        </li>
+                        <li>
+                            Push back the pieces that cross the hidden ends, and with the needle and thread, tack each end with an 
+                            overhand stitch. Remove all the remaining pins.
+                        </li>
+                        <li>
+                            To make a braid handle, measure the length that you want for your handle, add one-third of that length 
+                            to your measurement. Then, double the total to find out your "cutting length." <br>
+                            Example:
+                            <ul>
+                                <li>Cutting Length = [Handle Length + 1/3(Handle Length)] x 2</li>
+                                <li>Length of handle = 18 inches</li>
+                                <li>Add one-third = 24 inches</li>
+                                <li>Double the total = 48 inches = cutting length</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Cut your lengths as per measurements-the more lengths you use, the thicker your handle will be.
+                        </li>
+                        <li>
+                            Once you have all lengths cut, fold lengths in half and tie a loose knot in the folded end to 
+                            hold them together.
+                        </li>
+                        <li>
+                            Separate your colors into groups (or mix depending on the look you want).
+                        </li>
+                        <li>
+                            Hold the knot as you need a little tension, and then bring the left-hand strand over the middle strand to the center.
+                        </li>
+                        <li>
+                            Bring the right-hand strand over the new middle strand to the center.
+                        </li>
+                        <li>
+                            Alternate bringing the outermost strand to the center, then stop when you have about 6 inches left. 
+                            Attach the braid handle to the bag.
+                        </li>
+                    </ol>
+
+                    <p><b>V. Evaluation:</b></p>
+                    {% include 'emodule/partial/evaluation_rubrics.html' %}
+
+
+                    <h6 class="text-center">MARKET BASKET</h6>
+
+                    <p><b>I. Objectives:</b></p>
+                    <ol>
+                        <li>Make a market basket.</li>
+                        <li>Develop industry and love for work.</li>
+                        <li>Apply one's aesthetic sense in making market basket.</li>
+                        <li>Show enthusiasm by working.</li>
+                        <li>Show creativity in promoting the product.</li>
+                    </ol>
+
+                    <p><b>II. Design Drawing/Illustration:</b></p>
+                    <div class="row g-6">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_9.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <p><b>III. Tools and Materials:</b></p>
+                    <p>Tools:</p>
+                    <ul>
+                        <li>Sharp Scissors</li>
+                        <li>Sack Needle</li>
+                        <li>Awl</li>
+                        <li>Pin for marking</li>
+                    </ul>
+                    <p>Materials:</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Quantity</th>
+                                <th style="text-align: center;">Unit</th>
+                                <th style="text-align: center;">Description of Materials</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Dried raffia leaves or water hyacinth</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><b>IV. Procedure:</b></p>
+                    <ol>
+                        <li>
+                            Sort dried raffia. Wipe with damp rag, pressing firmly between the fingers. Trim butt ends straight and 
+                            tips slanting to make identification easy when working.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_10.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Choose 24 leaves for check weaves on base. Place in pairs on top of each other. Arrange six pairs close 
+                            to each other with a heavy weight on top.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_11.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Lift alternate pairs and weave in a pair of leaves; tuck in as tightly as possible against weight. Weave 
+                            in two more pairs then move weight onto woven leaves.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_12.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Weave in other three pairs. Pack very tightly against other leaves to prevent gaps appearing when the leaves 
+                            dry out. Remove the weight. Pull leaves at ends to flatten.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_13.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Take long leaves. Double it around initial stake and begin pairing. Check weave to make spider, separating 
+                            pair of leaves until all 24 are used singly.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_14.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Continue pairing until base is just bigger than diameter of mold. Tie the leaves' base to the mold with 
+                            two lengths of garden string at right angle.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_15.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            To join new weaver, overlap new leaves and hold overlapping pieces together. Work them as one as you 
+                            continue weaving. Trim end later.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_16.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            After pairing for about 4 cm, add each weaver or three rods waling for one round. Build up sides with 
+                            rows of pairing separated by a row of waling for appearance and strength.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_17.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            End with five rows of pairing before beginning border. Insert the football lacer up pairing to pick up and 
+                            thread ends of pairing weavers into weaving to conceal them.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_18.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            To mend broken strand: Insert lacer up four rows of pairing, insert new leaves, and pull into place. Trim broken leaves. 
+                            Trim end of new leaves when they are firmly woven in.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_19.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            To begin vale border: Working anti- clockwise, bend down each stake in turn diagonally behind the stake on its right. 
+                            Work all round basket keeping bends equal.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_20.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Second stage of border: Continue in an anti-clockwise direction and bend each stake under one on the right then 
+                            turn it up diagonally. Keep work neat and even.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_21.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Before finishing the border, cut the strings holding the basket to the mold; working on the next stage, 
+                            carefully remove the basket.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_22.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Finishing border: Insert lacer up four times of pairing. Thread in end of rush and pull through. Continue 
+                            all around the basket until all the ends are neat.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_23.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Mark positions of handles. Insert pair of leaves (butt to tip) three rows down. Pull through halfway. 
+                            Insert second pair through next gap. Take two leaves in each hand.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_24.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Twist right-hand pair four times. Change hands and twist the new right-hand pair four times. Coil both twists together. 
+                            Twist and coil until the handle is of the correct length.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_25.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Separate the end into two pairs. Carefully insert ends of each pair on opposite sides of rim. Pull through and weave 
+                            ends away to make handle secure.
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_26.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Make the second handle in the same way. Ensure that it is of the same length. Secure firmly. Finally, trim any loose 
+                            ends left protruding from the basket. Allow to dry in an airy place. 
+                            <div class="row g-6">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_4/unit_iv/unit_iv_27.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <p><b>V. Evaluation:</b></p>
+                    {% include 'emodule/partial/evaluation_rubrics.html' %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endwith %}
+{% endblock tab-conent-body-1 %}

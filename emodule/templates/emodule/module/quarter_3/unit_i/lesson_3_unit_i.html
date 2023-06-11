@@ -1,0 +1,52 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+{% with quarter_id=module.quarter.id module_id=module.id %}
+
+<div class="tutor-course-main-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-2" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-2" type="button" role="tab" aria-controls="lesson-{{module_id}}-2"
+                aria-selected="true">
+                Production in Process of Basketry Products
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-2" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-2">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>Production in Process of Basketry Products</h5><br>
+                    <p>
+                        Production is defined as the process of creating goods and services. It involves processing and 
+                        assembling materials using simple tools, machinery, and equipment. Production requires a set of raw 
+                        materials to be able to produce a set of products.
+                    </p>
+                    
+                    <p>
+                        Our country is blessed with raw materials that can be used in the production of macramé and basketry products. 
+                        The raw materials commonly used in making macramé products include abaca twine, plastic twine, and rattan while 
+                        basketry products use raw materials such as abaca, tikug, pandan, buri, and other materials found in the locality.
+                    </p>
+
+                    <p>
+                        Popular macramé products include belts, bags, plant hangers, and accessories. Popular basketry products, on the other hand, 
+                        include market bags, school bags, and food trays.
+                    </p>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endwith %}
+{% endblock tab-conent-body-1 %}
