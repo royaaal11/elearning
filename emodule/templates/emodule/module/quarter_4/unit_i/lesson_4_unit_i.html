@@ -1,0 +1,85 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+{% with quarter_id=module.quarter.id module_id=module.id %}
+
+<div class="tutor-course-main-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-2" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-2" type="button" role="tab" aria-controls="lesson-{{module_id}}-2"
+                aria-selected="true">
+                Planning a Design of Basketry Product
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-2" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-2">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>Planning a Design of Basketry Product</h5><br>
+                    <p>
+                        Every basket has a character that is largely determined by the kind of fiber used to make it. 
+                        Design, therefore, may depend on the available fibers, or conversely, to produce a particular 
+                        design, appropriate fibers need to be purchased or found. Fibers may be round, flexible, or flat. 
+                        Round rods are usually woven among other round rods. Similarly, flat strips can be woven together 
+                        or twisted around stiff rods. Grasses, crushed stems, or other flexible fibers are wrapped around 
+                        each other to form and then, the coil is stitched to itself in a rising spiral to form the basket sides. 
+                        The designer, therefore, must determine what fibers are available and plan the basket accordingly.
+                    </p>
+                    
+                    <p>
+                        Designs can be based on existing baskets, photos of historic types, a particular purpose or use 
+                        for the basket, or a size and shape required for practical uses or desired for decorative ones. 
+                        Another aspect of design is any pattern or coloration that may be worked into the shape of the basket. 
+                        Again, materials, their natural colors, and their susceptibility to dyeing need to be considered.
+                    </p>
+
+                    <p>
+                        The application of the elements of arts and principles of design in basketry is important. 
+                        According to Bantang (2013), "The art principle form follows function is key to good design." 
+                        It is also stated by Goldstein and Goldstein (1996) that there are two kinds of design: texture of 
+                        an object, whether it be the object itself, in space, or a drawing of that object worked out in paper. 
+                        Decorative design is the surface enrichment of the structural design. 
+                    </p>
+
+                    <p>There are four requirements to fulfill for a good structural design (Goldstein and Goldstein 1996):</p>
+                    <ol>
+                        <li>In addition to being beautiful, it is suited to its purpose.</li>
+                        <li>It is simple.</li>
+                        <li>It is well-proportioned</li>
+                        <li>It is suited to the material of which it is made and to the processes which will be followed in making it.</li>
+                    </ol>
+
+                    <p>
+                        Aside from the four requirements to fulfill for a good structural design, Goldstein and Goldstein (1996) also 
+                        emphasized that there are considerations to be fulfilled in adding decorations:
+                    </p>
+
+                    <ol>
+                        <li>Practice moderation in decoration.</li>
+                        <li>Place decoration in structural points and aim to strengthen the shape of the object.</li>
+                        <li>Allot background space to give an effect of simplicity and dignity to the design. </li>
+                        <li>Cover the surface quietly (for surface patterns).</li>
+                        <li>Study the background shapes so that it is as beautiful as the pattern to be added.</li>
+                        <li>Use decoration that is suitable for the material and the purpose.</li>
+                    </ol>
+
+                    <p>
+                        Therefore, proper planning of the design of the project to be done and considering different factors are essential in making a handicraft project.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endwith %}
+{% endblock tab-conent-body-1 %}

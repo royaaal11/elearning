@@ -1,0 +1,80 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+{% with quarter_id=module.quarter.id module_id=module.id %}
+
+<div class="tutor-course-main-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-2" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-2" type="button" role="tab" aria-controls="lesson-{{module_id}}-2"
+                aria-selected="true">
+                How to Measure your Own Rib Length
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-2" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-2">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>How to Measure your Own Rib Length</h5><br>
+
+                    <p>
+                        This is a simple mathematical process. Determine the basket size that you prefer. 
+                        For example, you want to make a 10" wide by 16" long by 6" deep basket. To get a 
+                        length measurement, add the base length (16") and each side depth (6" on each side or 12"), 
+                        and then add 6" (3" on each side) to tuck in at the top: 16" + 12" (2 sides) + 6" (tucking) = 34".
+                    </p>
+
+                    <p>
+                        To get the width measurement, add the base width measurement, add the base width (10") and each 
+                        side depth (6") with the same 6" for tucking: 10" + 12" (two sides) +6" = 28".
+                    </p>
+
+                    <p>
+                        The only thing left to determine is the size of the reed to use, and therefore, how many of each to cut. 
+                        Draw off the area and use a ruler to figure out how many pieces of each to use. Do not forget to add 
+                        spaces between stakes. See the illustrations below.
+                    </p>
+                    
+                    <div class="row g-6">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_iii/unit_iii_1.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Reed and Cane Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_4/unit_iii/unit_iii_2.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h3 class="course-language-item__name">Double Weave Basket</h3>
+                                    </div>
+                                <!-- </a> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endwith %}
+{% endblock tab-conent-body-1 %}

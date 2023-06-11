@@ -20394,3 +20394,13 @@ span.flatpickr-weekday {
   font-weight: 700;
   color: #252525;
 }
+
+ul.no-bullets {
+  list-style-type: none; /* Remove bullets */
+}
+
+ul.no-bullets-zero-padding {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
