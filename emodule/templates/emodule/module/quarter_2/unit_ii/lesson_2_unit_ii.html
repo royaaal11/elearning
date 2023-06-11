@@ -1,0 +1,462 @@
+{% extends 'emodule/module/lesson_base.html' %}
+
+{% load static %}
+
+{% block tab-conent-body-1 %}
+{% with quarter_id=module.quarter.id module_id=module.id %}
+
+<div class="tutor-course-main-segment tutor-course-wrap">
+    <h4 class="tutor-course-segment__title">Lesson</h4>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="id-lesson-{{quarter_id}}-{{module_id}}-tab-2" data-bs-toggle="tab"
+                data-bs-target="#lesson-{{module_id}}-2" type="button" role="tab" aria-controls="lesson-{{module_id}}-2"
+                aria-selected="true">
+                Basketry Weaving Techniques
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="lesson-{{module_id}}-2" role="tabpanel"
+            aria-labelledby="id-lesson-{{quarter_id}}-{{module_id}}-tab-2">
+
+            <div class="tutor-course-main-segment">
+                <div class="tutor-course-segment tutor-course-wrap">
+                    <h5>Basketry Weaving Techniques</h5><br>
+                    <p>
+                        There are four basic techniques used to weave a basket. These are coiling, plaiting, 
+                        stake and strand, and twining. The use of these four techniques creates a variety of different 
+                        types of useful articles from small baskets to huge ones.
+                    </p>
+                    <p><b>Definition of Terms</b></p>
+                    <ul>
+                        <li>
+                            <b>Weavers.</b> These are the basket strands that weave through the spokes; they are
+                            lighter, thinner, and more flexible than the spokes to enable them to be woven in and
+                            out.
+                        </li>
+                        <li>
+                            <b>Spokes.</b> These are the strands that stand upright and form the side supports of the
+                            basket; they are much stiffer than the weavers and are strong.
+                        </li>
+                        <li>
+                            <b>Waling</b> is a kind of weaving with three or more weavers and is used at intervals to
+                            strengthen the basket.
+                        </li>
+                        <li>
+                            <b>Randing</b> is a kind of weaving with one weaver.
+                        </li>
+                    </ul>
+
+                    <h6>1. COILING</h6>
+                    <p>
+                        Coiling is believed to be the earliest basketry technique used. This method is
+                        usually employed for softer materials such as grasses. Strands of grass are stitched
+                        together to form a spiral that is forced into a basket shape. The base material is usually
+                        straw, willow, palmetto or yucca, while raffia and horsehair are stitched together using
+                        straw.
+                    </p>
+                    <p class="text-center"><b>Steps in Coiling</b></p>
+                    <ol>
+                        <li>
+                            Knot start with raffia. Double a piece of raffia and twist it, leaving a loop at one end. 
+                            Tie an overhand knot 20 cm from the loop.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_1.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Wrapped start. Lay one end of wrapper along core. Bind over core, working toward the end of 
+                            the core, getting as close to the end as possible.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_2.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Thread one loose end of raffia in needle; hold the knot, the loop, and the other loose; and stitch
+                            through the knot’s center for the back.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_3.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Bind in the opposite direction, completely covering the core material. When enough core is
+                            covered, bend it into a tight circle.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_4.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Stitch anti-clockwise around knot, putting needle through center from front to back. Keep knot flat. 
+                            Mark starts with colored thread.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_5.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Thread needle with wrapper. Hold bound core in a tight circle. Make the first few stitches around the 
+                            core and through the center.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_6.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            For the second round, the raffia, including loop becomes the core. Stitch core to the top of the preview 
+                            row, twisting the core before each stitch.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_7.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Working anti-clockwise, stitch the working row to the circle through the center hole for one full round. 
+                            Mark starting point with a thread.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_8.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <p class="text-center"><b>Sample Coiling Stitches</b></p>
+                    <div class="row g-12">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_9.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h6 class="course-language-item__name">
+                                            Lazy-square stitch variation
+                                        </h6>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_10.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h6 class="course-language-item__name">
+                                            Open stitch
+                                        </h6>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_11.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h6 class="course-language-item__name">
+                                            Lazy-square stitch variation
+                                        </h6>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_12.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h6 class="course-language-item__name">
+                                            Lace stitch
+                                        </h6>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_13.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h6 class="course-language-item__name">
+                                            Lazy-square stitch variation 3
+                                        </h6>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                    <div class="course-language-item__thumb">
+                                        <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_14.PNG' %}" alt="Language" width="330" height="248">
+                                    </div>
+                                    <div class="course-language-item__caption">
+                                        <h6 class="course-language-item__name">
+                                            Figure-eight stitch
+                                        </h6>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6>2. PLAITING</h6>
+                    <p>
+                        This technique is similar to textile weaving where the materials is plaited or 
+                        woven to produce a wide variety of items like bags, basket, purse, fan, etc.
+                    </p>
+
+                    <p class="text-center"><b>Steps in Plaiting Weave</b></p>
+                    <ol>
+                        <li>
+                            Be familiar with underand- over weaving, a simple over-one-under-one weaves. The plain weave can be varied 
+                            by the addition of color in one direction.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_15.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                            <div class="course-language-item__caption">
+                                                <h6 class="course-language-item__name">
+                                                    Over one
+                                                </h6>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_16.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                            <div class="course-language-item__caption">
+                                                <h6 class="course-language-item__name">
+                                                    Under one
+                                                </h6>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            The pieces are woven over two under two, over three under three, or over four under four.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_17.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                            <div class="course-language-item__caption">
+                                                <h6 class="course-language-item__name">
+                                                    Over two under two
+                                                </h6>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_18.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                            <div class="course-language-item__caption">
+                                                <h6 class="course-language-item__name">
+                                                    Over three under three
+                                                </h6>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_19.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                            <div class="course-language-item__caption">
+                                                <h6 class="course-language-item__name">
+                                                    Over four under four
+                                                </h6>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_20.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                            <div class="course-language-item__caption">
+                                                <h6 class="course-language-item__name">
+                                                    Four Chevron
+                                                </h6>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <h6>3. STAKE AND STRAND</h6>
+                    <p>
+                        Stake and strand weaving involves two elements, namely, the rigid stakes that
+                        form the ribs or warp and a more pliable material that is used to weave in and out of
+                        the ribs to create the sides of the basket or the waft. This method allows the use of a
+                        wide range of materials as long as they are flexible enough for the waft and rigid
+                        enough for the warp.
+                    </p>
+
+                    <p><b class="text-center">Steps in Stake and Strand</b></p>
+                    <ol>
+                        <li>
+                            Beginning at the initial stake, place three weavers behind three consecutive stakes. 
+                            Pick up weaver A, bring it in front of two stakes, over the other two weavers, and 
+                            behind the next stake, and then to the front.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_21.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Repeat these motions with weaver
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_22.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Repeat these motions with weaver C.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_23.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_24.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <h6>4. TWINING</h6>
+                    <p>
+                        Twining Basketry uses materials from roots and tree bark. Twining actually refers to a
+                        weaving technique where two or more flexible weaving elements or weavers cross
+                        each other as they weave through the stiffer radial spokes.
+                    </p>
+
+                    <p class="text-center"><b>Steps in Twining</b></p>
+                    <ol>
+                        <li>
+                            Begin with a weave done with two elements woven concurrently around the spokes. The weaving elements 
+                            cross between the spokes for a half turn.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_25.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            With the weave woven around the spokes, cross the spokes for a full turn as shown in the illustration.
+                            <div class="row g-12">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="course-language-item" data-aos="fade-up" data-aos-duration="1000">
+                                        <!-- <a class="course-language-item__link" href="course-grid-left-sidebar.html"> -->
+                                            <div class="course-language-item__thumb">
+                                                <img src="{% static 'emodule/images/module/quarter_2/unit_ii/unit_ii_26.PNG' %}" alt="Language" width="330" height="248">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endwith %}
+{% endblock tab-conent-body-1 %}
