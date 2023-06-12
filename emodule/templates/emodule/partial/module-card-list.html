@@ -12,7 +12,7 @@
         <h3 class="course-list-info__title"><a href="{% url 'emodule:module-detail' module.quarter.subject.id module.quarter.id module.id %}">{{module.title}}</a></h3>
         {% show_emodule_badge module.quiz_set.all quiz_status %}
         <div class="course-list-info__meta">
-            <span><i class="fas fa-play-circle"></i>{{module.quiz_count}} Activit{{module.quiz_count|emodule_pluralize:"y,ies"}}</span>
+            {% comment %}<span><i class="fas fa-play-circle"></i>{{module.quiz_count}} Activit{{module.quiz_count|emodule_pluralize:"y,ies"}}</span>{% endcomment %}
             <span><i class="fas fa-clock"></i>{{module.duration}}</span>
         </div>
         <div class="course-list-info__description">

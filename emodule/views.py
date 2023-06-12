@@ -272,7 +272,7 @@ class SubjectDetail(BaseView, DetailView):
                     .filter(student=student_user).order_by("-group").first(),
                 "prerequisite": quarter_list[idx - 1] if idx > 0 else None,
                 "prerequisite_result": StudentAssessmentResult.objects\
-                    .filter(quarter=quarter)\
+                    .filter(quarter=quarter_list[idx - 1])\
                     .filter(student=student_user) if idx > 0 else None
             }
             temp.append(temp1)

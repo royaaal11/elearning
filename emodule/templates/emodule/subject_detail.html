@@ -53,6 +53,8 @@
                 {% emodule_status current_quarter.latest_result.status as current_assessment_status %}
                 {% emodule_status current_quarter.prerequisite_result.latest.status as prereq_assessment_status %}
                 {% get_assessment_button_text current_assessment_status current_quarter.assessment_result.count assessment_max_attempts as assessment_button_text %}
+                {% get_assessment_button_style assessment_button_text current_assessment_status as assessment_button_style  %}
+                {% get_assessment_button_icon assessment_button_text current_assessment_status as assessment_button_icon %}
                 
                 
                 <div class="col-lg-6">
@@ -81,8 +83,13 @@
                                     -->
                                     <div>
                                         <a href="{% url 'emodule:assessment-detail' subject.id current_quarter.quarter.id 'assessments' %}"
-                                            class="banner-caption-02__btn btn btn-primary btn-hover-secondary {% if current_quarter.assessment_set.all or current_quarter.prerequisite and prereq_assessment_status != 'Passed' %}disabled{% endif %}"
-                                            >{{assessment_button_text}}</a>
+                                            class="banner-caption-02__btn btn btn-{{assessment_button_style}} btn-hover-secondary {% if forloop.counter == 1 %}{% elif assessment_button_text == 'Take the assessment' and prereq_assessment_status != 'Passed' %}disabled{% endif %}"
+                                            >
+                                            <div class="label">
+                                                <i class="fas fa-{{assessment_button_icon}}"></i> 
+                                                {{assessment_button_text}} {% if current_assessment_status != None %} - {{current_assessment_status}}{% endif %} 
+                                            </div>
+                                        </a>
                                     </div>
 
                                 </div>
