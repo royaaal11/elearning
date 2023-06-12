@@ -28,7 +28,16 @@ def template_exists(template_name):
 def activity_has_questions(quiz_list):
     has_questions = False
     for key, activity in quiz_list.items():
-        has_questions = True if len(activity.get('question_list')) > 0 else False
+        return True if len(activity.get('question_list')) > 0 else False
+
+    return has_questions
+
+
+@register.filter
+def activity_has_questions_queryset(quiz_list):
+    has_questions = False
+    for quiz in quiz_list:
+        return True if quiz.quizquestion_set.all() else False
 
     return has_questions
 
@@ -65,6 +74,30 @@ def get_assessment_button_text(latest_status, attempt_count, max_attempts):
         return button_text
     
     return button_text
+
+
+@register.simple_tag
+def get_assessment_button_style(button_text, status):
+    if button_text == 'Take the assessment'  or button_text == 'Retake':
+        return 'primary'
+    elif button_text == 'View result':
+        if status == 'Passed':
+            return 'success'
+        else:
+            return 'danger'
+        
+
+@register.simple_tag
+def get_assessment_button_icon(button_text, status):
+    if button_text == 'Take the assessment':
+        return 'info'
+    elif button_text == 'Retake':
+        return 'redo'
+    elif button_text == 'View result':
+        if status == 'Passed':
+            return 'check'
+        else:
+            return 'times'
 
 
 @register.simple_tag
