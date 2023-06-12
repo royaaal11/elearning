@@ -203,7 +203,7 @@
                                     <a 
                                         id="id_activity_form_submit" 
                                         href="{% url 'emodule:assessment-detail' next_quarter_assessment.subject.id next_quarter_assessment.id 'assessment' %}"
-                                        class="btn btn-secondary btn-hover-primary w-100 {% if not assessment_list or not next_quarter_assessment.assessment_set.all or current_assessment_status == 'Failed' %}disabled{% endif %}"
+                                        class="btn btn-secondary btn-hover-primary w-100 {% if not assessment_list or not next_quarter_assessment.assessment_set.all or current_assessment_status != 'Passed' %}disabled{% endif %}"
                                         >Proceed to next assessment</a>
                                 </div>
                             </div><br/>
